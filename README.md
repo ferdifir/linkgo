@@ -16,7 +16,7 @@ LinkGo adalah portal web untuk menjelajahi informasi desa di Kecamatan Gending, 
 
 - PHP 8.3 atau lebih baru
 - Laravel 13
-- SQLite secara default; konfigurasi database dapat diubah melalui environment Laravel
+- PostgreSQL sebagai database utama
 - Node.js dan npm untuk mengelola serta membangun asset frontend
 - Vite, Tailwind CSS 4, dan MapLibre GL JS
 
@@ -24,11 +24,14 @@ LinkGo adalah portal web untuk menjelajahi informasi desa di Kecamatan Gending, 
 
 ### Prasyarat
 
-Pastikan PHP, Composer, Node.js, dan npm tersedia. Ekstensi PHP yang dibutuhkan Laravel juga harus aktif.
+Pastikan PHP 8.3+, Composer, Node.js, npm, server PostgreSQL, dan ekstensi PHP `pdo_pgsql` tersedia.
 
 ### Instalasi
 
 ```sh
+cp .env.example .env
+createdb linkgo_portal
+# Sesuaikan DB_HOST, DB_PORT, DB_USERNAME, dan DB_PASSWORD di .env.
 make setup
 npm ci
 npm run build
@@ -46,7 +49,7 @@ make dev
 
 Secara default server berjalan di `http://127.0.0.1:8080`. Buka `/` untuk direktori desa, `/desa/curahsawo` untuk halaman desa Curahsawo, atau `/admin` untuk dashboard admin. Saat mengembangkan frontend, jalankan `npm run dev` di terminal terpisah agar Vite memperbarui asset.
 
-`make setup` memasang dependency PHP, menyiapkan `.env`, membuat `APP_KEY` jika belum ada, dan menjalankan migrasi. Konfigurasi database bawaan memakai `database/curahsawo.sqlite`. Migrasi menambahkan skema yang dibutuhkan tanpa menghapus data proyek dan APBDes yang sudah ada.
+`make setup` memasang dependency PHP, menyiapkan `.env`, membuat `APP_KEY` jika belum ada, dan menjalankan migrasi. Sebelum setup, buat database PostgreSQL sesuai nilai `DB_DATABASE` dan atur aksesnya melalui variabel `DB_*`. Konfigurasi bawaan memakai database `linkgo_portal` pada `127.0.0.1:5432`.
 
 ## Konfigurasi
 
@@ -58,7 +61,7 @@ Salin `.env.example` ke `.env` jika belum dibuat. Pengaturan utama:
 | `APP_DEBUG` | Aktifkan hanya di lokal; set `false` di produksi. |
 | `APP_KEY` | Kunci enkripsi Laravel; buat dengan `make key`. |
 | `APP_URL` | URL utama aplikasi. |
-| `DB_CONNECTION`, `DB_DATABASE` | Koneksi dan lokasi database. Default-nya SQLite. |
+| `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` | Koneksi PostgreSQL dan kredensial database. Default database-nya `linkgo_portal`. |
 | `SESSION_SECURE_COOKIE` | Set `true` jika aplikasi dilayani melalui HTTPS. |
 | `TRUSTED_PROXIES` | Alamat proxy tepercaya jika aplikasi berada di belakang reverse proxy. |
 | `MAIL_MAILER` dan `MAIL_*` | Pengiriman email pembaruan status. Default lokal memakai `log`, bukan mengirim email keluar. |

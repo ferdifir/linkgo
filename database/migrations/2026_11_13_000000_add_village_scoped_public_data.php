@@ -22,20 +22,20 @@ return new class extends Migration
         }
 
         if (! Schema::hasColumn('budgets', 'village_slug')) {
-            DB::statement('CREATE TABLE budgets_village_scoped (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                village_slug TEXT NOT NULL DEFAULT \'curahsawo\',
-                year INTEGER NOT NULL,
-                revenue INTEGER NOT NULL DEFAULT 0,
-                expenditure INTEGER NOT NULL DEFAULT 0,
-                financing INTEGER NOT NULL DEFAULT 0,
-                village_fund INTEGER NOT NULL DEFAULT 0,
-                realized INTEGER NOT NULL DEFAULT 0,
-                notes TEXT NOT NULL DEFAULT \'\',
-                source_url TEXT NOT NULL DEFAULT \'\',
-                published INTEGER NOT NULL DEFAULT 0,
-                UNIQUE(village_slug, year)
-            )');
+            Schema::create('budgets_village_scoped', function (Blueprint $table): void {
+                $table->increments('id');
+                $table->string('village_slug')->default('curahsawo');
+                $table->integer('year');
+                $table->integer('revenue')->default(0);
+                $table->integer('expenditure')->default(0);
+                $table->integer('financing')->default(0);
+                $table->integer('village_fund')->default(0);
+                $table->integer('realized')->default(0);
+                $table->text('notes')->default('');
+                $table->text('source_url')->default('');
+                $table->boolean('published')->default(false);
+                $table->unique(['village_slug', 'year']);
+            });
             DB::statement("INSERT INTO budgets_village_scoped (id, village_slug, year, revenue, expenditure, financing, village_fund, realized, notes, source_url, published)
                 SELECT id, 'curahsawo', year, revenue, expenditure, financing, village_fund, realized, notes, source_url, published FROM budgets");
             Schema::drop('budgets');
@@ -86,18 +86,18 @@ return new class extends Migration
             Schema::table('proposals', fn (Blueprint $table) => $table->dropColumn('village_slug'));
         }
         if (Schema::hasColumn('budgets', 'village_slug')) {
-            DB::statement('CREATE TABLE budgets_legacy (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                year INTEGER NOT NULL UNIQUE,
-                revenue INTEGER NOT NULL DEFAULT 0,
-                expenditure INTEGER NOT NULL DEFAULT 0,
-                financing INTEGER NOT NULL DEFAULT 0,
-                village_fund INTEGER NOT NULL DEFAULT 0,
-                realized INTEGER NOT NULL DEFAULT 0,
-                notes TEXT NOT NULL DEFAULT \'\',
-                source_url TEXT NOT NULL DEFAULT \'\',
-                published INTEGER NOT NULL DEFAULT 0
-            )');
+            Schema::create('budgets_legacy', function (Blueprint $table): void {
+                $table->increments('id');
+                $table->integer('year')->unique();
+                $table->integer('revenue')->default(0);
+                $table->integer('expenditure')->default(0);
+                $table->integer('financing')->default(0);
+                $table->integer('village_fund')->default(0);
+                $table->integer('realized')->default(0);
+                $table->text('notes')->default('');
+                $table->text('source_url')->default('');
+                $table->boolean('published')->default(false);
+            });
             DB::statement("INSERT INTO budgets_legacy (id, year, revenue, expenditure, financing, village_fund, realized, notes, source_url, published)
                 SELECT id, year, revenue, expenditure, financing, village_fund, realized, notes, source_url, published FROM budgets WHERE village_slug = 'curahsawo'");
             Schema::drop('budgets');
