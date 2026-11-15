@@ -1,0 +1,211 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+svg.inline-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    vertical-align: -2px;
+}
+
+.portal-footer {
+    padding: 52px max(28px, calc((100vw - 1280px) / 2)) 18px;
+    background: var(--portal-footer-bg, #25870d);
+    color: #fff;
+    font: 400 14px/1.6 var(--font-sans);
+}
+
+.portal-footer--curahsawo {
+    --portal-footer-bg: #294c35;
+}
+
+.portal-footer--pajurangan {
+    --portal-footer-bg: #17352d;
+}
+
+.portal-footer--gending {
+    --portal-footer-bg: #1d3729;
+}
+
+.portal-footer--randupitu {
+    --portal-footer-bg: #79291f;
+}
+
+.portal-footer__grid {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr 1fr .8fr;
+    gap: 38px;
+    max-width: 1280px;
+    margin-inline: auto;
+}
+
+.portal-footer__identity {
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr);
+    align-content: start;
+    gap: 18px;
+}
+
+.portal-footer__seal {
+    display: grid;
+    width: 64px;
+    height: 76px;
+    place-items: center;
+    border: 2px solid rgb(255 255 255 / 82%);
+    border-radius: 45% 45% 42% 42%;
+    color: #fff;
+    font: 700 26px/1 var(--font-sans);
+}
+
+.portal-footer__section h2,
+.portal-footer__identity h2 {
+    margin: 0 0 14px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 750;
+    line-height: 1.25;
+}
+
+.portal-footer__identity p,
+.portal-footer__section p {
+    margin: 0 0 5px;
+}
+
+.portal-footer__contact {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin: 0 0 14px !important;
+}
+
+.portal-footer__contact svg {
+    width: 19px;
+    height: 19px;
+    flex: none;
+    margin-top: 2px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.portal-footer__social {
+    margin-top: 19px !important;
+    color: rgb(255 255 255 / 85%);
+}
+
+.portal-footer__links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.portal-footer__links h2 {
+    margin-bottom: 9px;
+}
+
+.portal-footer a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.portal-footer__sources {
+    max-width: 1280px;
+    margin: 34px auto 0;
+    padding-top: 15px;
+    border-top: 1px solid rgb(255 255 255 / 30%);
+    color: rgb(255 255 255 / 88%);
+    font-size: 12px;
+}
+
+.portal-footer__sources strong {
+    margin-right: 12px;
+    color: #fff;
+}
+
+.portal-footer__sources a {
+    margin-inline: 4px;
+}
+
+.portal-footer__bottom {
+    margin: 48px auto 0;
+    color: rgb(255 255 255 / 88%);
+    text-align: center;
+}
+
+.portal-footer__bottom a {
+    font-weight: 800;
+}
+
+@media (max-width: 900px) {
+    .portal-footer__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px 28px;
+    }
+}
+
+@media (max-width: 560px) {
+    .portal-footer {
+        padding: 38px 20px 16px;
+        font-size: 14px;
+    }
+
+    .portal-footer__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+    }
+
+    .portal-footer__identity {
+        grid-template-columns: 54px minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .portal-footer__seal {
+        width: 52px;
+        height: 62px;
+    }
+
+    .portal-footer__section h2,
+    .portal-footer__identity h2 {
+        font-size: 18px;
+    }
+
+    .portal-footer__sources {
+        margin-top: 27px;
+    }
+
+    .portal-footer__bottom {
+        margin-top: 35px;
+    }
+}
+/* Visible marker for illustrative village page content. */
+.sample-label {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    padding: 4px 7px;
+    border: 1px solid currentColor;
+    color: #174eb5;
+    background: #e7eefb;
+    font-size: 9px;
+    font-weight: 850;
+    line-height: 1.2;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.sample-label--inverse {
+    border-color: rgb(255 255 255 / 38%);
+    color: #fff;
+    background: rgb(255 255 255 / 12%);
+}

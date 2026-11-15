@@ -1,0 +1,776 @@
+@import 'maplibre-gl/dist/maplibre-gl.css';
+
+:root {
+    color-scheme: light;
+    --gending-ink: #173633;
+    --gending-muted: #65746f;
+    --gending-line: #dfe5dc;
+    --gending-leaf: #dce8d8;
+    --gending-sea: #287d82;
+    --gending-coral: #d8754f;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+body {
+    background: #edf1e9;
+    color: var(--gending-ink);
+    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+.gending-map-page {
+    min-height: 560px;
+    isolation: isolate;
+}
+
+#village-map {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background:
+        radial-gradient(ellipse at 75% 30%, rgb(241 243 231 / 70%), transparent 38%),
+        #e5ecec;
+}
+
+.gending-province-locator {
+    display: flex;
+    width: fit-content;
+    min-height: 42px;
+    align-items: center;
+    gap: 9px;
+    margin-top: 9px;
+    padding: 4px 10px 4px 5px;
+    border: 1px solid #e1e7dc;
+    border-radius: 12px;
+    background: #f5f7f0;
+}
+
+.gending-province-locator > div {
+    width: 49px;
+    height: 32px;
+}
+
+.gending-province-locator svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.gending-province-shape {
+    fill: #cbdcc7;
+    stroke: #6f8e7d;
+    stroke-linejoin: round;
+    stroke-width: 1.2;
+}
+
+.gending-province-marker-ring {
+    fill: #fff;
+}
+
+.gending-province-marker {
+    fill: #c46f4d;
+}
+
+.gending-province-locator > span {
+    display: grid;
+    gap: 1px;
+}
+
+.gending-province-locator small {
+    color: #718078;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: .1em;
+}
+
+.gending-province-locator strong {
+    color: #31584f;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.gending-map-brand {
+    top: 26px;
+    left: 28px;
+    color: #173633;
+}
+
+.portal-village-logo {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    flex: none;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid currentColor;
+    border-radius: 31%;
+    background: #f7fcff;
+}
+
+.portal-village-logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.gending-brand-copy {
+    display: grid;
+    gap: 2px;
+    line-height: 1.2;
+}
+
+.gending-brand-copy strong {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+}
+
+.gending-brand-copy small {
+    color: #63736d;
+    font-size: 12px;
+    font-weight: 550;
+}
+
+.gending-map-panel {
+    top: 94px;
+    bottom: 24px;
+    left: 28px;
+    width: min(385px, calc(100vw - 56px));
+    padding: 25px 26px 17px;
+    border: 1px solid rgb(255 255 255 / 82%);
+    border-radius: 25px;
+    background: rgb(251 251 246 / 96%);
+    box-shadow: 0 24px 80px rgb(25 50 43 / 13%), 0 2px 8px rgb(25 50 43 / 4%);
+    backdrop-filter: blur(18px);
+}
+
+.gending-panel-top {
+    min-height: 21px;
+}
+
+.gending-overline,
+.gending-village-count {
+    color: #506a60;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.gending-overline {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.gending-overline span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #579182;
+    box-shadow: 0 0 0 4px #e1eee5;
+}
+
+.gending-village-count {
+    padding: 7px 9px;
+    border: 1px solid #dce8df;
+    border-radius: 999px;
+    color: #287068;
+    background: #edf5ef;
+    font-size: 10px;
+    letter-spacing: .08em;
+}
+
+.gending-intro {
+    margin-top: 30px;
+}
+
+.gending-intro h1 {
+    margin: 0;
+    color: #173633;
+    font-size: clamp(37px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -.075em;
+    line-height: .98;
+}
+
+.gending-intro h1 span {
+    color: #438478;
+}
+
+.gending-intro p {
+    max-width: 35ch;
+    margin: 15px 0 0;
+    color: #5c6c66;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.gending-search {
+    z-index: 5;
+    margin-top: 21px;
+}
+
+.gending-search label {
+    display: block;
+    margin-bottom: 8px;
+    color: #334e47;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.gending-search-field {
+    min-height: 48px;
+    padding: 0 13px;
+    border: 1px solid #d8e1d9;
+    border-radius: 12px;
+    background: #fff;
+    transition: border-color .16s, box-shadow .16s;
+}
+
+.gending-search-field:focus-within {
+    border-color: #56978e;
+    box-shadow: 0 0 0 3px rgb(86 151 142 / 16%);
+}
+
+.gending-search-field > svg {
+    width: 19px;
+    height: 19px;
+    flex: none;
+    color: #60756d;
+}
+
+.gending-search-field input {
+    width: 100%;
+    min-width: 0;
+    height: 46px;
+    border: 0;
+    outline: 0;
+    color: #1c3834;
+    background: transparent;
+    font: inherit;
+    font-size: 15px;
+}
+
+.gending-search-field input::placeholder {
+    color: #87938c;
+}
+
+.gending-search-field input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.gending-clear-search {
+    display: grid;
+    width: 31px;
+    height: 31px;
+    flex: none;
+    place-items: center;
+    border: 0;
+    border-radius: 8px;
+    color: #71817a;
+    background: transparent;
+}
+
+.gending-clear-search[hidden] {
+    display: none;
+}
+
+.gending-clear-search:hover {
+    color: #173633;
+    background: #eef3ee;
+}
+
+.gending-clear-search svg {
+    width: 17px;
+    height: 17px;
+}
+
+.gending-suggestions {
+    position: absolute;
+    top: calc(100% + 7px);
+    right: 0;
+    left: 0;
+    max-height: min(258px, 36dvh);
+    overflow: auto;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #dce5dd;
+    border-radius: 13px;
+    background: #fff;
+    box-shadow: 0 14px 32px rgb(25 50 43 / 15%);
+    list-style: none;
+    overscroll-behavior: contain;
+}
+
+.gending-suggestions[hidden] {
+    display: none;
+}
+
+.gending-suggestions li:not(.gending-no-results) a {
+    display: flex;
+    min-height: 39px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: #304d45;
+    font-size: 14px;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.gending-suggestions li:not(.gending-no-results) a:hover,
+.gending-suggestions li:not(.gending-no-results) a:focus-visible {
+    outline: 0;
+    color: #164f4a;
+    background: #edf5ef;
+}
+
+.gending-suggestions li:not(.gending-no-results) svg {
+    width: 17px;
+    height: 17px;
+    flex: none;
+    color: #648078;
+}
+
+.gending-no-results {
+    padding: 12px 10px;
+    color: #6c7a73;
+    font-size: 14px;
+}
+
+.gending-no-results[hidden] {
+    display: none;
+}
+
+.gending-preview {
+    display: flex;
+    min-height: 132px;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 13px;
+    padding: 17px 18px;
+    border: 1px solid #e0e8df;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #f0f5ee, #f7f7f1 76%);
+    transition: background .2s, border-color .2s;
+}
+
+.gending-preview.is-active {
+    border-color: #b8d1c2;
+    background: linear-gradient(145deg, #e8f1e9, #f4f6ef 76%);
+}
+
+.gending-preview-index {
+    color: #6d8377;
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .13em;
+}
+
+.gending-preview h2 {
+    margin: 7px 0 3px;
+    color: #1b3a35;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -.045em;
+    line-height: 1.15;
+}
+
+.gending-preview p {
+    max-width: 39ch;
+    margin: 0;
+    color: #61716a;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.gending-preview-link {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 39px;
+    align-items: center;
+    gap: 9px;
+    margin-top: 12px;
+    padding: 0 13px;
+    border-radius: 9px;
+    color: white;
+    background: #286c65;
+    font-size: 13px;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.gending-preview-link:hover {
+    background: #1b514b;
+}
+
+.gending-preview-link:focus-visible {
+    outline: 3px solid rgb(40 108 101 / 30%);
+    outline-offset: 2px;
+}
+
+.gending-preview-link svg {
+    width: 16px;
+    height: 16px;
+}
+
+.gending-preview-link[hidden] {
+    display: none;
+}
+
+.gending-panel-foot {
+    min-height: 39px;
+    flex: none;
+    margin-top: 12px;
+    border-top: 1px solid #e2e7df;
+    color: #718078;
+    font-size: 11px;
+}
+
+.gending-panel-foot > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+}
+
+.gending-panel-foot i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #7e9b86;
+}
+
+.gending-source-links {
+    gap: 9px;
+    margin-left: auto;
+}
+
+.gending-panel-foot a {
+    display: inline-flex;
+    min-height: 32px;
+    align-items: center;
+    gap: 5px;
+    color: #506a60;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.gending-panel-foot a:hover {
+    color: #1a5f58;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.gending-panel-foot svg {
+    width: 14px;
+    height: 14px;
+}
+
+.gending-map-controls {
+    top: 26px;
+    right: 26px;
+}
+
+.gending-map-controls button {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgb(44 66 57 / 12%);
+    border-radius: 12px;
+    color: #28443d;
+    background: rgb(255 255 251 / 94%);
+    box-shadow: 0 5px 18px rgb(27 46 39 / 12%);
+    transition: color .15s, background .15s, transform .15s;
+}
+
+.gending-map-controls button:hover {
+    color: #fff;
+    background: #286c65;
+    transform: translateY(-1px);
+}
+
+.gending-map-controls button:focus-visible {
+    outline: 3px solid rgb(40 108 101 / 35%);
+    outline-offset: 2px;
+}
+
+.gending-map-controls svg {
+    width: 18px;
+    height: 18px;
+}
+
+.gending-map-message {
+    right: 26px;
+    bottom: 42px;
+    max-width: 290px;
+    padding: 11px 14px;
+    border: 1px solid #f2d7ca;
+    border-radius: 11px;
+    color: #7b3b2c;
+    background: #fff6ef;
+    box-shadow: 0 5px 18px rgb(27 46 39 / 8%);
+    font-size: 13px;
+}
+
+.gending-map-message[hidden] {
+    display: none;
+}
+
+.maplibregl-ctrl-bottom-right {
+    right: 22px;
+    bottom: 13px;
+}
+
+.maplibregl-ctrl-attrib {
+    border-radius: 8px 8px 0 0;
+    color: #41534c;
+    background: rgb(255 255 251 / 88%);
+    font-size: 10px;
+}
+
+.maplibregl-ctrl-attrib a {
+    color: #315d55;
+}
+
+.maplibregl-canvas:focus-visible {
+    outline: 3px solid #286c65;
+    outline-offset: -3px;
+}
+
+@media (min-width: 900px) and (max-height: 790px) {
+    .gending-map-panel {
+        top: 84px;
+        bottom: 16px;
+        padding-block: 20px 12px;
+    }
+
+    .gending-intro {
+        margin-top: 21px;
+    }
+
+    .gending-intro h1 {
+        font-size: 41px;
+    }
+
+    .gending-intro p {
+        margin-top: 11px;
+        font-size: 14px;
+    }
+
+    .gending-search {
+        margin-top: 15px;
+    }
+
+    .gending-preview {
+        min-height: 116px;
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 760px) {
+    .gending-preview {
+        display: none;
+    }
+
+    .gending-map-brand {
+        top: max(13px, env(safe-area-inset-top));
+        left: 14px;
+    }
+
+    .portal-village-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .gending-brand-copy strong {
+        font-size: 14px;
+    }
+
+    .gending-brand-copy small {
+        font-size: 11px;
+    }
+
+    .gending-map-panel {
+        top: auto;
+        right: 12px;
+        bottom: max(12px, env(safe-area-inset-bottom));
+        left: 12px;
+        width: auto;
+        max-height: min(47dvh, 365px);
+        padding: 17px 17px 10px;
+        border-radius: 20px;
+    }
+
+    .gending-panel-top {
+        min-height: 20px;
+    }
+
+    .gending-overline,
+    .gending-village-count {
+        font-size: 10px;
+    }
+
+    .gending-intro {
+        margin-top: 9px;
+    }
+
+    .gending-intro h1 {
+        font-size: clamp(30px, 8.2vw, 38px);
+        line-height: .98;
+    }
+
+    .gending-intro p {
+        max-width: 48ch;
+        margin-top: 8px;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .gending-search {
+        margin-top: 9px;
+    }
+
+    .gending-suggestions {
+        top: auto;
+        bottom: calc(100% + 7px);
+        max-height: min(258px, 32dvh);
+    }
+
+    .gending-search label {
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    .gending-search-field {
+        min-height: 43px;
+        border-radius: 11px;
+    }
+
+    .gending-search-field input {
+        height: 41px;
+        font-size: 14px;
+    }
+
+    .gending-preview {
+        min-height: 92px;
+        flex: none;
+        margin-top: 8px;
+        padding: 11px 13px;
+        border-radius: 13px;
+    }
+
+    .gending-preview-index {
+        font-size: 9px;
+    }
+
+    .gending-preview h2 {
+        margin-top: 4px;
+        font-size: 17px;
+    }
+
+    .gending-preview p {
+        font-size: 12px;
+        line-height: 1.35;
+    }
+
+    .gending-preview-link {
+        min-height: 34px;
+        margin-top: 8px;
+        font-size: 12px;
+    }
+
+    .gending-panel-foot {
+        min-height: 31px;
+        margin-top: 7px;
+        font-size: 10px;
+    }
+
+    .gending-panel-foot a {
+        min-height: 28px;
+    }
+
+    .gending-map-controls {
+        top: max(14px, env(safe-area-inset-top));
+        right: 13px;
+        gap: 6px;
+    }
+
+    .gending-map-controls button {
+        width: 39px;
+        height: 39px;
+        border-radius: 11px;
+    }
+
+    .maplibregl-ctrl-bottom-right {
+        right: 13px;
+        bottom: calc(min(47dvh, 365px) + 20px);
+    }
+
+    .maplibregl-ctrl-attrib {
+        font-size: 9px;
+    }
+
+    .gending-map-message {
+        right: 13px;
+        bottom: calc(min(47dvh, 365px) + 25px);
+        max-width: calc(100vw - 26px);
+    }
+}
+
+@media (max-width: 380px) {
+    .gending-map-brand {
+        gap: 8px;
+    }
+
+    .gending-brand-copy small {
+        font-size: 10px;
+    }
+
+    .gending-map-panel {
+        max-height: min(49dvh, 375px);
+        padding-inline: 14px;
+    }
+
+    .gending-intro p {
+        font-size: 12px;
+    }
+
+    .gending-village-count {
+        padding: 6px 7px;
+        letter-spacing: .04em;
+    }
+
+    .gending-panel-foot {
+        font-size: 9px;
+    }
+
+    .maplibregl-ctrl-bottom-right {
+        bottom: calc(min(49dvh, 375px) + 18px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
