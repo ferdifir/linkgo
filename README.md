@@ -39,7 +39,7 @@ php artisan storage:link
 php artisan admin:create-village-admin
 ```
 
-Perintah pembuatan admin akan meminta nama, username, email, desa, dan kata sandi. Di lingkungan lokal, secret TOTP boleh dikosongkan. Untuk lingkungan selain lokal dan testing, akun admin wajib memakai secret TOTP Base32.
+Perintah pembuatan admin akan meminta nama, username, email, desa, dan kata sandi. Admin masuk menggunakan username dan kata sandi.
 
 Untuk menjalankan server lokal:
 
@@ -66,7 +66,7 @@ Salin `.env.example` ke `.env` jika belum dibuat. Pengaturan utama:
 | `TRUSTED_PROXIES` | Alamat proxy tepercaya jika aplikasi berada di belakang reverse proxy. |
 | `MAIL_MAILER` dan `MAIL_*` | Pengiriman email pembaruan status. Default lokal memakai `log`, bukan mengirim email keluar. |
 
-Akun admin disimpan di tabel `users`, bukan dibuat dari variabel `ADMIN_USERNAME` atau `ADMIN_PASSWORD`. Buat akun melalui `php artisan admin:create-village-admin`; command akan mengaitkan akun dengan satu desa. Buat secret TOTP dengan `make totp-secret` jika diperlukan.
+Akun admin disimpan di tabel `users`, bukan dibuat dari variabel `ADMIN_USERNAME` atau `ADMIN_PASSWORD`. Buat akun melalui `php artisan admin:create-village-admin`; command akan mengaitkan akun dengan satu desa.
 
 ## Perintah yang sering dipakai
 
@@ -85,11 +85,11 @@ npm run build                 # Build asset untuk deployment
 2. Atur environment produksi, termasuk `APP_KEY`, `APP_URL`, `APP_ENV=production`, `APP_DEBUG=false`, koneksi database, dan `SESSION_SECURE_COOKIE=true` saat memakai HTTPS.
 3. Jalankan `composer install --no-dev --optimize-autoloader` dan `npm ci`.
 4. Jalankan `npm run build`, `php artisan migrate --force`, dan `php artisan storage:link`.
-5. Buat akun admin per desa dengan `php artisan admin:create-village-admin`. Masukkan secret TOTP Base32 yang sudah didaftarkan ke aplikasi autentikator.
+5. Buat akun admin per desa dengan `php artisan admin:create-village-admin`.
 6. Arahkan web server ke direktori `public/` dan aktifkan HTTPS. Jangan gunakan `php artisan serve` sebagai web server produksi.
 7. Atur variabel `MAIL_*` jika notifikasi status perlu dikirim ke alamat email warga. Jika aplikasi berjalan di balik reverse proxy, atur `TRUSTED_PROXIES` dengan alamat proxy yang benar.
 
-Simpan salinan database dan file media secara berkala. Jangan memasukkan `.env`, secret TOTP, atau kredensial produksi ke repository.
+Simpan salinan database dan file media secara berkala. Jangan memasukkan `.env` atau kredensial produksi ke repository.
 
 ## Dokumentasi proyek
 

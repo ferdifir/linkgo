@@ -1,15 +1,14 @@
 PORT ?= 8080
 
-.PHONY: help setup dev check-config key totp-secret migrate cache-clear
+.PHONY: help setup dev check-config key migrate cache-clear
 
 help:
 	@printf '%s\n' \
 	  'make setup       Install PHP dependencies and prepare the local environment' \
 	  'make dev         Run the Laravel development server on 127.0.0.1:$(PORT)' \
-	  'make check-config Validate production admin credentials and TOTP secret' \
+	  'make check-config Validate production admin credentials' \
 	  'make migrate     Apply database migrations' \
-	  'make key         Generate an application encryption key' \
-	  'make totp-secret Generate a Base32 TOTP secret for the authenticator app'
+	  'make key         Generate an application encryption key'
 
 setup:
 	composer install
@@ -25,16 +24,12 @@ check-config:
 	@test "$${#ADMIN_USERNAME}" -ge 4 || (echo 'ADMIN_USERNAME must be at least 4 characters' >&2; exit 1)
 	@test -n "$$ADMIN_PASSWORD" || (echo 'Set ADMIN_PASSWORD first (minimum 14 characters)' >&2; exit 1)
 	@test "$${#ADMIN_PASSWORD}" -ge 14 || (echo 'ADMIN_PASSWORD must be at least 14 characters' >&2; exit 1)
-	@printf '%s' "$$ADMIN_TOTP_SECRET" | grep -Eq '^[A-Z2-7]{32,}$$' || (echo 'ADMIN_TOTP_SECRET must be a Base32 secret. Run: make totp-secret' >&2; exit 1)
 
 migrate:
 	php artisan migrate
 
 key:
 	php artisan key:generate
-
-totp-secret:
-	@openssl rand 20 | base32 | tr -d '=\n'; printf '\n'
 
 cache-clear:
 	php artisan optimize:clear

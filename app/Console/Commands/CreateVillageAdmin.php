@@ -37,23 +37,8 @@ class CreateVillageAdmin extends Command
         $villageSlug = $this->choice('Village', $villageSlugs);
         $password = (string) $this->secret('Password');
         $passwordConfirmation = (string) $this->secret('Confirm password');
-        $totpSecret = strtoupper((string) $this->secret('TOTP secret (required outside local/testing; blank for local)'));
-        $totpRequired = ! app()->environment('local', 'testing');
-
         if (strlen($password) < 12 || ! hash_equals($password, $passwordConfirmation)) {
             $this->error('Password harus minimal 12 karakter dan konfirmasinya harus sama.');
-
-            return self::FAILURE;
-        }
-
-        if ($totpRequired && ! preg_match('/^[A-Z2-7]{32,}$/', $totpSecret)) {
-            $this->error('TOTP secret valid wajib diisi di luar local/testing.');
-
-            return self::FAILURE;
-        }
-
-        if ($totpSecret !== '' && ! preg_match('/^[A-Z2-7]{32,}$/', $totpSecret)) {
-            $this->error('TOTP secret harus berupa Base32 dengan minimal 32 karakter.');
 
             return self::FAILURE;
         }
@@ -65,7 +50,6 @@ class CreateVillageAdmin extends Command
             'password' => Hash::make($password),
             'is_admin' => true,
             'village_slug' => $villageSlug,
-            'totp_secret' => $totpSecret !== '' ? $totpSecret : null,
         ]);
 
         $this->info("Admin $username berhasil dibuat untuk desa $villageSlug.");

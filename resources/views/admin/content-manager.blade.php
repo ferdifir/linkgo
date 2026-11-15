@@ -115,14 +115,13 @@
     <div class="list media-list" id="village-media"></div>
 </section>
 <section class="card" id="user-management" hidden>
-    <div class="section-top"><div><h2>Akun admin desa</h2><p class="muted">Buat akun admin untuk desa ini saja. Bagikan kata sandi dan kunci autentikator secara pribadi.</p></div></div>
+    <div class="section-top"><div><h2>Akun admin desa</h2><p class="muted">Buat akun admin untuk desa ini saja. Bagikan nama pengguna dan kata sandi secara pribadi.</p></div></div>
     <form class="grid" id="admin-user-form">
         <div class="field"><label>Nama lengkap</label><input name="name" maxlength="120" required></div>
         <div class="field"><label>Nama pengguna</label><input name="username" minlength="3" maxlength="60" pattern="[A-Za-z0-9._-]+" required autocomplete="off"></div>
         <div class="field"><label>Email</label><input name="email" type="email" maxlength="180" required></div>
         <div class="field"><label>Kata sandi sementara</label><input name="password" type="password" minlength="12" required autocomplete="new-password"></div>
         <div class="field"><label>Ulangi kata sandi</label><input name="password_confirmation" type="password" minlength="12" required autocomplete="new-password"></div>
-        <div class="field"><label>Kunci autentikator Base32</label><input name="totpSecret" maxlength="64" placeholder="Wajib di luar lingkungan lokal" autocomplete="off"></div>
         <div class="row wide"><button class="btn" type="submit">Buat akun admin</button><span class="notice" id="admin-user-note" role="status"></span></div>
     </form>
     <div class="list" id="admin-users"></div>

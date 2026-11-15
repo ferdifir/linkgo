@@ -168,11 +168,6 @@ class VillageController
         return response()->json($this->budgets(true, $slug));
     }
 
-    public function authConfig(): JsonResponse
-    {
-        return response()->json(['totpRequired' => ! app()->environment('local', 'testing')]);
-    }
-
     public function login(Request $request)
     {
         if (! $this->sameOrigin($request)) {
@@ -190,10 +185,7 @@ class VillageController
         $account = User::query()->where('username', $username)->where('is_admin', true)->where('is_active', true)->first();
         $villageSlug = (string) ($account?->village_slug ?? '');
         $villageExists = $villageSlug !== '' && DB::table('village_pages')->where('slug', $villageSlug)->exists();
-        $totpRequired = ! app()->environment('local', 'testing');
-
-        if (! $account || ! Hash::check($password, $account->password) || ! $villageExists
-            || ($totpRequired && ! $this->verifyTotp((string) $account->totp_secret, (string) $request->input('code', '')))) {
+        if (! $account || ! Hash::check($password, $account->password) || ! $villageExists) {
             RateLimiter::hit($key, 900);
 
             return response('Nama pengguna atau kata sandi salah.', 401);
@@ -474,13 +466,11 @@ class VillageController
     public function createAdminUser(Request $request): JsonResponse
     {
         $admin = $this->authorizeVillageOwner($request);
-        $totpRules = app()->environment('local', 'testing') ? ['nullable', 'string', 'max:64'] : ['required', 'regex:/^[A-Z2-7]{32,}$/i'];
         $data = $request->validate([
             'name' => ['required', 'string', 'max:120'],
             'username' => ['required', 'string', 'min:3', 'max:60', 'regex:/^[a-zA-Z0-9._-]+$/', 'unique:users,username'],
             'email' => ['required', 'email', 'max:180', 'unique:users,email'],
             'password' => ['required', 'string', 'min:12', 'confirmed'],
-            'totpSecret' => $totpRules,
         ]);
 
         $user = User::query()->create([
@@ -492,9 +482,6 @@ class VillageController
             'admin_role' => 'editor',
             'is_active' => true,
             'village_slug' => $admin->village_slug,
-            'totp_secret' => isset($data['totpSecret']) && trim($data['totpSecret']) !== ''
-                ? Str::upper(trim($data['totpSecret']))
-                : null,
         ]);
 
         return response()->json([
@@ -516,7 +503,6 @@ class VillageController
             'role' => ['required', 'in:owner,editor'],
             'active' => ['required', 'boolean'],
             'password' => ['nullable', 'string', 'min:12', 'confirmed'],
-            'totpSecret' => ['nullable', 'string', 'max:64'],
         ]);
 
         if ($target->admin_role === 'owner' && ($data['role'] !== 'owner' || ! $data['active'])) {
@@ -529,10 +515,6 @@ class VillageController
         $target->is_active = (bool) $data['active'];
         if (! empty($data['password'])) {
             $target->password = Hash::make($data['password']);
-        }
-        if (! empty($data['totpSecret'])) {
-            abort_unless(preg_match('/^[A-Z2-7]{32,}$/i', $data['totpSecret']), 400, 'Kode autentikator harus berupa Base32 minimal 32 karakter.');
-            $target->totp_secret = Str::upper(trim($data['totpSecret']));
         }
         $target->save();
 
@@ -971,49 +953,5 @@ class VillageController
         return strtolower((string) parse_url($origin, PHP_URL_HOST)) === strtolower($request->getHost())
             && $originPort === $request->getPort()
             && $scheme === $request->getScheme();
-    }
-
-    private function verifyTotp(string $secret, string $code): bool
-    {
-        if (! preg_match('/^[A-Z2-7]{32,}$/i', $secret) || ! preg_match('/^\d{6}$/', $code)) {
-            return false;
-        }
-        $key = $this->base32Decode(strtoupper($secret));
-        if (strlen($key) < 20) {
-            return false;
-        }
-        $step = intdiv(time(), 30);
-        foreach ([-1, 0, 1] as $offset) {
-            $counter = $step + $offset;
-            $digest = hash_hmac('sha1', pack('N2', intdiv($counter, 0x100000000), $counter % 0x100000000), $key, true);
-            $index = ord($digest[19]) & 0x0F;
-            $number = unpack('N', substr($digest, $index, 4))[1] & 0x7FFFFFFF;
-            if (hash_equals(sprintf('%06d', $number % 1000000), $code)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private function base32Decode(string $value): string
-    {
-        $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
-        $bits = '';
-        foreach (str_split(rtrim($value, '=')) as $character) {
-            $position = strpos($alphabet, $character);
-            if ($position === false) {
-                return '';
-            }
-            $bits .= str_pad(decbin($position), 5, '0', STR_PAD_LEFT);
-        }
-        $decoded = '';
-        foreach (str_split($bits, 8) as $byte) {
-            if (strlen($byte) === 8) {
-                $decoded .= chr(bindec($byte));
-            }
-        }
-
-        return $decoded;
     }
 }

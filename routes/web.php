@@ -14,7 +14,6 @@ Route::prefix('api')->group(function () {
     Route::get('/desa/{slug}/requests/{trackingCode}', [VillageController::class, 'publicRequestStatus']);
     Route::get('/desa/{slug}/budgets', [VillageController::class, 'villageBudgets']);
     Route::post('/desa/{slug}/proposals', [VillageController::class, 'submitVillageProposal']);
-    Route::get('/auth-config', [VillageController::class, 'authConfig']);
     Route::post('/login', [VillageController::class, 'login']);
     Route::post('/logout', [VillageController::class, 'logout']);
 
