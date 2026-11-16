@@ -39,11 +39,12 @@
         @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sk-button,.sk-service-row summary svg{transition:none}}
     </style>
     @include('desa.partials.favicon')
+  @include('desa.partials.village-logo-styles')
 </head>
 <body>
     <div class="sk-utility"><div class="sk-wrap sk-utility-inner"><p>Pemerintah Desa Sumberkerang</p><p>Kecamatan Gending · Kabupaten Probolinggo</p></div></div>
     <header class="sk-header"><div class="sk-wrap sk-header-inner">
-        <a class="sk-brand" href="#beranda" aria-label="Desa Sumberkerang, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span><span class="sk-brand-copy"><strong>Desa Sumberkerang</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
+        <a class="sk-brand" href="#beranda" aria-label="Desa Sumberkerang, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="sk-brand-copy"><strong>Desa Sumberkerang</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
         <button class="sk-menu" id="sk-menu" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="sk-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
         <nav class="sk-nav" id="sk-nav" aria-label="Navigasi utama"><a href="#cerita">Cerita desa</a><a href="#layanan">Layanan</a><a href="#anggaran">APBDes</a><a href="#pembangunan">Pembangunan</a><a href="#profil">Profil</a><a class="sk-nav-action" href="#lokasi">Lokasi kantor</a></nav>
     </div></header>

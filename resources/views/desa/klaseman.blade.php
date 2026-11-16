@@ -26,11 +26,12 @@
         @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.kl-button,.kl-story-feature img,.kl-service-item summary svg{transition:none}}
     </style>
     @include('desa.partials.favicon')
+  @include('desa.partials.village-logo-styles')
 </head>
 <body>
     <div class="kl-utility"><div class="kl-wrap mx-auto w-[calc(100%-56px)] max-w-[1240px] max-[700px]:w-[calc(100%-32px)] kl-utility-inner"><p>Pemerintah Desa Klaseman</p><p>Kecamatan Gending · Kabupaten Probolinggo</p></div></div>
     <header class="kl-header"><div class="kl-wrap mx-auto w-[calc(100%-56px)] max-w-[1240px] max-[700px]:w-[calc(100%-32px)] kl-header-inner">
-        <a class="kl-brand" href="#beranda" aria-label="Desa Klaseman, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span><span class="kl-brand-copy"><strong>Desa Klaseman</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
+        <a class="kl-brand" href="#beranda" aria-label="Desa Klaseman, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="kl-brand-copy"><strong>Desa Klaseman</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
         <button class="kl-menu" id="kl-menu" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="kl-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
         <nav class="kl-nav" id="kl-nav" aria-label="Navigasi utama"><a href="#cerita">Cerita desa</a><a href="#sambutan">Pemerintahan</a><a href="#layanan">Layanan</a><a href="#apbdes">APBDes</a><a href="#pembangunan">Pembangunan</a><a href="#profil">Profil</a><a class="kl-nav-cta" href="#lokasi">Kantor desa</a></nav>
     </div></header>

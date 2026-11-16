@@ -26,11 +26,12 @@
         @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ja-nav,.ja-service-row summary svg{transition:none}}
     </style>
     @include('desa.partials.favicon')
+  @include('desa.partials.village-logo-styles')
 </head>
 <body>
     <div class="ja-utility"><div class="ja-wrap mx-auto w-[calc(100%-56px)] max-w-[1240px] max-[700px]:w-[calc(100%-32px)] ja-utility-inner"><p>Pemerintah Desa Jatiadi</p><p>Kecamatan Gending · Kabupaten Probolinggo</p></div></div>
     <header class="ja-header"><div class="ja-wrap mx-auto w-[calc(100%-56px)] max-w-[1240px] max-[700px]:w-[calc(100%-32px)] ja-header-inner">
-        <a class="ja-brand" href="#beranda" aria-label="Desa Jatiadi, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span><span class="ja-brand-copy"><strong>Desa Jatiadi</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
+        <a class="ja-brand" href="#beranda" aria-label="Desa Jatiadi, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="ja-brand-copy"><strong>Desa Jatiadi</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
         <button class="ja-menu" id="ja-menu" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="ja-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
         <nav class="ja-nav" id="ja-nav" aria-label="Navigasi utama"><a href="#lingkungan">Lingkungan</a><a href="#sambutan">Pemerintahan</a><a href="#layanan">Layanan</a><a href="#apbdes">APBDes</a><a href="#pembangunan">Pembangunan</a><a href="#profil">Profil</a><a class="ja-nav-action" href="#lokasi">Kunjungi kantor</a></nav>
     </div></header>

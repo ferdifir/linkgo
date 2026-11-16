@@ -37,11 +37,12 @@
         @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.by-button,.by-service-row summary svg{transition:none}}
     </style>
     @include('desa.partials.favicon')
+  @include('desa.partials.village-logo-styles')
 </head>
 <body>
     <div class="by-utility"><div class="by-wrap by-utility-inner"><p>Pemerintah Desa Banyuanyar Lor</p><p>Kecamatan Gending · Kabupaten Probolinggo</p></div></div>
     <header class="by-header"><div class="by-wrap by-header-inner">
-        <a class="by-brand" href="#beranda" aria-label="Desa Banyuanyar Lor, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span><span class="by-brand-copy"><strong>Desa Banyuanyar Lor</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
+        <a class="by-brand" href="#beranda" aria-label="Desa Banyuanyar Lor, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="by-brand-copy"><strong>Desa Banyuanyar Lor</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
         <button class="by-menu" id="by-menu" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="by-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
         <nav class="by-nav" id="by-nav" aria-label="Navigasi utama"><a href="#ruang">Ruang bersama</a><a href="#layanan">Layanan</a><a href="#anggaran">APBDes</a><a href="#pembangunan">Pembangunan</a><a href="#profil">Profil</a><a class="by-nav-action" href="#lokasi">Lokasi kantor</a></nav>
     </div></header>

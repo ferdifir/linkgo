@@ -325,13 +325,14 @@
         }
     </style>
     @include('desa.partials.favicon')
+  @include('desa.partials.village-logo-styles')
 </head>
 <body>
     <a class="skip-link" href="#konten">Lewati ke konten</a>
     <div class="topline"><div class="wrap topline-inner"><p>Pemerintah Desa Gending <span aria-hidden="true">·</span> Kecamatan Gending, Kabupaten Probolinggo</p><p>Portal informasi dan layanan warga</p></div></div>
     <header class="header">
         <div class="wrap header-inner">
-            <a class="brand" href="#beranda" aria-label="Beranda Desa Gending"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span><span class="brand-name"><strong>Desa Gending</strong><small>Kabupaten Probolinggo</small></span></a>
+            <a class="brand" href="#beranda" aria-label="Beranda Desa Gending"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="brand-name"><strong>Desa Gending</strong><small>Kabupaten Probolinggo</small></span></a>
             <button class="menu-button" id="menu-button" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="main-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
             <nav class="nav" id="main-nav" aria-label="Navigasi utama">
                 <a href="#sambutan">Pemerintahan</a><a href="#layanan">Layanan</a><a href="#potensi">Potensi</a><a href="#transparansi">APBDes</a><a href="#pembangunan">Pembangunan</a><a class="nav-action" href="#lokasi">Kontak Desa</a>

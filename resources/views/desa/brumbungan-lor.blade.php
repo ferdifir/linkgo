@@ -33,11 +33,12 @@
         [hidden]{display:none!important}
     </style>
     @include('desa.partials.favicon')
+  @include('desa.partials.village-logo-styles')
 </head>
 <body>
     <div class="bl-utility"><div class="mx-auto w-[calc(100%-48px)] max-w-[1240px] max-[700px]:w-[calc(100%-32px)] max-[360px]:w-[calc(100%-24px)] bl-shell bl-utility-inner"><p>Pemerintah Desa Brumbungan Lor</p><p>Kecamatan Gending · Kabupaten Probolinggo</p></div></div>
     <header class="bl-header"><div class="mx-auto w-[calc(100%-48px)] max-w-[1240px] max-[700px]:w-[calc(100%-32px)] max-[360px]:w-[calc(100%-24px)] bl-shell bl-header-inner flex items-center justify-between gap-6">
-        <a class="bl-brand" href="#beranda" aria-label="Beranda Desa Brumbungan Lor"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span><span class="bl-brand-copy"><strong>Desa Brumbungan Lor</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
+        <a class="bl-brand" href="#beranda" aria-label="Beranda Desa Brumbungan Lor"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="bl-brand-copy"><strong>Desa Brumbungan Lor</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
         <button class="bl-menu" id="bl-menu" type="button" aria-label="Buka navigasi" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
         <nav class="bl-nav" id="bl-nav" aria-label="Navigasi utama"><a href="#pemerintahan">Pemerintahan</a><a href="#layanan">Layanan</a><a href="#anggaran">Anggaran</a><a href="#pembangunan">Pembangunan</a><a href="#kabar">Kabar desa</a><a class="bl-nav-cta" href="#lokasi">Kunjungi kantor</a></nav>
     </div></header>

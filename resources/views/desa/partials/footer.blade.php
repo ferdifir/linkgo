@@ -14,7 +14,7 @@
 <footer class="portal-footer portal-footer--{{ $theme }}">
     <div class="portal-footer__grid">
         <section class="portal-footer__identity" aria-label="Identitas pemerintah desa">
-            <span class="portal-footer__seal" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span>
+            <span class="portal-footer__seal" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt=""></span>
             <div>
                 <h2>Pemerintah Desa {{ $villageName }}</h2>
                 <p>Alamat kantor belum tersedia.</p>

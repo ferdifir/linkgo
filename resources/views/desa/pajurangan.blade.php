@@ -524,6 +524,7 @@
         }
     </style>
     @include('desa.partials.favicon')
+  @include('desa.partials.village-logo-styles')
 </head>
 <body>
     <a class="skip-link" href="#konten">Lewati ke konten</a>
@@ -533,7 +534,7 @@
     <header class="site-header">
         <div class="site-width header-inner">
             <a class="brand" href="#beranda" aria-label="Beranda Desa Pajurangan">
-                <span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span>
+                <span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span>
                 <span class="brand-copy"><strong>DESA PAJURANGAN</strong><small>Portal informasi dan layanan warga</small></span>
             </a>
             <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="main-nav">

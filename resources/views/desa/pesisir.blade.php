@@ -28,11 +28,12 @@
         @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ps-button,.ps-service summary svg{transition:none}}
     </style>
     @include('desa.partials.favicon')
+  @include('desa.partials.village-logo-styles')
 </head>
 <body>
     <div class="ps-utility"><div class="ps-wrap ps-utility-inner"><p>Pemerintah Desa Pesisir</p><p>Kecamatan Gending · Kabupaten Probolinggo</p></div></div>
     <header class="ps-header"><div class="ps-wrap ps-header-inner">
-        <a class="ps-brand" href="#beranda" aria-label="Desa Pesisir, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span><span class="ps-brand-copy"><strong>Desa Pesisir</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
+        <a class="ps-brand" href="#beranda" aria-label="Desa Pesisir, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="ps-brand-copy"><strong>Desa Pesisir</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
         <button class="ps-menu" id="ps-menu" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="ps-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
         <nav class="ps-nav" id="ps-nav" aria-label="Navigasi utama"><a href="#ruang-hidup">Ruang hidup</a><a href="#layanan">Layanan</a><a href="#anggaran">Transparansi</a><a href="#pembangunan">Pembangunan</a><a href="#pemerintahan">Pemerintahan</a><a class="ps-nav-action" href="#lokasi">Lokasi kantor</a></nav>
     </div></header>

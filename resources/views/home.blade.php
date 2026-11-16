@@ -33,7 +33,7 @@
         <div id="village-map" class="absolute inset-0" role="application" aria-label="Peta interaktif 13 desa di Kecamatan Gending"></div>
 
         <header class="gending-map-brand absolute z-10 flex items-center gap-3">
-            <span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span>
+            <span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt=""></span>
             <span class="gending-brand-copy">
                 <strong>LinkGo</strong>
                 <small>Kecamatan Gending · Probolinggo, Jawa Timur</small>

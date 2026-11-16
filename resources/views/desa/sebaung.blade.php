@@ -38,11 +38,12 @@
         @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sb-button,.sb-service-row summary svg{transition:none}}
     </style>
     @include('desa.partials.favicon')
+  @include('desa.partials.village-logo-styles')
 </head>
 <body>
     <div class="sb-utility"><div class="sb-wrap sb-utility-inner"><p>Pemerintah Desa Sebaung</p><p>Kecamatan Gending · Kabupaten Probolinggo</p></div></div>
     <header class="sb-header"><div class="sb-wrap sb-header-inner">
-        <a class="sb-brand" href="#beranda" aria-label="Desa Sebaung, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span><span class="sb-brand-copy"><strong>Desa Sebaung</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
+        <a class="sb-brand" href="#beranda" aria-label="Desa Sebaung, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="sb-brand-copy"><strong>Desa Sebaung</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
         <button class="sb-menu" id="sb-menu" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="sb-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
         <nav class="sb-nav" id="sb-nav" aria-label="Navigasi utama"><a href="#cerita">Cerita Sebaung</a><a href="#layanan">Layanan</a><a href="#anggaran">APBDes</a><a href="#pembangunan">Pembangunan</a><a href="#profil">Profil</a><a class="sb-nav-action" href="#lokasi">Lokasi kantor</a></nav>
     </div></header>

@@ -38,11 +38,12 @@
         @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pk-button,.pk-service summary svg{transition:none}}
     </style>
     @include('desa.partials.favicon')
+  @include('desa.partials.village-logo-styles')
 </head>
 <body>
     <div class="pk-utility"><div class="pk-wrap pk-utility-inner"><p>Pemerintah Desa Pikatan</p><p>Kecamatan Gending · Kabupaten Probolinggo</p></div></div>
     <header class="pk-header"><div class="pk-wrap pk-header-inner">
-        <a class="pk-brand" href="#beranda" aria-label="Desa Pikatan, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.png') }}" alt=""></span><span class="pk-brand-copy"><strong>Desa Pikatan</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
+        <a class="pk-brand" href="#beranda" aria-label="Desa Pikatan, beranda"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="pk-brand-copy"><strong>Desa Pikatan</strong><small>Kecamatan Gending · Probolinggo</small></span></a>
         <button class="pk-menu" id="pk-menu" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="pk-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
         <nav class="pk-nav" id="pk-nav" aria-label="Navigasi utama"><a href="#catatan">Catatan lahan</a><a href="#layanan">Layanan</a><a href="#anggaran">APBDes</a><a href="#pembangunan">Pembangunan</a><a href="#profil">Profil</a><a class="pk-nav-action" href="#lokasi">Lokasi kantor</a></nav>
     </div></header>
