@@ -34,6 +34,13 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 - Use descriptive names for variables and methods. For example, `isRegisteredForDiscounts`, not `discount()`.
 - Check for existing components to reuse before writing a new one.
 
+## Version Control and Commits
+
+- After completing and verifying requested code changes, commit the changes made for the task. Do not leave completed code changes uncommitted; explain any blocker that prevents a commit.
+- Inspect `git status` and the relevant diffs before staging. Stage only changes belonging to the requested task; do not include unrelated pre-existing work.
+- Keep commits focused. Split independent tasks or concerns into separate commits instead of combining unrelated backend, UI, data, or asset changes.
+- Do not amend existing commits or force-push unless the user explicitly requests it.
+
 ## Verification Scripts
 
 - Do not create verification scripts or tinker when tests cover that functionality and prove they work. Unit and feature tests are more important.
