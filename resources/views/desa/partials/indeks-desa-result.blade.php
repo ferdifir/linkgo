@@ -23,10 +23,48 @@
             </div>
         </dl>
 
+        @php
+            $indexDimensions = [
+                ['Layanan dasar', $villageIndexData->basic_services_score],
+                ['Sosial', $villageIndexData->social_score],
+                ['Ekonomi', $villageIndexData->economy_score],
+                ['Lingkungan', $villageIndexData->environment_score],
+                ['Aksesibilitas', $villageIndexData->accessibility_score],
+                ['Tata kelola pemerintahan', $villageIndexData->governance_score],
+            ];
+            $hasIndexDimensions = collect($indexDimensions)->every(fn (array $dimension): bool => $dimension[1] !== null);
+        @endphp
+
+        @if ($hasIndexDimensions)
+            <section class="portal-index-dimensions" aria-labelledby="portal-index-dimensions-title">
+                <h3 id="portal-index-dimensions-title">Enam dimensi Indeks Desa</h3>
+                <ul class="portal-index-dimension-list">
+                    @foreach ($indexDimensions as [$label, $score])
+                        <li class="portal-index-dimension">
+                            <div class="portal-index-dimension-head">
+                                <span>{{ $label }}</span>
+                                <strong>{{ number_format((float) $score, 2, ',', '.') }}%</strong>
+                            </div>
+                            <div class="portal-index-dimension-meter" role="meter" aria-label="{{ $label }}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ number_format((float) $score, 2, '.', '') }}">
+                                <span style="width: {{ min(100, max(0, (float) $score)) }}%"></span>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+                <p class="portal-index-dimension-note">Persentase capaian tiap dimensi.</p>
+            </section>
+        @else
+            <p class="portal-index-dimension-note">Rincian enam dimensi belum tersedia.</p>
+        @endif
+
         <p class="portal-index-sources">
             <a href="{{ $villageIndexData->source_url }}" target="_blank" rel="noopener noreferrer">Portal Indeks Desa · Kemendesa PDT</a>
             <span aria-hidden="true">·</span>
             <a href="{{ $villageIndexData->source_document_url }}" target="_blank" rel="noopener noreferrer">Keputusan 343/2025</a>
+            @if ($hasIndexDimensions && $villageIndexData->dimensions_source_url)
+                <span aria-hidden="true">·</span>
+                <a href="{{ $villageIndexData->dimensions_source_url }}" target="_blank" rel="noopener noreferrer">Rincian dimensi · Kemendesa</a>
+            @endif
         </p>
     @endif
 </div>

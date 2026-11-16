@@ -18,7 +18,7 @@ class VillageIndex extends Model
         'topography', 'main_income_source', 'bumdes_exists', 'bumdes_status',
         'bumdes_legal_entity', 'flood_risk', 'drought_risk', 'landslide_risk',
         'tidal_wave_risk', 'disaster_risk_assessment', 'source_url', 'source_document_url',
-        'source_checked_at',
+        'dimensions_source_url', 'source_checked_at',
     ];
 
     protected function casts(): array

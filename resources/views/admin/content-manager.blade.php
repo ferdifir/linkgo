@@ -74,18 +74,6 @@
                 <div class="field"><label for="profile-hamlets">Jumlah dusun</label><input id="profile-hamlets" data-profile-field="hamlets" type="number" min="0" max="10000"></div>
                 <div class="field"><label for="profile-rw">Jumlah RW</label><input id="profile-rw" data-profile-field="rw" type="number" min="0" max="10000"></div>
                 <div class="field"><label for="profile-rt">Jumlah RT</label><input id="profile-rt" data-profile-field="rt" type="number" min="0" max="10000"></div>
-                <div class="field wide"><strong>Data Indeks Desa terbaru</strong><span class="optional">Masukkan angka sesuai hasil resmi. Ini berbeda dari seri IDM.</span></div>
-                <div class="field"><label for="profile-indexYear">Tahun pengukuran</label><input id="profile-indexYear" data-profile-field="indexYear" type="number" min="2025" max="2100"></div>
-                <div class="field"><label for="profile-indexScore">Nilai Indeks Desa (0–100)</label><input id="profile-indexScore" data-profile-field="indexScore" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label for="profile-indexStatus">Status desa</label><select id="profile-indexStatus" data-profile-field="indexStatus"><option value="">Pilih status</option><option>Mandiri</option><option>Maju</option><option>Berkembang</option><option>Tertinggal</option><option>Sangat Tertinggal</option></select></div>
-                <div class="field"><label for="profile-indexVerifiedAt">Tanggal verifikasi</label><input id="profile-indexVerifiedAt" data-profile-field="indexVerifiedAt" type="date"></div>
-                <div class="field wide"><label for="profile-indexSource">Sumber data resmi</label><input id="profile-indexSource" data-profile-field="indexSource" type="url" placeholder="https://"></div>
-                <div class="field"><label for="profile-indexBasicServices">Layanan dasar</label><input id="profile-indexBasicServices" data-profile-field="indexBasicServices" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label for="profile-indexSocial">Sosial</label><input id="profile-indexSocial" data-profile-field="indexSocial" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label for="profile-indexEconomic">Ekonomi</label><input id="profile-indexEconomic" data-profile-field="indexEconomic" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label for="profile-indexEnvironment">Lingkungan</label><input id="profile-indexEnvironment" data-profile-field="indexEnvironment" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label for="profile-indexAccessibility">Aksesibilitas</label><input id="profile-indexAccessibility" data-profile-field="indexAccessibility" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label for="profile-indexGovernance">Tata kelola pemerintahan</label><input id="profile-indexGovernance" data-profile-field="indexGovernance" type="number" min="0" max="100" step="0.01"></div>
                 <label class="check"><input name="published" type="checkbox" checked> Tampilkan di website</label>
                 <div class="row wide"><button class="btn" type="submit">Simpan profil</button><button class="btn light" type="button" data-content-cancel>Batal</button></div>
             </form></dialog>

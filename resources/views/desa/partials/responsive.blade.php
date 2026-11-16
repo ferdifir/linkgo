@@ -9,9 +9,18 @@
     .portal-index-facts div { display: grid; gap: 3px; }
     .portal-index-facts dt { font-size: 13px; opacity: .78; }
     .portal-index-facts dd { margin: 0; font-size: 16px; font-weight: 750; font-variant-numeric: tabular-nums; }
+    .portal-index-dimensions { display: grid; gap: 12px; }
+    .portal-index-dimensions h3 { margin: 0; font-size: 18px; }
+    .portal-index-dimension-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; margin: 0; padding: 0; list-style: none; }
+    .portal-index-dimension { display: grid; gap: 6px; }
+    .portal-index-dimension-head { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+    .portal-index-dimension-head strong { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .portal-index-dimension-meter { height: 8px; overflow: hidden; border-radius: 99px; background: color-mix(in srgb, currentColor 16%, transparent); }
+    .portal-index-dimension-meter span { display: block; height: 100%; border-radius: inherit; background: currentColor; }
+    .portal-index-dimension-note { margin: 0; font-size: 13px; opacity: .78; }
     .portal-index-sources { display: flex; flex-wrap: wrap; gap: 6px 9px; margin: 0; font-size: 13px; }
     .portal-index-sources a { text-decoration: underline; text-underline-offset: 3px; }
-    @media (max-width: 600px) { .portal-index-primary { align-items: start; } .portal-index-primary.portal-index-unscored { flex-direction: column; } .portal-index-facts { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
+    @media (max-width: 600px) { .portal-index-primary { align-items: start; } .portal-index-primary.portal-index-unscored { flex-direction: column; } .portal-index-facts, .portal-index-dimension-list { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
 </style>
 <style>
     /* Shared responsive guardrails. Keep village-specific layout and visual identity in each page. */
@@ -260,53 +269,6 @@
                                 details.append(term, description);
                             }
                             article.append(details);
-                        }
-
-                        const dimensions = [
-                            ['Layanan dasar', metadata.indexBasicServices],
-                            ['Sosial', metadata.indexSocial],
-                            ['Ekonomi', metadata.indexEconomic],
-                            ['Lingkungan', metadata.indexEnvironment],
-                            ['Aksesibilitas', metadata.indexAccessibility],
-                            ['Tata kelola', metadata.indexGovernance],
-                        ].filter(([, value]) => value !== undefined && value !== null && value !== '');
-                        const hasIndex = metadata.indexScore !== undefined || metadata.indexStatus || dimensions.length > 0;
-
-                        if (hasIndex) {
-                            const heading = document.createElement('h4');
-                            heading.textContent = 'Indeks Desa';
-                            article.append(heading);
-                            const indexSummary = document.createElement('p');
-                            const score = metadata.indexScore !== undefined ? `${metadata.indexScore} / 100` : 'Nilai belum tersedia';
-                            indexSummary.textContent = [score, metadata.indexStatus, metadata.indexYear ? `Tahun ${metadata.indexYear}` : ''].filter(Boolean).join(' · ');
-                            article.append(indexSummary);
-
-                            if (dimensions.length > 0) {
-                                const dimensionList = document.createElement('dl');
-                                dimensionList.className = 'village-cms-facts';
-                                for (const [label, value] of dimensions) {
-                                    const term = document.createElement('dt');
-                                    term.textContent = label;
-                                    const description = document.createElement('dd');
-                                    description.textContent = `${value} / 100`;
-                                    dimensionList.append(term, description);
-                                }
-                                article.append(dimensionList);
-                            }
-
-                            if (metadata.indexVerifiedAt) {
-                                const verified = document.createElement('small');
-                                verified.textContent = `Diverifikasi ${metadata.indexVerifiedAt}`;
-                                article.append(verified);
-                            }
-                            if (metadata.indexSource) {
-                                const source = document.createElement('a');
-                                source.href = metadata.indexSource;
-                                source.target = '_blank';
-                                source.rel = 'noopener noreferrer';
-                                source.textContent = 'Sumber data Indeks Desa';
-                                article.append(source);
-                            }
                         }
                     }
 
