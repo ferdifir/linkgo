@@ -5,7 +5,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('home');
 Route::get('/desa/{slug}', [VillageController::class, 'show'])->name('village.show');
-Route::get('/admin', fn () => response()->view('admin')->header('Cache-Control', 'no-store'));
+Route::get('/admin/{page?}', function (?string $page = null) {
+    $availablePages = ['dashboard', 'projects', 'budgets', 'proposals', 'requests', 'content', 'media', 'analytics', 'users'];
+    $adminPage = $page ?? 'dashboard';
+    abort_unless(in_array($adminPage, $availablePages, true), 404);
+
+    return response()->view('admin', ['adminPage' => $adminPage])->header('Cache-Control', 'no-store');
+})->name('admin.page');
 
 Route::prefix('api')->group(function () {
     Route::get('/desa/{slug}/content', [VillageController::class, 'villageContent']);

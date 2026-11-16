@@ -1,4 +1,4 @@
-<section class="card" id="content-management">
+<section class="card admin-page" id="content-management" data-admin-page="content">
     <div class="section-top">
         <div>
             <h2>Konten website</h2>
@@ -77,7 +77,7 @@
         </section>
     </div>
 </section>
-<section class="card" id="analytics-management">
+<section class="card admin-page" id="analytics-management" data-admin-page="analytics">
     <div class="section-top"><div><h2>Penggunaan website</h2><p class="muted">Jumlah tampilan halaman publik 30 hari terakhir. Satu halaman yang dibuka ulang dihitung lagi; ini bukan jumlah pengunjung unik.</p></div><span class="status" id="analytics-period">Memuat…</span></div>
     <div class="stats"><div class="metric"><strong id="analytics-total">0</strong><span>Tampilan 30 hari</span></div><div class="metric"><strong id="analytics-today">0</strong><span>Tampilan hari ini</span></div></div>
     <div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>Tampilan halaman</th></tr></thead><tbody id="analytics-daily"></tbody></table></div>
@@ -105,7 +105,7 @@
     @media (max-width: 650px) { .media-item { grid-template-columns: 64px minmax(0, 1fr); } .media-item img { width: 64px; height: 56px; } .media-item .actions { grid-column: 1 / -1; } }
     @media (max-width: 650px) { .admin-user { grid-template-columns: 1fr; } }
 </style>
-<section class="card" id="media-management">
+<section class="card admin-page" id="media-management" data-admin-page="media">
     <div class="section-top"><div><h2>Media desa</h2><p class="muted">Unggah gambar JPG, PNG, atau WebP sampai 5 MB. Isi teks alternatif agar gambar bisa dipahami pembaca layar.</p></div></div>
     <form id="media-upload-form" class="grid" enctype="multipart/form-data">
         <div class="field"><label for="media-file">Pilih gambar</label><input id="media-file" name="file" type="file" accept="image/jpeg,image/png,image/webp" required></div>
@@ -114,7 +114,7 @@
     </form>
     <div class="list media-list" id="village-media"></div>
 </section>
-<section class="card" id="user-management" hidden>
+<section class="card admin-page" id="user-management" data-admin-page="users" hidden>
     <div class="section-top"><div><h2>Akun admin desa</h2><p class="muted">Buat akun admin untuk desa ini saja. Bagikan nama pengguna dan kata sandi secara pribadi.</p></div></div>
     <form class="grid" id="admin-user-form">
         <div class="field"><label>Nama lengkap</label><input name="name" maxlength="120" required></div>
@@ -126,7 +126,7 @@
     </form>
     <div class="list" id="admin-users"></div>
 </section>
-<section class="card" id="request-management">
+<section class="card admin-page" id="request-management" data-admin-page="requests">
     <div class="section-top"><div><h2>Permintaan layanan dan pengaduan</h2><p class="muted">Catat tindak lanjut dan perkiraan waktu respons.</p></div><span class="status" id="request-count">0 permintaan</span></div>
     <div class="list" id="village-requests"></div>
 </section>
