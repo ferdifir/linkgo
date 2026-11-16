@@ -1,4 +1,19 @@
 <style>
+    .portal-index-result { display: grid; gap: 16px; margin-top: 16px; padding-top: 16px; border-top: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 22%, transparent); }
+    .portal-index-primary { display: flex; align-items: end; justify-content: space-between; gap: 18px; }
+    .portal-index-primary > div { display: grid; gap: 4px; }
+    .portal-index-label { font-size: 13px; font-weight: 700; }
+    .portal-index-value { font-size: clamp(30px, 4vw, 44px); line-height: 1; font-variant-numeric: tabular-nums; }
+    .portal-index-status { display: inline-flex; align-items: center; min-height: 32px; padding: 5px 10px; border: 1px solid currentColor; border-radius: 999px; font-size: 13px; font-weight: 800; }
+    .portal-index-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; }
+    .portal-index-facts div { display: grid; gap: 3px; }
+    .portal-index-facts dt { font-size: 13px; opacity: .78; }
+    .portal-index-facts dd { margin: 0; font-size: 16px; font-weight: 750; font-variant-numeric: tabular-nums; }
+    .portal-index-sources { display: flex; flex-wrap: wrap; gap: 6px 9px; margin: 0; font-size: 13px; }
+    .portal-index-sources a { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 600px) { .portal-index-primary { align-items: start; } .portal-index-primary.portal-index-unscored { flex-direction: column; } .portal-index-facts { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
+</style>
+<style>
     /* Shared responsive guardrails. Keep village-specific layout and visual identity in each page. */
     :where(main, section, header, footer, nav, figure, article, aside, form, fieldset, dl, ul, ol, iframe, img, video) {
         min-width: 0;

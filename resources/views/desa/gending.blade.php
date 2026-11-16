@@ -411,7 +411,7 @@
                     <article class="info-card"><div class="info-card-head"><div><h3>APBDes</h3><p>Anggaran Pendapatan dan Belanja Desa</p></div><label><span class="sr-only">Tahun anggaran</span><select class="year-picker" id="budget-year" aria-label="Pilih tahun anggaran" hidden><option value="">Tahun</option></select></label></div><div class="budget-lines" id="budget-lines">
             <p class="portal-data-empty">Belum tersedia</p>
         </div><div class="budget-total"><span>Realisasi</span><strong id="budget-realized">Belum tersedia</strong></div><p class="source-line" id="budget-source" hidden></p></article>
-                    <article class="info-card"><div class="info-card-head"><div><h3>Indeks Desa</h3><p>Ringkasan status dan dimensi pembangunan</p></div></div><div class="idm-stat"><span>Nilai indeks</span><strong>Belum tersedia</strong></div><div class="idm-dimensions"><span>Layanan dasar · Belum tersedia</span><span>Sosial · Belum tersedia</span><span>Ekonomi · Belum tersedia</span><span>Lingkungan · Belum tersedia</span><span>Aksesibilitas · Belum tersedia</span><span>Tata kelola · Belum tersedia</span></div></article>
+                    <article class="info-card"><div class="info-card-head"><div><h3>Indeks Desa</h3><p>Status dan skor Indeks Desa 2025</p></div></div>@include('desa.partials.indeks-desa-result')</article>
                 </div>
             </div>
         </section>

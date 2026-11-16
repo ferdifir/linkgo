@@ -13,6 +13,7 @@ use App\Http\Requests\UpdateVillageRequestRequest;
 use App\Http\Requests\UploadVillageMediaRequest;
 use App\Jobs\DeleteVillageMediaFile;
 use App\Models\User;
+use App\Models\VillageIndex;
 use App\Notifications\RequestStatusChanged;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -31,7 +32,13 @@ class VillageController
         abort_unless(preg_match('/^[a-z0-9-]+$/', $slug) && view()->exists('desa.'.$slug), 404);
         $this->recordPageView($slug);
 
-        return response()->view('desa.'.$slug)->header('Content-Type', 'text/html; charset=utf-8');
+        $villageIndexData = VillageIndex::query()
+            ->where('village_slug', $slug)
+            ->orderByDesc('year')
+            ->first();
+
+        return response()->view('desa.'.$slug, compact('villageIndexData'))
+            ->header('Content-Type', 'text/html; charset=utf-8');
     }
 
     public function villageContent(string $slug): JsonResponse

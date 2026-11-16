@@ -66,7 +66,7 @@
         </div></section>
 
         <section class="section section-dark" id="anggaran"><div class="wrap">
-            <div class="ledger"><div class="ledger-title"><span class="section-kicker">Catatan transparansi</span><h2>Anggaran desa.</h2><p>Ringkasan anggaran Desa Randupitu.</p><div class="index-band"><div><strong>Indeks Desa </strong><span>Nilai indeks · Belum tersedia</span></div><span class="index-score">Belum tersedia</span></div></div>
+            <div class="ledger"><div class="ledger-title"><span class="section-kicker">Catatan transparansi</span><h2>Anggaran desa.</h2><p>Ringkasan anggaran Desa Randupitu.</p>@include('desa.partials.indeks-desa-result')</div>
                 <article class="ledger-panel"><div class="flex items-center justify-between gap-3"><h3>APBDes</h3><label><span class="sr-only">Tahun anggaran</span><select class="year-picker" id="budget-year" aria-label="Pilih tahun anggaran" hidden><option value="">Tahun</option></select></label></div><div class="budget-lines" id="budget-lines">
             <p class="portal-data-empty">Belum tersedia</p>
         </div><div class="budget-total"><span>Realisasi</span><strong id="budget-realized">Belum tersedia</strong></div><p class="source-line" id="budget-source" hidden></p></article>

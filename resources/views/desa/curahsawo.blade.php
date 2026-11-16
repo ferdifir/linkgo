@@ -419,7 +419,7 @@ details[open] .expand svg { transform:rotate(180deg) }
     <symbol id="water" viewBox="0 0 24 24"><path d="M2 10c3 0 3-2 6-2s3 2 6 2 3-2 8-2M2 16c3 0 3-2 6-2s3 2 6 2 3-2 8-2"/></symbol>
     <symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
     <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
-  
+
     <symbol id="chart" viewBox="0 0 24 24"><path d="M4 4v16h16M8 15v2m4-7v7m4-11v11"/></symbol>
     <symbol id="id-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M5.8 16c.7-2.8 5.7-2.8 6.4 0M15 10h3m-3 4h3"/></symbol>
     <symbol id="chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
@@ -509,7 +509,7 @@ details[open] .expand svg { transform:rotate(180deg) }
         <summary><span class="icon tone-gold"><svg><use href="#message"/></svg></span><span><strong>Informasi dan pengaduan</strong><small>Balai desa dan SP4N-LAPOR!</small></span><span class="expand"><svg><use href="#chevron"/></svg></span></summary>
         <div class="detail-body"><p>Untuk urusan desa, sampaikan pertanyaan atau keluhan di balai desa. Kanal SP4N-LAPOR! juga tersedia untuk pengaduan pelayanan publik.</p><a class="text-link" href="https://www.lapor.go.id/">Buka SP4N-LAPOR! <svg><use href="#out"/></svg></a></div>
       </details>
-      
+
     </div>
   </section>
 
@@ -573,17 +573,10 @@ details[open] .expand svg { transform:rotate(180deg) }
     <div>
       <p class="eyebrow">Kemajuan &amp; Kemandirian Desa</p>
       <h2 id="indeks-desa-judul">Indeks Desa</h2>
-      <p class="village-index-intro">Ringkasan enam dimensi perkembangan Desa Curahsawo.</p>
-      <p class="index-status">Indeks Desa 2025 · Maju · 0,72</p>
+      <p class="village-index-intro">Skor dan status Indeks Desa Curahsawo berdasarkan data resmi.</p>
+
     </div>
-    <div class="index-dimensions portal-mobile-stack" aria-label="Dimensi Indeks Desa">
-      <article class="index-dimension"><div class="index-dimension-top"><h3>Layanan dasar</h3><strong>0,76</strong></div><p>Pendidikan, kesehatan, dan utilitas dasar.</p><div class="index-weight" aria-hidden="true"><span style="width:76%"></span></div></article>
-      <article class="index-dimension"><div class="index-dimension-top"><h3>Sosial</h3><strong>0,68</strong></div><p>Aktivitas warga dan fasilitas masyarakat.</p><div class="index-weight" aria-hidden="true"><span style="width:68%"></span></div></article>
-      <article class="index-dimension"><div class="index-dimension-top"><h3>Ekonomi</h3><strong>0,72</strong></div><p>Produksi desa dan fasilitas pendukung ekonomi.</p><div class="index-weight" aria-hidden="true"><span style="width:72%"></span></div></article>
-      <article class="index-dimension"><div class="index-dimension-top"><h3>Lingkungan</h3><strong>0,69</strong></div><p>Pengelolaan lingkungan dan penanggulangan bencana.</p><div class="index-weight" aria-hidden="true"><span style="width:69%"></span></div></article>
-      <article class="index-dimension"><div class="index-dimension-top"><h3>Aksesibilitas</h3><strong>0,64</strong></div><p>Kondisi jalan dan kemudahan akses layanan.</p><div class="index-weight" aria-hidden="true"><span style="width:64%"></span></div></article>
-      <article class="index-dimension"><div class="index-dimension-top"><h3>Tata kelola pemerintahan desa</h3><strong>0,73</strong></div><p>Kelembagaan, pelayanan, dan tata kelola keuangan desa.</p><div class="index-weight" aria-hidden="true"><span style="width:73%"></span></div></article>
-    </div>
+    @include('desa.partials.indeks-desa-result')
   </section>
 
   <section class="shell section-space community" id="kegiatan" aria-labelledby="kegiatan-judul">
@@ -871,7 +864,7 @@ with others.
 
 The OFL allows the licensed fonts to be used, studied, modified and
 redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded, 
+fonts, including any derivative works, can be bundled, embedded,
 redistributed and/or sold with any software provided that any reserved
 names are not used by derivative works. The fonts and derivatives,
 however, cannot be released under any other type of license. The
@@ -966,7 +959,7 @@ with others.
 
 The OFL allows the licensed fonts to be used, studied, modified and
 redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded, 
+fonts, including any derivative works, can be bundled, embedded,
 redistributed and/or sold with any software provided that any reserved
 names are not used by derivative works. The fonts and derivatives,
 however, cannot be released under any other type of license. The
@@ -1112,7 +1105,7 @@ function showBudgetYear() {
     const source = allocation.querySelector(".text-link");
     if (source && budget.sourceUrl) { source.href = budget.sourceUrl; source.textContent = `Dokumen APBDes ${year}`; }
   } else {
-    
+
     allocation.hidden = allocation.dataset.allocation !== year;
   }
 }

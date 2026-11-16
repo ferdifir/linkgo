@@ -648,13 +648,8 @@
                     <article class="content-card">
                         <span class="section-label">Indeks Desa</span>
                         <h3 style="margin-top:8px">Perkembangan Desa</h3>
-                        <div class="index-list">
-                            <div class="index-row"><span>Layanan dasar</span><strong>Belum tersedia</strong><div class="index-track"><i style="width:78%"></i></div></div>
-                            <div class="index-row"><span>Sosial</span><strong>Belum tersedia</strong><div class="index-track"><i style="width:73%"></i></div></div>
-                            <div class="index-row"><span>Ekonomi</span><strong>Belum tersedia</strong><div class="index-track"><i style="width:69%"></i></div></div>
-                            <div class="index-row"><span>Lingkungan</span><strong>Belum tersedia</strong><div class="index-track"><i style="width:75%"></i></div></div>
-                        </div>
-                        <p class="placeholder-note" style="margin:15px 0 0"> Nilai indeks: Belum tersedia</p>
+                        @include('desa.partials.indeks-desa-result')
+
                     </article>
                 </div>
             </div>

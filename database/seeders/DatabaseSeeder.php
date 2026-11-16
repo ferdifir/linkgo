@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $this->call(ShowcaseVillageDataSeeder::class);
+        $this->call([
+            VillageIndexSeeder::class,
+            ShowcaseVillageDataSeeder::class,
+        ]);
 
         User::factory()->create([
             'name' => 'Test User',
