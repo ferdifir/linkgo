@@ -666,10 +666,8 @@
         <section class="section screen-section section-white" id="proyek">
             <div class="site-width">
                 <div class="section-heading reveal"><div><span class="section-label">Pembangunan desa</span><h2>Papan Proyek</h2></div><p>Lihat lokasi, progres, dan rincian pekerjaan.</p></div>
-                <div class="project-grid portal-mobile-stack reveal" id="project-list" aria-live="polite">
-                    <article class="project-card"><div class="project-meta"><span>2025</span><span class="status-pill">Berjalan · Contoh</span></div><h3>Peningkatan jalan lingkungan</h3><p>Perataan dan pengerasan akses jalan permukiman.</p><div class="project-specs"><div><span>Lokasi</span><strong>Dusun I · Contoh</strong></div><div><span>Volume</span><strong>320 meter</strong></div><div><span>Sumber dana</span><strong>Dana Desa · Contoh</strong></div></div><div class="project-bottom"><span><small>Anggaran · Contoh</small><strong>Rp 185.000.000</strong></span><button class="text-button" type="button" disabled>Rincian</button></div></article>
-                    <article class="project-card"><div class="project-meta"><span>2025</span><span class="status-pill">Selesai · Contoh</span></div><h3>Pembangunan saluran drainase</h3><p>Penataan saluran air di kawasan permukiman.</p><div class="project-specs"><div><span>Lokasi</span><strong>Dusun II · Contoh</strong></div><div><span>Volume</span><strong>175 meter</strong></div><div><span>Sumber dana</span><strong>Dana Desa · Contoh</strong></div></div><div class="project-bottom"><span><small>Anggaran · Contoh</small><strong>Rp 92.000.000</strong></span><button class="text-button" type="button" disabled>Rincian</button></div></article>
-                    <article class="project-card"><div class="project-meta"><span>2025</span><span class="status-pill">Perencanaan · Contoh</span></div><h3>Perbaikan balai warga</h3><p>Perbaikan ruang pertemuan dan fasilitas warga.</p><div class="project-specs"><div><span>Lokasi</span><strong>Dusun III · Contoh</strong></div><div><span>Volume</span><strong>1 unit</strong></div><div><span>Sumber dana</span><strong>Dana Desa · Contoh</strong></div></div><div class="project-bottom"><span><small>Anggaran · Contoh</small><strong>Rp 68.000.000</strong></span><button class="text-button" type="button" disabled>Rincian</button></div></article>
+                <div class="project-grid portal-mobile-stack reveal" id="project-list" aria-live="polite" aria-busy="true">
+                    <p class="portal-data-empty" role="status">Memuat informasi pembangunan…</p>
                 </div>
             </div>
         </section>
@@ -797,12 +795,7 @@
         });
 
         const projectList = document.querySelector('#project-list');
-        const defaultProjectCards = projectList.innerHTML;
-        const sampleProjects = [
-            { title: 'Peningkatan jalan lingkungan', summary: 'Perataan dan pengerasan akses jalan permukiman.', year: 2025, status: 'Berjalan', funding: 'Rp 185.000.000', location: 'Dusun I (contoh)', volume: '320 meter', executor: 'Tim Pelaksana Kegiatan (contoh)', schedule: 'Mei–Juli 2025', progress: 65, spent: 120250000, sample: true },
-            { title: 'Pembangunan saluran drainase', summary: 'Penataan saluran air di kawasan permukiman.', year: 2025, status: 'Selesai', funding: 'Rp 92.000.000', location: 'Dusun II (contoh)', volume: '175 meter', executor: 'Tim Pelaksana Kegiatan (contoh)', schedule: 'Maret–Mei 2025', progress: 100, spent: 92000000, sample: true },
-            { title: 'Perbaikan balai warga', summary: 'Perbaikan ruang pertemuan dan fasilitas warga.', year: 2025, status: 'Perencanaan', funding: 'Rp 68.000.000', location: 'Dusun III (contoh)', volume: '1 unit', executor: 'Pemerintah desa (contoh)', schedule: 'Agustus–Oktober 2025', progress: 15, spent: 10200000, sample: true },
-        ];
+
         const projectFields = [
             ['Lokasi', project => project.location],
             ['Tahun', project => project.year],
@@ -814,19 +807,23 @@
             ['Progres fisik', project => `${project.progress ?? 0}%`],
             ['Realisasi', project => formatRupiah(project.spent)],
         ];
-        function renderProjects(projects) {
+        function renderProjects(projects, emptyMessage = 'Belum ada informasi pembangunan yang dapat ditampilkan.') {
+            projectList.replaceChildren();
+            projectList.setAttribute('aria-busy', 'false');
             if (!projects.length) {
-                projectList.innerHTML = defaultProjectCards;
+                const emptyState = document.createElement('p');
+                emptyState.className = 'portal-data-empty';
+                emptyState.textContent = emptyMessage;
+                projectList.append(emptyState);
                 return;
             }
-            projectList.replaceChildren();
             projects.forEach(project => {
                 const card = document.createElement('article');
                 card.className = 'project-card';
                 const meta = document.createElement('div');
                 meta.className = 'project-meta';
                 meta.append(safeText('span', '', `Tahun ${project.year || '—'}`), safeText('span', 'status-pill', project.status || 'Status'));
-                if (project.sample) meta.append(safeText('span', 'sample-label', ''));
+
                 const bottom = document.createElement('div');
                 bottom.className = 'project-bottom';
                 const budget = document.createElement('span');
@@ -867,7 +864,7 @@
         fetch('/api/desa/pajurangan/content').then(response => {
             if (!response.ok) throw new Error('Data proyek tidak tersedia');
             return response.json();
-        }).then(data => renderProjects(data.projects?.length ? data.projects : sampleProjects)).catch(() => renderProjects(sampleProjects));
+        }).then(data => renderProjects(Array.isArray(data.projects) ? data.projects : [])).catch(() => renderProjects([], 'Informasi pembangunan belum dapat dimuat saat ini.'));
 
         const yearSelect = document.querySelector('#budget-year');
         const budgetLines = document.querySelector('#budget-lines');

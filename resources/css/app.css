@@ -209,3 +209,15 @@ svg.inline-icon {
     color: #fff;
     background: rgb(255 255 255 / 12%);
 }
+
+
+.portal-data-empty {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 16px;
+    border: 1px dashed var(--line, #cbd5c9);
+    border-radius: 10px;
+    color: var(--muted, #58665f);
+    background: var(--white, #fff);
+    font-size: 14px;
+}

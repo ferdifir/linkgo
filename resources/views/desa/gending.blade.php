@@ -417,7 +417,9 @@
         <section class="section" id="pembangunan">
             <div class="wrap">
                 <div class="projects-head"><div><span class="eyebrow">Transparansi pembangunan</span><h2>Papan Proyek</h2></div><p style="max-width:42ch;margin:0;color:var(--muted);font-size:13px">Pekerjaan dan kegiatan pembangunan Desa Gending.</p></div>
-                <div class="project-list portal-mobile-stack" id="project-list"><article class="project-card"><div class="project-meta"><span>2025</span><span class="project-status">Berjalan</span><span class="sample-label"></span></div><h3>Perbaikan saluran irigasi</h3><p>Pembersihan dan perbaikan jalur air untuk area pertanian.</p></article></div>
+                <div class="project-list portal-mobile-stack" id="project-list" aria-live="polite" aria-busy="true">
+                    <p class="portal-data-empty" role="status">Memuat informasi pembangunan…</p>
+                </div>
             </div>
         </section>
 
@@ -573,16 +575,23 @@
             ['Volume', project => project.volume], ['Sumber dana', project => project.funding], ['Pelaksana', project => project.executor],
             ['Jadwal', project => project.schedule], ['Progres', project => `${project.progress ?? 0}%`], ['Realisasi', project => money(project.spent)],
         ];
-        function renderProjects(projects) {
-            if (!projects.length) return;
+        function renderProjects(projects, emptyMessage = 'Belum ada informasi pembangunan yang dapat ditampilkan.') {
             projectList.replaceChildren();
+            projectList.setAttribute('aria-busy', 'false');
+            if (!projects.length) {
+                const emptyState = document.createElement('p');
+                emptyState.className = 'portal-data-empty';
+                emptyState.textContent = emptyMessage;
+                projectList.append(emptyState);
+                return;
+            }
             projects.forEach(project => {
                 const card = document.createElement('article');
                 card.className = 'project-card';
                 const meta = document.createElement('div');
                 meta.className = 'project-meta';
                 meta.append(safeNode('span', '', `Tahun ${project.year || '—'}`), safeNode('span', 'project-status', project.status || 'Status'));
-                if (project.sample) meta.append(safeNode('span', 'sample-label', ''));
+
                 const bottom = document.createElement('div');
                 bottom.className = 'project-bottom';
                 const budget = document.createElement('span');
@@ -617,12 +626,8 @@
                 projectList.append(card);
             });
         }
-        const sampleProjects = [
-            { title: 'Perbaikan saluran irigasi', summary: 'Pembersihan dan perbaikan jalur air untuk area pertanian.', year: 2025, status: 'Berjalan', funding: 'Rp 142.000.000', location: 'Area persawahan (contoh)', volume: '260 meter', executor: 'Tim Pelaksana Kegiatan (contoh)', schedule: 'Mei–Juli 2025', progress: 65, spent: 92300000, sample: true },
-            { title: 'Penataan jalan produksi pangan', summary: 'Perbaikan akses angkut hasil tani menuju jalan desa.', year: 2025, status: 'Selesai', funding: 'Rp 118.500.000', location: 'Dusun II (contoh)', volume: '210 meter', executor: 'Tim Pelaksana Kegiatan (contoh)', schedule: 'Maret–Mei 2025', progress: 100, spent: 118500000, sample: true },
-            { title: 'Perbaikan ruang usaha bersama', summary: 'Penataan ruang untuk kegiatan kelompok usaha warga.', year: 2025, status: 'Perencanaan', funding: 'Rp 82.000.000', location: 'Area balai desa (contoh)', volume: '1 unit', executor: 'Pemerintah desa (contoh)', schedule: 'Agustus–Oktober 2025', progress: 15, spent: 12300000, sample: true },
-        ];
-        fetch('/api/desa/gending/content').then(response => response.ok ? response.json() : Promise.reject()).then(data => renderProjects(data.projects?.length ? data.projects : sampleProjects)).catch(() => renderProjects(sampleProjects));
+
+        fetch('/api/desa/gending/content').then(response => response.ok ? response.json() : Promise.reject()).then(data => renderProjects(Array.isArray(data.projects) ? data.projects : [])).catch(() => renderProjects([], 'Informasi pembangunan belum dapat dimuat saat ini.'));
 
         const budgetYear = document.querySelector('#budget-year');
         const budgetLines = document.querySelector('#budget-lines');

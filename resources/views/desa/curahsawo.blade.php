@@ -556,69 +556,16 @@ details[open] .expand svg { transform:rotate(180deg) }
         </div>
         <p class="projects-intro">Pekerjaan dan usulan pembangunan di lingkungan Desa Curahsawo.</p>
         <form class="project-filters" id="project-filters" aria-label="Saring proyek" hidden>
-          <label class="select-control"><span>Lokasi</span><select name="lokasi"><option value="">Semua lokasi</option><option value="krajan">Dusun Krajan</option><option value="taman">Dusun Taman</option><option value="karanganyar">Dusun Karanganyar</option><option value="wedian">Dusun Wedian</option><option value="balai">Balai desa</option><option value="belum">Belum ditetapkan</option></select></label>
-          <label class="select-control"><span>Tahun kegiatan</span><select name="tahun"><option value="">Semua tahun</option><option value="2026">2026</option><option value="2025">2025</option></select></label>
-          <label class="select-control"><span>Status</span><select name="status"><option value="">Semua status</option><option value="kegiatan">Pekerjaan diberitakan</option><option value="usulan">Usulan dibahas</option></select></label>
+          <label class="select-control"><span>Lokasi</span><select name="lokasi"><option value="">Semua lokasi</option></select></label>
+          <label class="select-control"><span>Tahun kegiatan</span><select name="tahun"><option value="">Semua tahun</option></select></label>
+          <label class="select-control"><span>Status</span><select name="status"><option value="">Semua status</option></select></label>
           <button class="clear-filters" type="reset">Reset filter</button>
         </form>
         <p class="project-count" id="project-count" aria-live="polite" hidden></p>
-        <div class="project-grid portal-mobile-stack" id="project-grid">
-          <article class="project-card" data-location="krajan" data-year="2025" data-status="kegiatan">
-            <div class="project-top"><span class="icon tone-green"><svg><use href="#document"/></svg></span><span class="status green">Pekerjaan diberitakan</span></div>
-            <h4>Pengaspalan jalan</h4>
-            <p class="project-address"><svg><use href="#pin"/></svg> Dusun Krajan · RT 02/RW 01</p>
-            <div class="project-summary"><span>Tahun <strong>2025</strong></span><span>Anggaran <strong>Belum tersedia</strong></span></div>
-            <details class="project-details"><summary><span>Rincian pekerjaan</span><span class="expand"><svg><use href="#chevron"/></svg></span></summary>
-              <div class="project-details-body"><dl><div><dt>Volume</dt><dd>Belum tersedia</dd></div><div><dt>Sumber dana</dt><dd>Belum tersedia</dd></div><div><dt>Pelaksana</dt><dd>Belum tersedia</dd></div><div><dt>Jadwal</dt><dd>Belum tersedia</dd></div><div><dt>Progres fisik</dt><dd>Belum tersedia</dd></div><div><dt>Realisasi belanja</dt><dd>Rp623.500.000</dd></div></dl></div>
-            </details>
-          </article>
-          <article class="project-card" data-location="balai" data-year="2025" data-status="kegiatan">
-            <div class="project-top"><span class="icon tone-green"><svg><use href="#document"/></svg></span><span class="status green">Pekerjaan diberitakan</span></div>
-            <h4>Pembangunan pagar kantor desa</h4>
-            <p class="project-address"><svg><use href="#pin"/></svg> Kantor Desa Curahsawo</p>
-            <div class="project-summary"><span>Tahun <strong>2025</strong></span><span>Anggaran <strong>Belum tersedia</strong></span></div>
-            <details class="project-details"><summary><span>Rincian pekerjaan</span><span class="expand"><svg><use href="#chevron"/></svg></span></summary>
-              <div class="project-details-body"><dl><div><dt>Volume</dt><dd>Panjang 56,6 m · tinggi 2 m</dd></div><div><dt>Sumber dana</dt><dd>Belum tersedia</dd></div><div><dt>Pelaksana</dt><dd>Belum tersedia</dd></div><div><dt>Jadwal</dt><dd>Belum tersedia</dd></div><div><dt>Progres fisik</dt><dd>Belum tersedia</dd></div><div><dt>Realisasi belanja</dt><dd>Rp623.500.000</dd></div></dl></div>
-            </details>
-          </article>
-          <article class="project-card" data-location="taman" data-year="2025" data-status="kegiatan">
-            <div class="project-top"><span class="icon tone-green"><svg><use href="#logo"/></svg></span><span class="status green">Pekerjaan diberitakan</span></div>
-            <h4>Rehabilitasi rumah</h4>
-            <p class="project-address"><svg><use href="#pin"/></svg> Dusun Taman · RT 04/RW 01</p>
-            <div class="project-summary"><span>Tahun <strong>2025</strong></span><span>Anggaran <strong>Belum tersedia</strong></span></div>
-            <details class="project-details"><summary><span>Rincian pekerjaan</span><span class="expand"><svg><use href="#chevron"/></svg></span></summary>
-              <div class="project-details-body"><p>Rehabilitasi rumah tidak layak huni.</p><dl><div><dt>Volume</dt><dd>Belum tersedia</dd></div><div><dt>Sumber dana</dt><dd>Belum tersedia</dd></div><div><dt>Pelaksana</dt><dd>Belum tersedia</dd></div><div><dt>Jadwal</dt><dd>Belum tersedia</dd></div><div><dt>Progres fisik</dt><dd>Belum tersedia</dd></div><div><dt>Realisasi belanja</dt><dd>Rp623.500.000</dd></div></dl></div>
-            </details>
-          </article>
-          <article class="project-card" data-location="karanganyar" data-year="2025" data-status="kegiatan">
-            <div class="project-top"><span class="icon tone-green"><svg><use href="#logo"/></svg></span><span class="status green">Pekerjaan diberitakan</span></div>
-            <h4>Rehabilitasi rumah</h4>
-            <p class="project-address"><svg><use href="#pin"/></svg> Dusun Karanganyar · RT 05/RW 01</p>
-            <div class="project-summary"><span>Tahun <strong>2025</strong></span><span>Anggaran <strong>Belum tersedia</strong></span></div>
-            <details class="project-details"><summary><span>Rincian pekerjaan</span><span class="expand"><svg><use href="#chevron"/></svg></span></summary>
-              <div class="project-details-body"><p>Rehabilitasi rumah tidak layak huni.</p><dl><div><dt>Volume</dt><dd>Belum tersedia</dd></div><div><dt>Sumber dana</dt><dd>Belum tersedia</dd></div><div><dt>Pelaksana</dt><dd>Belum tersedia</dd></div><div><dt>Jadwal</dt><dd>Belum tersedia</dd></div><div><dt>Progres fisik</dt><dd>Belum tersedia</dd></div><div><dt>Realisasi belanja</dt><dd>Rp623.500.000</dd></div></dl></div>
-            </details>
-          </article>
-          <article class="project-card" data-location="wedian" data-year="2025" data-status="kegiatan">
-            <div class="project-top"><span class="icon tone-green"><svg><use href="#logo"/></svg></span><span class="status green">Pekerjaan diberitakan</span></div>
-            <h4>Rehabilitasi rumah</h4>
-            <p class="project-address"><svg><use href="#pin"/></svg> Dusun Wedian · RT 01/RW 01</p>
-            <div class="project-summary"><span>Tahun <strong>2025</strong></span><span>Anggaran <strong>Belum tersedia</strong></span></div>
-            <details class="project-details"><summary><span>Rincian pekerjaan</span><span class="expand"><svg><use href="#chevron"/></svg></span></summary>
-              <div class="project-details-body"><p>Rehabilitasi rumah tidak layak huni.</p><dl><div><dt>Volume</dt><dd>Belum tersedia</dd></div><div><dt>Sumber dana</dt><dd>Belum tersedia</dd></div><div><dt>Pelaksana</dt><dd>Belum tersedia</dd></div><div><dt>Jadwal</dt><dd>Belum tersedia</dd></div><div><dt>Progres fisik</dt><dd>Belum tersedia</dd></div><div><dt>Realisasi belanja</dt><dd>Rp623.500.000</dd></div></dl></div>
-            </details>
-          </article>
-          <article class="project-card" data-location="belum" data-year="2026" data-status="usulan">
-            <div class="project-top"><span class="icon tone-gold"><svg><use href="#message"/></svg></span><span class="status ">Usulan dibahas</span></div>
-            <h4>Usulan fasilitas olahraga</h4>
-            <p class="project-address"><svg><use href="#pin"/></svg> Lokasi belum ditetapkan</p>
-            <div class="project-summary"><span>Tahun <strong>2026</strong></span><span>Anggaran <strong>Belum tersedia</strong></span></div>
-            <details class="project-details"><summary><span>Rincian pekerjaan</span><span class="expand"><svg><use href="#chevron"/></svg></span></summary>
-              <div class="project-details-body"><p>Usulan dibahas dalam Musrenbangdes September 2025 untuk rencana kegiatan 2026.</p><dl><div><dt>Volume</dt><dd>Belum tersedia</dd></div><div><dt>Sumber dana</dt><dd>Belum tersedia</dd></div><div><dt>Pelaksana</dt><dd>Belum tersedia</dd></div><div><dt>Jadwal</dt><dd>Belum tersedia</dd></div><div><dt>Progres fisik</dt><dd>Belum tersedia</dd></div><div><dt>Realisasi belanja</dt><dd>Rp623.500.000</dd></div></dl></div>
-            </details>
-          </article>
+        <div class="project-grid portal-mobile-stack" id="project-grid" aria-live="polite" aria-busy="true">
+          <p class="portal-data-empty" role="status">Memuat informasi pembangunan…</p>
         </div>
-        <p class="empty-projects" id="project-empty" hidden>Tidak ada proyek yang cocok dengan filter. Coba pilih lokasi, tahun, atau status lain.</p>
+        <p class="empty-projects" id="project-empty" hidden></p>
       </section>
     </section>
   </div>
@@ -713,7 +660,7 @@ details[open] .expand svg { transform:rotate(180deg) }
 </div>
 <script>
 async function applySiteContent(){
-  const response=await fetch('/api/desa/curahsawo/content');if(!response.ok)return;const data=await response.json();
+  const response=await fetch('/api/desa/curahsawo/content');if(!response.ok)throw new Error('Konten desa tidak dapat dimuat.');const data=await response.json();
   const set=(selector,value)=>{const el=document.querySelector(selector);if(el&&value)el.textContent=value};
   set('#beranda h1',data.heroTitle);set('.hero-body>p:not(.eyebrow)',data.heroIntro);
   set('#layanan-judul',data.servicesTitle);set('#layanan .section-side>p:not(.eyebrow)',data.servicesIntro);
@@ -727,12 +674,12 @@ async function applySiteContent(){
   const serviceList=document.querySelector('#layanan .service-list');
   if(serviceList&&Array.isArray(data.services)&&data.services.length){serviceList.replaceChildren(...data.services.map((item,i)=>{const d=document.createElement('details');if(i===0)d.open=true;const summary=document.createElement('summary');summary.innerHTML='<span class="icon tone-green"><svg><use href="#document"></use></svg></span>';const text=document.createElement('span');const strong=document.createElement('strong');strong.textContent=item.title||'';const small=document.createElement('small');small.textContent=item.subtitle||'';text.append(strong,small);summary.append(text);summary.insertAdjacentHTML('beforeend','<span class="expand"><svg><use href="#chevron"></use></svg></span>');const body=document.createElement('div');body.className='detail-body';const p=document.createElement('p');p.textContent=item.description||'';body.append(p);if(item.url){const a=document.createElement('a');a.className='text-link';a.href=item.url;a.textContent='Buka informasi terkait';a.target='_blank';a.rel='noopener noreferrer';body.append(a)}d.append(summary,body);return d}))}
   const grid=document.querySelector('#project-grid');
-  if(grid&&Array.isArray(data.projects)&&data.projects.length){grid.replaceChildren(...data.projects.map(project=>{const card=document.createElement('article');card.className='project-card';card.dataset.location=project.location==='Kantor Desa Curahsawo'?'balai':(project.location||'').toLowerCase().includes('krajan')?'krajan':(project.location||'').toLowerCase().includes('taman')?'taman':(project.location||'').toLowerCase().includes('karanganyar')?'karanganyar':(project.location||'').toLowerCase().includes('wedian')?'wedian':'belum';card.dataset.year=project.year||'';card.dataset.status=(project.status||'').toLowerCase().includes('usulan')?'usulan':'kegiatan';card.innerHTML='<div class="project-top"><span class="icon tone-green"><svg><use href="#document"></use></svg></span><span class="status green"></span></div><h4></h4><p class="project-address"><svg><use href="#pin"></use></svg></p><div class="project-summary"><span>Tahun <strong class="year"></strong></span><span>Anggaran <strong class="summary"></strong></span></div><details class="project-details"><summary><span>Rincian pekerjaan</span><span class="expand"><svg><use href="#chevron"></use></svg></span></summary><div class="project-details-body"><p class="details-copy"></p><dl><div><dt>Volume</dt><dd class="volume"></dd></div><div><dt>Sumber dana</dt><dd>Belum tersedia</dd></div><div><dt>Pelaksana</dt><dd>Belum tersedia</dd></div><div><dt>Jadwal</dt><dd>Belum tersedia</dd></div><div><dt>Progres fisik</dt><dd>Belum tersedia</dd></div><div><dt>Realisasi belanja</dt><dd>Rp623.500.000</dd></div></dl></div></details>';card.querySelector('.status').textContent=project.status||'';card.querySelector('h4').textContent=project.title||'';card.querySelector('.project-address').append(document.createTextNode(' '+(project.location||'')));card.querySelector('.year').textContent=project.year||'';card.querySelector('.summary').textContent=project.summary||'Belum tersedia';card.querySelector('.details-copy').textContent=project.details||'';if(!project.details)card.querySelector('.details-copy').hidden=true;card.querySelector('.volume').textContent=project.volume||'Belum tersedia';const source=card.querySelector('.project-details-body');if(project.source){const a=document.createElement('a');a.className='text-link';a.href=project.sourceUrl||'#';a.textContent=project.source+'';a.target='_blank';a.rel='noopener noreferrer';source.append(a)}const details=card.querySelector('.project-details');details.addEventListener('toggle',()=>{if(details.open)document.querySelectorAll('#project-grid .project-details[open]').forEach(other=>{if(other!==details)other.open=false})});return card}))}
+  if(grid&&Array.isArray(data.projects)){const projects=data.projects;grid.dataset.loaded='true';grid.setAttribute('aria-busy','false');if(!projects.length){grid.replaceChildren();const empty=document.querySelector('#project-empty');empty.textContent='Belum ada informasi pembangunan yang dapat ditampilkan.';empty.hidden=false;}else{const locationSelect=document.querySelector('#project-filters [name=lokasi]'),yearSelect=document.querySelector('#project-filters [name=tahun]'),statusSelect=document.querySelector('#project-filters [name=status]');for(const [select,values] of [[locationSelect,[...new Set(projects.map(project=>project.location).filter(Boolean))]],[yearSelect,[...new Set(projects.map(project=>String(project.year||'')).filter(Boolean))]],[statusSelect,[...new Set(projects.map(project=>project.status).filter(Boolean))]]]){for(const value of values){const option=document.createElement('option');option.value=value;option.textContent=value;select.append(option)}}grid.replaceChildren(...projects.map(project=>{const card=document.createElement('article');card.className='project-card';card.dataset.location=project.location||'';card.dataset.year=project.year||'';card.dataset.status=project.status||'';card.innerHTML='<div class="project-top"><span class="icon tone-green"><svg><use href="#document"></use></svg></span><span class="status green"></span></div><h4></h4><p class="project-address"><svg><use href="#pin"></use></svg></p><div class="project-summary"><span>Tahun <strong class="year"></strong></span><span>Anggaran <strong class="summary"></strong></span></div><details class="project-details"><summary><span>Rincian pekerjaan</span><span class="expand"><svg><use href="#chevron"></use></svg></span></summary><div class="project-details-body"><p class="details-copy"></p><dl><div><dt>Volume</dt><dd class="volume"></dd></div><div><dt>Sumber dana</dt><dd>Belum tersedia</dd></div><div><dt>Pelaksana</dt><dd>Belum tersedia</dd></div><div><dt>Jadwal</dt><dd>Belum tersedia</dd></div><div><dt>Progres fisik</dt><dd>Belum tersedia</dd></div><div><dt>Realisasi belanja</dt><dd>Belum tersedia</dd></div></dl></div></details>';card.querySelector('.status').textContent=project.status||'';card.querySelector('h4').textContent=project.title||'';card.querySelector('.project-address').append(document.createTextNode(' '+(project.location||'')));card.querySelector('.year').textContent=project.year||'';card.querySelector('.summary').textContent=project.summary||'Belum tersedia';card.querySelector('.details-copy').textContent=project.details||'';if(!project.details)card.querySelector('.details-copy').hidden=true;card.querySelector('.volume').textContent=project.volume||'Belum tersedia';const source=card.querySelector('.project-details-body');if(project.source){const a=document.createElement('a');a.className='text-link';a.href=project.sourceUrl||'#';a.textContent=project.source+'';a.target='_blank';a.rel='noopener noreferrer';source.append(a)}const details=card.querySelector('.project-details');details.addEventListener('toggle',()=>{if(details.open)document.querySelectorAll('#project-grid .project-details[open]').forEach(other=>{if(other!==details)other.open=false})});return card}));document.querySelector('#project-filters').hidden=false;document.querySelector('#project-count').hidden=false;document.querySelector('#project-empty').hidden=true}}
   const activityCards=document.querySelectorAll('#kegiatan .community-card');if(Array.isArray(data.activities)&&data.activities.length){data.activities.forEach((item,i)=>{const card=activityCards[i];if(!card)return;const heading=card.querySelector('h3');const p=card.querySelector('p');if(heading)heading.textContent=item.title||'';if(p)p.textContent=item.description||item.subtitle||'';const link=card.querySelector('.text-link');if(item.url&&link)link.href=item.url})}
   if(grid&&Array.isArray(data.projects)&&data.projects.length)grid.querySelectorAll('.project-card').forEach((card,index)=>{const p=data.projects[index];const values=[p.volume,p.funding,p.executor,p.schedule,p.progress?`${p.progress}%`:'',p.spent?formatRupiah(p.spent):''];card.querySelectorAll('.project-details-body dd').forEach((cell,i)=>{if(values[i]!==undefined)cell.textContent=values[i]||'Belum tersedia'})});
   const filterForm=document.querySelector('#project-filters');if(filterForm)filterForm.dispatchEvent(new Event('change'));
 }
-  applySiteContent().catch(()=>{});
+  applySiteContent().catch(()=>{const grid=document.querySelector('#project-grid'),empty=document.querySelector('#project-empty');if(!grid||!empty)return;grid.dataset.loaded='true';grid.setAttribute('aria-busy','false');grid.replaceChildren();empty.textContent='Informasi pembangunan belum dapat dimuat saat ini.';empty.hidden=false});
   const proposalPanel=document.querySelector('#proposal-chat-panel');
   const proposalToggle=document.querySelector('#proposal-chat-toggle');
   const proposalClose=document.querySelector('#proposal-chat-close');
@@ -1184,6 +1131,7 @@ showBudgetYear();
 
 const projectFilters = document.querySelector("#project-filters");
 const resultCount = document.querySelector("#project-count");
+const projectGrid = document.querySelector("#project-grid");
 const noProjects = document.querySelector("#project-empty");
 const projectSelectors = [...projectFilters.querySelectorAll("select")];
 
@@ -1210,12 +1158,19 @@ function filterProjects() {
     if (matches) visible += 1;
   }
 
+  const projectsLoaded = projectGrid.dataset.loaded === 'true';
+  if (!projectsLoaded) return;
   resultCount.textContent = `${visible} dari ${projectCards.length} kegiatan dan usulan`;
-  noProjects.hidden = visible > 0;
+  resultCount.hidden = projectCards.length === 0;
+  projectFilters.hidden = projectCards.length === 0;
+  noProjects.textContent = projectCards.length === 0
+    ? 'Belum ada informasi pembangunan yang dapat ditampilkan.'
+    : 'Tidak ada proyek yang cocok dengan filter. Coba pilih lokasi, tahun, atau status lain.';
+  noProjects.hidden = visible > 0 && projectCards.length > 0;
 }
 
-projectFilters.hidden = false;
-resultCount.hidden = false;
+projectFilters.hidden = true;
+resultCount.hidden = true;
 projectFilters.addEventListener("change", filterProjects);
 projectFilters.addEventListener("submit", event => event.preventDefault());
 projectFilters.addEventListener("reset", event => {
