@@ -19,7 +19,7 @@
                 <h2>Pemerintah Desa {{ $villageName }}</h2>
                 <p>Alamat kantor belum tersedia.</p>
                 <p>Desa {{ $villageName }}, Kecamatan Gending, Kabupaten Probolinggo, Jawa Timur.</p>
-                <p><strong>Kode wilayah:</strong> belum tersedia</p>
+                <p><strong>Kode wilayah:</strong> {{ $villageIndexData?->village_code ?? 'Belum tersedia' }}</p>
             </div>
         </section>
 
