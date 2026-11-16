@@ -3,10 +3,11 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RequestStatusChanged extends Notification
+class RequestStatusChanged extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -16,7 +17,9 @@ class RequestStatusChanged extends Notification
         public string $title,
         public string $status,
         public string $adminNote,
-    ) {}
+    ) {
+        $this->afterCommit();
+    }
 
     /**
      * Get the notification's delivery channels.

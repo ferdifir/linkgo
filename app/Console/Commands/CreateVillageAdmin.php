@@ -7,7 +7,6 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 #[Signature('admin:create-village-admin')]
@@ -47,7 +46,7 @@ class CreateVillageAdmin extends Command
             'name' => $name,
             'username' => $username,
             'email' => Str::lower($email),
-            'password' => Hash::make($password),
+            'password' => $password,
             'is_admin' => true,
             'village_slug' => $villageSlug,
         ]);

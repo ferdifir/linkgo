@@ -2,21 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginAdminRequest;
+use App\Http\Requests\SaveBudgetRequest;
+use App\Http\Requests\SaveProjectRequest;
+use App\Http\Requests\SaveVillageContentRequest;
+use App\Http\Requests\StoreVillageAdminUserRequest;
+use App\Http\Requests\StoreVillageRequestRequest;
+use App\Http\Requests\UpdateVillageAdminUserRequest;
+use App\Http\Requests\UpdateVillageRequestRequest;
+use App\Http\Requests\UploadVillageMediaRequest;
+use App\Jobs\DeleteVillageMediaFile;
 use App\Models\User;
 use App\Notifications\RequestStatusChanged;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\Response;
 
 class VillageController
 {
-    public function show(string $slug)
+    public function show(string $slug): Response
     {
         abort_unless(preg_match('/^[a-z0-9-]+$/', $slug) && view()->exists('desa.'.$slug), 404);
         $this->recordPageView($slug);
@@ -65,7 +75,7 @@ class VillageController
         ]);
     }
 
-    public function storePublicRequest(Request $request, string $slug): JsonResponse
+    public function storePublicRequest(StoreVillageRequestRequest $request, string $slug): JsonResponse
     {
         abort_unless(preg_match('/^[a-z0-9-]+$/', $slug) && view()->exists('desa.'.$slug), 404);
 
@@ -73,7 +83,8 @@ class VillageController
             return response()->json(['message' => 'Sumber permintaan tidak valid.'], 403);
         }
 
-        if (trim((string) $request->input('website', '')) !== '') {
+        $data = $request->validated();
+        if (($data['website'] ?? '') !== '') {
             return response()->json([], 204);
         }
 
@@ -81,18 +92,6 @@ class VillageController
         if (RateLimiter::tooManyAttempts($key, 5)) {
             return response()->json(['message' => 'Batas pengiriman tercapai. Silakan coba lagi satu jam mendatang.'], 429);
         }
-
-        $data = $request->validate([
-            'kind' => ['required', 'in:layanan,pengaduan'],
-            'title' => ['required', 'string', 'max:180'],
-            'category' => ['nullable', 'string', 'max:120'],
-            'name' => ['nullable', 'string', 'max:120'],
-            'contact' => ['required', 'string', 'max:180'],
-            'email' => ['nullable', 'required_if:notifyByEmail,1', 'email', 'max:180'],
-            'notifyByEmail' => ['nullable', 'boolean'],
-            'description' => ['required', 'string', 'max:3000'],
-            'website' => ['nullable', 'string', 'max:0'],
-        ]);
 
         RateLimiter::hit($key, 3600);
         $trackingCode = Str::upper(Str::random(10));
@@ -168,7 +167,7 @@ class VillageController
         return response()->json($this->budgets(true, $slug));
     }
 
-    public function login(Request $request)
+    public function login(LoginAdminRequest $request): Response
     {
         if (! $this->sameOrigin($request)) {
             return response('Sumber permintaan tidak valid.', 403);
@@ -180,12 +179,18 @@ class VillageController
                 ->header('Retry-After', (string) RateLimiter::availableIn($key));
         }
 
-        $username = (string) $request->input('username', '');
-        $password = (string) $request->input('password', '');
-        $account = User::query()->where('username', $username)->where('is_admin', true)->where('is_active', true)->first();
+        $credentials = $request->validated();
+        $authenticated = Auth::attempt([
+            'username' => $credentials['username'],
+            'password' => $credentials['password'],
+            'is_admin' => true,
+            'is_active' => true,
+        ]);
+        $account = $authenticated ? $request->user() : null;
         $villageSlug = (string) ($account?->village_slug ?? '');
         $villageExists = $villageSlug !== '' && DB::table('village_pages')->where('slug', $villageSlug)->exists();
-        if (! $account || ! Hash::check($password, $account->password) || ! $villageExists) {
+        if (! $account || ! $villageExists) {
+            Auth::logout();
             RateLimiter::hit($key, 900);
 
             return response('Nama pengguna atau kata sandi salah.', 401);
@@ -193,20 +198,17 @@ class VillageController
 
         RateLimiter::clear($key);
         $request->session()->regenerate();
-        $request->session()->put('admin_authenticated', true);
-        $request->session()->put('admin_user_id', $account->id);
-        $request->session()->put('admin_village_slug', $villageSlug);
-        $request->session()->put('admin_login_at', now()->timestamp);
 
         return response()->noContent();
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): Response
     {
         if (! $this->sameOrigin($request)) {
             return response('Sumber permintaan tidak valid.', 403);
         }
 
+        Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
@@ -217,8 +219,7 @@ class VillageController
     {
         $slug = $this->adminVillageSlug($request);
         $village = DB::table('village_pages')->where('slug', $slug)->first();
-        $admin = User::query()->whereKey($request->session()->get('admin_user_id'))->where('is_admin', true)
-            ->where('is_active', true)->where('village_slug', $slug)->first();
+        $admin = $request->user();
         abort_unless($village, 403);
         abort_unless($admin, 403);
 
@@ -258,7 +259,7 @@ class VillageController
         return response()->json($items);
     }
 
-    public function createContent(Request $request, string $type): JsonResponse
+    public function createContent(SaveVillageContentRequest $request, string $type): JsonResponse
     {
         $this->validateContentType($type);
         $slug = $this->adminVillageSlug($request);
@@ -268,7 +269,7 @@ class VillageController
                 'Profil desa sudah ada. Ubah data profil yang tersedia.');
         }
 
-        $input = $this->contentInput($request, $type, $slug);
+        $input = $this->contentInput($request->validated(), $type, $slug);
         $input['created_at'] = now()->utc()->toIso8601String();
         $input['updated_at'] = $input['created_at'];
         $id = DB::table('village_content')->insertGetId($input);
@@ -276,19 +277,19 @@ class VillageController
         return response()->json($this->contentRecord($id, $slug, $type), 201);
     }
 
-    public function updateContent(Request $request, string $type, int $id)
+    public function updateContent(SaveVillageContentRequest $request, string $type, int $id): Response
     {
         $this->validateContentType($type);
         $slug = $this->adminVillageSlug($request);
         abort_unless(DB::table('village_content')->where('id', $id)->where('village_slug', $slug)->where('type', $type)->exists(), 404);
 
         DB::table('village_content')->where('id', $id)->where('village_slug', $slug)->where('type', $type)
-            ->update($this->contentInput($request, $type, $slug) + ['updated_at' => now()->utc()->toIso8601String()]);
+            ->update($this->contentInput($request->validated(), $type, $slug) + ['updated_at' => now()->utc()->toIso8601String()]);
 
         return response()->noContent();
     }
 
-    public function deleteContent(Request $request, string $type, int $id)
+    public function deleteContent(Request $request, string $type, int $id): Response
     {
         $this->validateContentType($type);
         abort_unless(DB::table('village_content')->where('id', $id)->where('village_slug', $this->adminVillageSlug($request))
@@ -340,16 +341,10 @@ class VillageController
         return response()->json(['items' => $items, 'assignees' => $assignees]);
     }
 
-    public function updateRequest(Request $request, int $id)
+    public function updateRequest(UpdateVillageRequestRequest $request, int $id): Response
     {
         $slug = $this->adminVillageSlug($request);
-        $data = $request->validate([
-            'status' => ['required', 'in:Masuk,Ditinjau,Diproses,Selesai,Ditolak'],
-            'adminNote' => ['nullable', 'string', 'max:3000'],
-            'targetAt' => ['nullable', 'date_format:Y-m-d'],
-            'assignedTo' => ['nullable', 'integer', Rule::exists('users', 'id')->where('is_admin', true)
-                ->where('is_active', true)->where('village_slug', $slug)],
-        ]);
+        $data = $request->validated();
         $requestItem = DB::table('village_requests')->where('id', $id)->where('village_slug', $slug)->first();
         abort_unless($requestItem, 404);
         DB::transaction(function () use ($data, $id, $request, $requestItem, $slug): void {
@@ -367,7 +362,7 @@ class VillageController
                     'village_slug' => $slug,
                     'request_id' => $id,
                     'status' => $data['status'],
-                    'changed_by_user_id' => $request->session()->get('admin_user_id'),
+                    'changed_by_user_id' => $request->user()->id,
                     'created_at' => $updatedAt,
                 ]);
             }
@@ -402,29 +397,34 @@ class VillageController
         return response()->json($items);
     }
 
-    public function uploadMedia(Request $request): JsonResponse
+    public function uploadMedia(UploadVillageMediaRequest $request): JsonResponse
     {
         if (! $this->sameOrigin($request)) {
             return response()->json(['message' => 'Sumber permintaan tidak valid.'], 403);
         }
 
-        $data = $request->validate([
-            'file' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
-            'altText' => ['required', 'string', 'max:180'],
-        ]);
+        $data = $request->validated();
         $slug = $this->adminVillageSlug($request);
         $file = $data['file'];
         $path = $file->store('village-media/'.$slug, 'public');
-        $id = DB::table('village_media')->insertGetId([
-            'village_slug' => $slug,
-            'path' => $path,
-            'original_name' => $file->getClientOriginalName(),
-            'mime_type' => (string) $file->getMimeType(),
-            'size' => (int) $file->getSize(),
-            'alt_text' => trim($data['altText']),
-            'created_at' => now()->utc()->toIso8601String(),
-            'updated_at' => now()->utc()->toIso8601String(),
-        ]);
+        abort_unless($path, 500, 'Berkas tidak dapat disimpan.');
+
+        try {
+            $id = DB::table('village_media')->insertGetId([
+                'village_slug' => $slug,
+                'path' => $path,
+                'original_name' => $file->getClientOriginalName(),
+                'mime_type' => (string) $file->getMimeType(),
+                'size' => (int) $file->getSize(),
+                'alt_text' => trim($data['altText']),
+                'created_at' => now()->utc()->toIso8601String(),
+                'updated_at' => now()->utc()->toIso8601String(),
+            ]);
+        } catch (\Throwable $exception) {
+            Storage::disk('public')->delete($path);
+
+            throw $exception;
+        }
         $media = DB::table('village_media')->where('id', $id)->first();
 
         return response()->json([
@@ -437,12 +437,12 @@ class VillageController
         ], 201);
     }
 
-    public function deleteMedia(Request $request, int $id)
+    public function deleteMedia(Request $request, int $id): Response
     {
         $media = DB::table('village_media')->where('id', $id)->where('village_slug', $this->adminVillageSlug($request))->first();
         abort_unless($media, 404);
-        Storage::disk('public')->delete($media->path);
         DB::table('village_media')->where('id', $id)->delete();
+        DeleteVillageMediaFile::dispatch($media->path);
 
         return response()->noContent();
     }
@@ -463,21 +463,16 @@ class VillageController
         ]));
     }
 
-    public function createAdminUser(Request $request): JsonResponse
+    public function createAdminUser(StoreVillageAdminUserRequest $request): JsonResponse
     {
-        $admin = $this->authorizeVillageOwner($request);
-        $data = $request->validate([
-            'name' => ['required', 'string', 'max:120'],
-            'username' => ['required', 'string', 'min:3', 'max:60', 'regex:/^[a-zA-Z0-9._-]+$/', 'unique:users,username'],
-            'email' => ['required', 'email', 'max:180', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:12', 'confirmed'],
-        ]);
+        $admin = $request->user();
+        $data = $request->validated();
 
         $user = User::query()->create([
-            'name' => trim($data['name']),
-            'username' => trim($data['username']),
-            'email' => Str::lower(trim($data['email'])),
-            'password' => Hash::make($data['password']),
+            'name' => $data['name'],
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => $data['password'],
             'is_admin' => true,
             'admin_role' => 'editor',
             'is_active' => true,
@@ -494,29 +489,30 @@ class VillageController
         ], 201);
     }
 
-    public function updateAdminUser(Request $request, int $id)
+    public function updateAdminUser(UpdateVillageAdminUserRequest $request, int $id): Response
     {
-        $admin = $this->authorizeVillageOwner($request);
-        $target = User::query()->whereKey($id)->where('is_admin', true)->where('village_slug', $admin->village_slug)->firstOrFail();
-        abort_unless($target->id !== $admin->id, 400, 'Akun yang sedang digunakan tidak dapat diubah dari halaman ini.');
-        $data = $request->validate([
-            'role' => ['required', 'in:owner,editor'],
-            'active' => ['required', 'boolean'],
-            'password' => ['nullable', 'string', 'min:12', 'confirmed'],
-        ]);
+        $admin = $request->user();
+        $data = $request->validated();
 
-        if ($target->admin_role === 'owner' && ($data['role'] !== 'owner' || ! $data['active'])) {
-            $otherOwners = User::query()->where('is_admin', true)->where('is_active', true)->where('admin_role', 'owner')
-                ->where('village_slug', $admin->village_slug)->whereKeyNot($target->id)->count();
-            abort_if($otherOwners < 1, 400, 'Desa harus memiliki setidaknya satu admin pemilik yang aktif.');
-        }
+        DB::transaction(function () use ($admin, $data, $id): void {
+            DB::table('village_pages')->where('slug', $admin->village_slug)->lockForUpdate()->first();
+            $target = User::query()->whereKey($id)->where('is_admin', true)
+                ->where('village_slug', $admin->village_slug)->firstOrFail();
+            abort_unless($target->id !== $admin->id, 400, 'Akun yang sedang digunakan tidak dapat diubah dari halaman ini.');
 
-        $target->admin_role = $data['role'];
-        $target->is_active = (bool) $data['active'];
-        if (! empty($data['password'])) {
-            $target->password = Hash::make($data['password']);
-        }
-        $target->save();
+            if ($target->admin_role === 'owner' && ($data['role'] !== 'owner' || ! $data['active'])) {
+                $otherOwners = User::query()->where('is_admin', true)->where('is_active', true)->where('admin_role', 'owner')
+                    ->where('village_slug', $admin->village_slug)->whereKeyNot($target->id)->count();
+                abort_if($otherOwners < 1, 409, 'Desa harus memiliki setidaknya satu admin pemilik yang aktif.');
+            }
+
+            $target->admin_role = $data['role'];
+            $target->is_active = (bool) $data['active'];
+            if (! empty($data['password'])) {
+                $target->password = $data['password'];
+            }
+            $target->save();
+        });
 
         return response()->noContent();
     }
@@ -526,26 +522,26 @@ class VillageController
         return response()->json($this->projects(false, $this->adminVillageSlug($request)));
     }
 
-    public function createProject(Request $request): JsonResponse
+    public function createProject(SaveProjectRequest $request): JsonResponse
     {
-        $input = $this->projectInput($request, $this->adminVillageSlug($request));
+        $input = $this->projectInput($request->validated(), $this->adminVillageSlug($request));
         $input['created_at'] = now()->utc()->toIso8601String();
         $id = DB::table('projects')->insertGetId($input);
 
         return response()->json($this->project($id, $input['village_slug']), 201);
     }
 
-    public function updateProject(Request $request, int $id)
+    public function updateProject(SaveProjectRequest $request, int $id): Response
     {
         $slug = $this->adminVillageSlug($request);
-        $input = $this->projectInput($request, $slug);
+        $input = $this->projectInput($request->validated(), $slug);
         $updated = DB::table('projects')->where('id', $id)->where('village_slug', $slug)->update($input);
         abort_unless($updated || DB::table('projects')->where('id', $id)->where('village_slug', $slug)->exists(), 404);
 
         return response()->noContent();
     }
 
-    public function deleteProject(Request $request, int $id)
+    public function deleteProject(Request $request, int $id): Response
     {
         abort_unless(DB::table('projects')->where('id', $id)->where('village_slug', $this->adminVillageSlug($request))->delete(), 404);
 
@@ -557,117 +553,28 @@ class VillageController
         return response()->json($this->budgets(false, $this->adminVillageSlug($request)));
     }
 
-    public function createBudget(Request $request): JsonResponse
+    public function createBudget(SaveBudgetRequest $request): JsonResponse
     {
         $slug = $this->adminVillageSlug($request);
-        $input = $this->budgetInput($request, $slug);
-        abort_if(DB::table('budgets')->where('village_slug', $slug)->where('year', $input['year'])->exists(), 400,
-            'Gagal menyimpan APBDes. Pastikan tahun belum pernah dimasukkan.');
+        $input = $this->budgetInput($request->validated(), $slug);
         $id = DB::table('budgets')->insertGetId($input);
 
         return response()->json($this->budget($id, $slug), 201);
     }
 
-    public function updateBudget(Request $request, int $id)
+    public function updateBudget(SaveBudgetRequest $request, int $id): Response
     {
         $slug = $this->adminVillageSlug($request);
-        $input = $this->budgetInput($request, $slug);
+        $input = $this->budgetInput($request->validated(), $slug);
         abort_unless(DB::table('budgets')->where('id', $id)->where('village_slug', $slug)->exists(), 404);
-        abort_if(DB::table('budgets')->where('village_slug', $slug)->where('year', $input['year'])->where('id', '<>', $id)->exists(), 400,
-            'Gagal memperbarui APBDes. Pastikan tahun belum pernah dimasukkan.');
         DB::table('budgets')->where('id', $id)->where('village_slug', $slug)->update($input);
 
         return response()->noContent();
     }
 
-    public function deleteBudget(Request $request, int $id)
+    public function deleteBudget(Request $request, int $id): Response
     {
         abort_unless(DB::table('budgets')->where('id', $id)->where('village_slug', $this->adminVillageSlug($request))->delete(), 404);
-
-        return response()->noContent();
-    }
-
-    public function submitVillageProposal(Request $request, string $slug): JsonResponse
-    {
-        abort_unless(DB::table('village_pages')->where('slug', $slug)->exists(), 404);
-
-        return $this->storeProposal($request, $slug);
-    }
-
-    private function storeProposal(Request $request, string $slug): JsonResponse
-    {
-        if (! $this->sameOrigin($request)) {
-            return response()->json(['message' => 'Sumber permintaan tidak valid.'], 403);
-        }
-
-        $input = $request->only(['title', 'location', 'category', 'description', 'name', 'contact', 'website']);
-        if (($input['website'] ?? '') !== '') {
-            return response()->json([], 204);
-        }
-        $errors = [];
-        foreach (['title' => 160, 'location' => 160, 'category' => 120, 'description' => 3000, 'name' => 120, 'contact' => 160] as $field => $max) {
-            $value = (string) ($input[$field] ?? '');
-            if (mb_strlen($value) > $max) {
-                $errors[] = 'Ada isian yang melebihi batas panjang.';
-                break;
-            }
-        }
-        foreach (['title', 'location', 'description'] as $required) {
-            if (trim((string) ($input[$required] ?? '')) === '') {
-                $errors[] = 'Judul, lokasi, dan uraian usulan wajib diisi.';
-                break;
-            }
-        }
-        if ($errors) {
-            return response()->json(['message' => $errors[0]], 400);
-        }
-
-        $key = 'public-proposal:'.$slug.':'.$request->ip();
-        if (RateLimiter::tooManyAttempts($key, 5)) {
-            return response()->json(['message' => 'Batas kiriman usulan tercapai. Coba kembali satu jam lagi.'], 429);
-        }
-        RateLimiter::hit($key, 3600);
-        DB::table('proposals')->insert([
-            'village_slug' => $slug,
-            'title' => trim($input['title']), 'location' => trim($input['location']),
-            'category' => trim((string) ($input['category'] ?? '')), 'description' => trim($input['description']),
-            'name' => trim((string) ($input['name'] ?? '')), 'contact' => trim((string) ($input['contact'] ?? '')),
-            'status' => 'Masuk', 'admin_note' => '', 'created_at' => now()->utc()->toIso8601String(),
-        ]);
-
-        return response()->json(['message' => 'Usulan diterima. Terima kasih telah menyampaikan kebutuhan warga.'], 201);
-    }
-
-    public function adminProposals(Request $request): JsonResponse
-    {
-        $rows = DB::table('proposals')->where('village_slug', $this->adminVillageSlug($request))->orderByDesc('created_at')->orderByDesc('id')->get();
-        $items = $rows->map(fn ($row) => [
-            'id' => $row->id, 'title' => $row->title, 'location' => $row->location, 'category' => $row->category,
-            'description' => $row->description, 'name' => $row->name, 'contact' => $row->contact,
-            'status' => $row->status, 'adminNote' => $row->admin_note, 'createdAt' => $row->created_at,
-            'villageSlug' => $row->village_slug ?? 'curahsawo',
-        ]);
-
-        return response()->json($items);
-    }
-
-    public function updateProposal(Request $request, int $id)
-    {
-        $slug = $this->adminVillageSlug($request);
-        $status = (string) $request->input('status', '');
-        abort_unless(in_array($status, ['Masuk', 'Ditinjau', 'Direncanakan', 'Selesai', 'Ditolak'], true), 400, 'Status usulan tidak valid.');
-        abort_if(mb_strlen((string) $request->input('adminNote', '')) > 3000, 400, 'Catatan admin terlalu panjang.');
-        abort_unless(DB::table('proposals')->where('id', $id)->where('village_slug', $slug)->exists(), 404);
-        DB::table('proposals')->where('id', $id)->where('village_slug', $slug)->update([
-            'status' => $status, 'admin_note' => (string) $request->input('adminNote', ''),
-        ]);
-
-        return response()->noContent();
-    }
-
-    public function deleteProposal(Request $request, int $id)
-    {
-        abort_unless(DB::table('proposals')->where('id', $id)->where('village_slug', $this->adminVillageSlug($request))->delete(), 404);
 
         return response()->noContent();
     }
@@ -706,40 +613,8 @@ class VillageController
         ];
     }
 
-    private function contentInput(Request $request, string $type, string $villageSlug): array
+    private function contentInput(array $data, string $type, string $villageSlug): array
     {
-        $data = $request->validate([
-            'title' => ['required', 'string', 'max:180'],
-            'summary' => ['nullable', 'string', 'max:300'],
-            'body' => ['required', 'string', 'max:5000'],
-            'category' => ['nullable', 'string', 'max:80'],
-            'link' => ['nullable', 'url:http,https', 'max:500'],
-            'imageUrl' => ['nullable', 'url:http,https', 'max:500'],
-            'published' => ['required', 'boolean'],
-            'sortOrder' => ['nullable', 'integer', 'min:0', 'max:9999'],
-            'publishedAt' => ['nullable', 'date_format:Y-m-d'],
-            'profile' => ['nullable', 'array'],
-            'profile.address' => ['nullable', 'string', 'max:255'],
-            'profile.phone' => ['nullable', 'string', 'max:40'],
-            'profile.email' => ['nullable', 'email', 'max:180'],
-            'profile.officeHours' => ['nullable', 'string', 'max:160'],
-            'profile.headName' => ['nullable', 'string', 'max:180'],
-            'profile.hamlets' => ['nullable', 'integer', 'min:0', 'max:10000'],
-            'profile.rw' => ['nullable', 'integer', 'min:0', 'max:10000'],
-            'profile.rt' => ['nullable', 'integer', 'min:0', 'max:10000'],
-            'profile.indexYear' => ['nullable', 'integer', 'min:2025', 'max:2100'],
-            'profile.indexScore' => ['nullable', 'numeric', 'min:0', 'max:100'],
-            'profile.indexStatus' => ['nullable', 'in:Mandiri,Maju,Berkembang,Tertinggal,Sangat Tertinggal'],
-            'profile.indexSource' => ['nullable', 'url:http,https', 'max:500'],
-            'profile.indexVerifiedAt' => ['nullable', 'date_format:Y-m-d'],
-            'profile.indexBasicServices' => ['nullable', 'numeric', 'min:0', 'max:100'],
-            'profile.indexSocial' => ['nullable', 'numeric', 'min:0', 'max:100'],
-            'profile.indexEconomic' => ['nullable', 'numeric', 'min:0', 'max:100'],
-            'profile.indexEnvironment' => ['nullable', 'numeric', 'min:0', 'max:100'],
-            'profile.indexAccessibility' => ['nullable', 'numeric', 'min:0', 'max:100'],
-            'profile.indexGovernance' => ['nullable', 'numeric', 'min:0', 'max:100'],
-        ]);
-
         $profile = $type === 'profile' ? ($data['profile'] ?? []) : [];
         $profile = array_filter($profile, fn ($value) => $value !== null && $value !== '');
 
@@ -785,13 +660,10 @@ class VillageController
 
     private function authorizeVillageOwner(Request $request): User
     {
-        $owner = User::query()->whereKey($request->session()->get('admin_user_id'))
-            ->where('is_admin', true)
-            ->where('is_active', true)
-            ->where('admin_role', 'owner')
-            ->where('village_slug', $this->adminVillageSlug($request))
-            ->first();
-        abort_unless($owner, 403, 'Hanya admin pemilik desa yang dapat mengelola akun.');
+        $owner = $request->user();
+        abort_unless($owner instanceof User && $owner->admin_role === 'owner'
+            && $owner->village_slug === $this->adminVillageSlug($request), 403,
+            'Hanya admin pemilik desa yang dapat mengelola akun.');
 
         return $owner;
     }
@@ -816,52 +688,16 @@ class VillageController
         ];
     }
 
-    private function projectInput(Request $request, string $villageSlug): array
+    private function projectInput(array $data, string $villageSlug): array
     {
-        $data = $request->all();
-        $errors = [];
-        foreach (['title' => 200, 'location' => 200, 'status' => 120, 'summary' => 500, 'details' => 5000,
-            'volume' => 200, 'funding' => 200, 'executor' => 200, 'schedule' => 200, 'source' => 300] as $field => $max) {
-            if (mb_strlen((string) ($data[$field] ?? '')) > $max) {
-                $errors[] = "Isian $field terlalu panjang.";
-            }
-        }
-        if (trim((string) ($data['title'] ?? '')) === '' || trim((string) ($data['location'] ?? '')) === '') {
-            $errors[] = 'Nama proyek dan lokasi wajib diisi.';
-        }
-        foreach (['latitude' => [-90, 90], 'longitude' => [-180, 180]] as $field => [$minimum, $maximum]) {
-            $coordinate = $data[$field] ?? '';
-            if ($coordinate !== '' && (! is_numeric($coordinate) || $coordinate < $minimum || $coordinate > $maximum)) {
-                $errors[] = 'Koordinat harus berupa angka dalam rentang yang valid.';
-            }
-        }
-        $year = filter_var($data['year'] ?? null, FILTER_VALIDATE_INT);
-        if ($year === false || $year < 2000 || $year > 2100) {
-            $errors[] = 'Tahun proyek tidak valid.';
-        }
-        $progress = filter_var($data['progress'] ?? 0, FILTER_VALIDATE_INT);
-        $spent = filter_var($data['spent'] ?? 0, FILTER_VALIDATE_INT);
-        if ($progress === false || $progress < 0 || $progress > 100) {
-            $errors[] = 'Progres harus antara 0 dan 100 persen.';
-        }
-        if ($spent === false || $spent < 0) {
-            $errors[] = 'Realisasi belanja tidak boleh negatif.';
-        }
-        if (! $this->validLink((string) ($data['sourceUrl'] ?? ''))) {
-            $errors[] = 'Link sumber harus menggunakan http atau https.';
-        }
-        if ($errors) {
-            abort(400, $errors[0]);
-        }
-
         return [
-            'village_slug' => $villageSlug, 'title' => trim($data['title']), 'location' => trim($data['location']), 'year' => $year,
-            'latitude' => ($data['latitude'] ?? '') !== '' ? (float) $data['latitude'] : null,
-            'longitude' => ($data['longitude'] ?? '') !== '' ? (float) $data['longitude'] : null,
+            'village_slug' => $villageSlug, 'title' => trim($data['title']), 'location' => trim($data['location']), 'year' => (int) $data['year'],
+            'latitude' => isset($data['latitude']) ? (float) $data['latitude'] : null,
+            'longitude' => isset($data['longitude']) ? (float) $data['longitude'] : null,
             'status' => trim((string) ($data['status'] ?? '')), 'summary' => (string) ($data['summary'] ?? ''),
             'details' => (string) ($data['details'] ?? ''), 'volume' => (string) ($data['volume'] ?? ''),
             'funding' => (string) ($data['funding'] ?? ''), 'executor' => (string) ($data['executor'] ?? ''),
-            'schedule' => (string) ($data['schedule'] ?? ''), 'progress' => $progress, 'spent' => $spent,
+            'schedule' => (string) ($data['schedule'] ?? ''), 'progress' => (int) ($data['progress'] ?? 0), 'spent' => (int) ($data['spent'] ?? 0),
             'source' => (string) ($data['source'] ?? ''), 'source_url' => trim((string) ($data['sourceUrl'] ?? '')),
             'published' => filter_var($data['published'] ?? false, FILTER_VALIDATE_BOOLEAN),
         ];
@@ -892,49 +728,25 @@ class VillageController
         ];
     }
 
-    private function budgetInput(Request $request, string $villageSlug): array
+    private function budgetInput(array $data, string $villageSlug): array
     {
-        $year = filter_var($request->input('year'), FILTER_VALIDATE_INT);
-        if ($year === false || $year < 2000 || $year > 2100) {
-            abort(400, 'Tahun anggaran tidak valid.');
-        }
         $values = [];
         foreach (['revenue', 'expenditure', 'financing', 'villageFund', 'realized'] as $field) {
-            $value = filter_var($request->input($field, 0), FILTER_VALIDATE_INT);
-            if ($value === false || $value < 0) {
-                abort(400, 'Nilai anggaran tidak boleh negatif.');
-            }
-            $values[Str::snake($field)] = $value;
-        }
-        if (mb_strlen((string) $request->input('notes', '')) > 2000) {
-            abort(400, 'Catatan APBDes terlalu panjang.');
-        }
-        $sourceUrl = trim((string) $request->input('sourceUrl', ''));
-        if (! $this->validLink($sourceUrl)) {
-            abort(400, 'Link dokumen harus menggunakan http atau https.');
+            $values[Str::snake($field)] = (int) ($data[$field] ?? 0);
         }
 
         return $values + [
             'village_slug' => $villageSlug,
-            'year' => $year, 'notes' => (string) $request->input('notes', ''), 'source_url' => $sourceUrl,
-            'published' => filter_var($request->input('published', false), FILTER_VALIDATE_BOOLEAN),
+            'year' => (int) $data['year'],
+            'notes' => trim((string) ($data['notes'] ?? '')),
+            'source_url' => trim((string) ($data['sourceUrl'] ?? '')),
+            'published' => (bool) ($data['published'] ?? false),
         ];
-    }
-
-    private function validLink(string $url): bool
-    {
-        if ($url === '') {
-            return true;
-        }
-        $parts = parse_url($url);
-
-        return is_array($parts) && in_array(strtolower($parts['scheme'] ?? ''), ['http', 'https'], true)
-            && ! empty($parts['host']);
     }
 
     private function adminVillageSlug(Request $request): string
     {
-        $slug = (string) $request->session()->get('admin_village_slug', '');
+        $slug = (string) ($request->user()?->village_slug ?? '');
         abort_unless($slug !== '', 403);
 
         return $slug;

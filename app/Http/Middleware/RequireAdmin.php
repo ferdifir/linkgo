@@ -2,23 +2,26 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class RequireAdmin
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->session()->get('admin_authenticated') !== true) {
+        $admin = $request->user();
+
+        if (! $admin || ! $admin->is_admin || ! $admin->is_active || ! $admin->village_slug) {
             return response('Silakan masuk kembali ke admin.', 401);
         }
 
-        $admin = User::query()->whereKey($request->session()->get('admin_user_id'))->where('is_admin', true)
-            ->where('is_active', true)->first();
-        if (! $admin || $admin->village_slug !== $request->session()->get('admin_village_slug')) {
+        if (! DB::table('village_pages')->where('slug', $admin->village_slug)->exists()) {
+            Auth::logout();
             $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
             return response('Silakan masuk kembali ke admin.', 401);
         }
