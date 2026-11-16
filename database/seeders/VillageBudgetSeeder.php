@@ -9,6 +9,10 @@ class VillageBudgetSeeder extends Seeder
 {
     public function run(): void
     {
+        if (DB::getDriverName() === 'pgsql') {
+            DB::statement("SELECT setval(pg_get_serial_sequence('budgets', 'id'), GREATEST(COALESCE((SELECT MAX(id) FROM budgets), 1), 1), EXISTS (SELECT 1 FROM budgets))");
+        }
+
         $allocations = [
             'banyuanyar-lor' => [884259000, 384487017, 56060705, 13482225],
             'brumbungan-lor' => [856563000, 373616266, 56011124, 13470301],
