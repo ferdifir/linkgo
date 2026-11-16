@@ -562,10 +562,10 @@
                 <aside class="hero-info" aria-label="Pengumuman desa">
                     <div class="hero-info-label"><span aria-hidden="true"></span> Pengumuman desa</div>
                     <article class="announcement-card">
-                        <span class="tag">Contoh · Pengumuman</span>
+                        <span class="tag">Informasi · Pengumuman</span>
                         <h2>Jadwal pelayanan administrasi</h2>
-                        <p>Contoh informasi jadwal pelayanan di kantor desa pada hari kerja.</p>
-                        <div class="announcement-meta"><span>Contoh · 18 Juni 2026</span><a href="#kabar">Lihat semua <svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+                        <p>Informasi pelayanan belum tersedia.</p>
+                        <div class="announcement-meta"><span>Belum tersedia</span><a href="#kabar">Lihat semua <svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
                     </article>
                 </aside>
             </div>
@@ -586,16 +586,16 @@
                         <span class="section-label">Desa Pajurangan</span>
                         <h2>Melayani warga, membangun desa bersama.</h2>
                         <p>Mari menjaga kebersamaan, merawat lingkungan, dan mendukung kehidupan warga Pajurangan.</p>
-                        <div class="welcome-sign"><span class="avatar" aria-hidden="true">KP</span><span><strong>Nama Kepala Desa Contoh</strong><small>Kepala Desa Pajurangan</small></span></div>
+                        <div class="welcome-sign"><span class="avatar" aria-hidden="true">KP</span><span><strong>Belum tersedia</strong><small>Kepala Desa Pajurangan</small></span></div>
                     </div>
                     <aside class="welcome-aside">
                         <div><span class="section-label">Profil wilayah</span><h3 style="margin-top:8px">Data Desa Pajurangan</h3></div>
                         <div class="stat-list">
-                            <div class="stat-row"><span>Jumlah penduduk</span><strong>3.680 jiwa <small>Contoh</small></strong></div>
-                            <div class="stat-row"><span>Kepala keluarga</span><strong>1.120 KK <small>Contoh</small></strong></div>
-                            <div class="stat-row"><span>Jumlah dusun</span><strong>3 dusun <small>Contoh</small></strong></div>
-                            <div class="stat-row"><span>RT / RW</span><strong>12 RT · 4 RW <small>Contoh</small></strong></div>
-                            <div class="stat-row"><span>Alamat kantor desa</span><strong>Jl. Desa Pajurangan No. 01 <small>Contoh</small></strong></div>
+                            <div class="stat-row"><span>Jumlah penduduk</span><strong>Belum tersedia <small>Belum tersedia</small></strong></div>
+                            <div class="stat-row"><span>Kepala keluarga</span><strong>Belum tersedia <small>Belum tersedia</small></strong></div>
+                            <div class="stat-row"><span>Jumlah dusun</span><strong>Belum tersedia <small>Belum tersedia</small></strong></div>
+                            <div class="stat-row"><span>RT / RW</span><strong>Belum tersedia <small>Belum tersedia</small></strong></div>
+                            <div class="stat-row"><span>Alamat kantor desa</span><strong>Belum tersedia <small>Belum tersedia</small></strong></div>
                         </div>
                     </aside>
                 </div>
@@ -608,10 +608,10 @@
                 <div class="staff-layout grid gap-4 reveal-stagger">
                     <aside class="staff-lead"><span class="staff-lead-mark" aria-hidden="true">P</span><div><span class="section-label">Pemerintah Pajurangan</span><h3>Perangkat desa melayani warga.</h3><p>Kenali susunan pemerintah desa dan bidang pelayanan yang tersedia.</p></div><a href="#lokasi">Hubungi kantor desa <svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></aside>
                     <div class="staff-grid portal-mobile-two-col grid grid-cols-2 gap-4">
-                        <article class="staff-card"><span class="avatar" aria-hidden="true">KP</span><small>Kepala Desa</small><h3>Nama Kepala Desa Contoh</h3><p>Desa Pajurangan</p></article>
-                        <article class="staff-card"><span class="avatar" aria-hidden="true">SD</span><small>Sekretaris Desa</small><h3>Nama Sekretaris Contoh</h3><p>Sekretariat desa</p></article>
-                        <article class="staff-card"><span class="avatar" aria-hidden="true">KP</span><small>Kasi Pemerintahan</small><h3>Nama Kasi Contoh</h3><p>Pemerintahan</p></article>
-                        <article class="staff-card"><span class="avatar" aria-hidden="true">KK</span><small>Kasi Kesejahteraan</small><h3>Nama Kasi Contoh</h3><p>Kesejahteraan</p></article>
+                        <article class="staff-card"><span class="avatar" aria-hidden="true">KP</span><small>Kepala Desa</small><h3>Belum tersedia</h3><p>Desa Pajurangan</p></article>
+                        <article class="staff-card"><span class="avatar" aria-hidden="true">SD</span><small>Sekretaris Desa</small><h3>Belum tersedia</h3><p>Sekretariat desa</p></article>
+                        <article class="staff-card"><span class="avatar" aria-hidden="true">KP</span><small>Kasi Pemerintahan</small><h3>Belum tersedia</h3><p>Pemerintahan</p></article>
+                        <article class="staff-card"><span class="avatar" aria-hidden="true">KK</span><small>Kasi Kesejahteraan</small><h3>Belum tersedia</h3><p>Kesejahteraan</p></article>
                     </div>
                 </div>
             </div>
@@ -621,7 +621,7 @@
             <div class="site-width">
                 <div class="section-heading reveal"><div><span class="section-label">Urus keperluanmu</span><h2>Layanan Desa</h2></div><p>Pilih layanan untuk melihat informasi yang dibutuhkan.</p></div>
                 <div class="services-layout grid gap-4 reveal-stagger">
-                    <aside class="service-lead"><div><span class="section-label">Layanan warga</span><h3>Mulai dari kebutuhanmu.</h3><p>Contoh rincian persyaratan dan alur pengajuan.</p></div><div class="service-hours"><span>Jam pelayanan</span><strong>08.00–14.00 <span class="sample-label">Contoh</span></strong><small>Senin–Jumat</small></div><a href="#lokasi">Lihat kontak kantor desa <svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></aside>
+                    <aside class="service-lead"><div><span class="section-label">Layanan warga</span><h3>Mulai dari kebutuhanmu.</h3><p>Persyaratan dan alur layanan belum tersedia.</p></div><div class="service-hours"><span>Jam pelayanan</span><strong>Belum tersedia</strong><small>Senin–Jumat</small></div><a href="#lokasi">Lihat kontak kantor desa <svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></aside>
                     <div class="service-grid portal-mobile-two-col grid grid-cols-2 gap-3">
                     <button class="service-card service-open" type="button" data-service="Surat keterangan"><span class="service-top"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.75h8l4 4v12.5H6zM14 4v4h4M9 12h6M9 15.5h6"/></svg></span><span class="section-label">Administrasi</span></span><h3>Surat keterangan</h3><p>Surat domisili, usaha, dan keterangan sesuai kebutuhan warga.</p><span class="service-link">Lihat informasi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
                     <button class="service-card service-open" type="button" data-service="Administrasi kependudukan"><span class="service-top"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M5 20c.4-3.1 3.2-5 7-5s6.6 1.9 7 5"/></svg></span><span class="section-label">Kependudukan</span></span><h3>Administrasi kependudukan</h3><p>Pengantar pengurusan KK, KTP, akta, dan perubahan data.</p><span class="service-link">Lihat informasi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
@@ -641,23 +641,20 @@
                     <article class="content-card">
                         <div class="budget-head"><h3>APBDes</h3><select class="year-select" id="budget-year" aria-label="Tahun anggaran"><option value="">Pilih tahun</option></select></div>
                         <div id="budget-lines" class="budget-lines">
-                            <span class="sample-label" id="budget-sample">APBDes 2025</span>
-                            <div class="budget-line"><span>Pendapatan</span><strong>Rp 1.360.000.000</strong></div>
-                            <div class="budget-line"><span>Belanja</span><strong>Rp 1.285.000.000</strong></div>
-                            <div class="budget-line"><span>Pembiayaan</span><strong>Rp 75.000.000</strong></div>
-                        </div>
-                        <div class="budget-total"><span>Realisasi anggaran</span><strong>Rp 816.250.000</strong></div>
+            <p class="portal-data-empty">Belum tersedia</p>
+        </div>
+                        <div class="budget-total"><span>Realisasi anggaran</span><strong>Belum tersedia</strong></div>
                     </article>
                     <article class="content-card">
                         <span class="section-label">Indeks Desa</span>
                         <h3 style="margin-top:8px">Perkembangan Desa</h3>
                         <div class="index-list">
-                            <div class="index-row"><span>Layanan dasar</span><strong>0,78</strong><div class="index-track"><i style="width:78%"></i></div></div>
-                            <div class="index-row"><span>Sosial</span><strong>0,73</strong><div class="index-track"><i style="width:73%"></i></div></div>
-                            <div class="index-row"><span>Ekonomi</span><strong>0,69</strong><div class="index-track"><i style="width:69%"></i></div></div>
-                            <div class="index-row"><span>Lingkungan</span><strong>0,75</strong><div class="index-track"><i style="width:75%"></i></div></div>
+                            <div class="index-row"><span>Layanan dasar</span><strong>Belum tersedia</strong><div class="index-track"><i style="width:78%"></i></div></div>
+                            <div class="index-row"><span>Sosial</span><strong>Belum tersedia</strong><div class="index-track"><i style="width:73%"></i></div></div>
+                            <div class="index-row"><span>Ekonomi</span><strong>Belum tersedia</strong><div class="index-track"><i style="width:69%"></i></div></div>
+                            <div class="index-row"><span>Lingkungan</span><strong>Belum tersedia</strong><div class="index-track"><i style="width:75%"></i></div></div>
                         </div>
-                        <p class="placeholder-note" style="margin:15px 0 0"><span class="sample-label">2025</span> Nilai indeks contoh: 0,74 · Maju</p>
+                        <p class="placeholder-note" style="margin:15px 0 0"><span class="sample-label">2025</span> Nilai indeks: Belum tersedia</p>
                     </article>
                 </div>
             </div>
@@ -676,9 +673,9 @@
             <div class="site-width">
                 <div class="section-heading reveal"><div><span class="section-label">Informasi warga</span><h2>Kabar dan Pengumuman</h2></div><p>Berita, pengumuman, dan kegiatan Desa Pajurangan.</p></div>
                 <div class="news-grid portal-mobile-stack reveal-stagger">
-                    <article class="news-card"><div class="news-thumb" data-caption="PENGUMUMAN" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4m8-4v4M4 10h16M8 14h3m-3 3h7"/></svg></div><div class="news-body"><small>Pengumuman · 12 Juni 2026</small><h3>Jadwal pelayanan keliling <span class="sample-label">Contoh</span></h3><p>Contoh layanan administrasi di balai warga pada pekan terakhir bulan ini.</p></div></article>
-                    <article class="news-card"><div class="news-thumb" data-caption="KABAR DESA" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5l8-2 8 2v14l-8 2zM8 9h8M8 13h8M8 17h4"/></svg></div><div class="news-body"><small>Berita desa · 19 Juni 2026</small><h3>Kerja bakti lingkungan <span class="sample-label">Contoh</span></h3><p>Contoh kegiatan perawatan saluran dan jalan lingkungan.</p></div></article>
-                    <article class="news-card"><div class="news-thumb" data-caption="AGENDA WARGA" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20c.2-3.6 2.4-5.5 5.5-5.5s5.3 1.9 5.5 5.5m.2-5c3.4-.4 5.4 1.4 5.8 4.5"/></svg></div><div class="news-body"><small>Kegiatan · 23 Juni 2026</small><h3>Musyawarah warga <span class="sample-label">Contoh</span></h3><p>Contoh agenda pembahasan usulan pembangunan.</p></div></article>
+                    <article class="news-card"><div class="news-thumb" data-caption="PENGUMUMAN" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4m8-4v4M4 10h16M8 14h3m-3 3h7"/></svg></div><div class="news-body"><small>Pengumuman · 12 Juni 2026</small><h3>Informasi pelayanan <span class="sample-label">Belum tersedia</span></h3><p>Informasi pelayanan belum tersedia.</p></div></article>
+                    <article class="news-card"><div class="news-thumb" data-caption="KABAR DESA" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5l8-2 8 2v14l-8 2zM8 9h8M8 13h8M8 17h4"/></svg></div><div class="news-body"><small>Berita desa · 19 Juni 2026</small><h3>Informasi kegiatan <span class="sample-label">Belum tersedia</span></h3><p>Informasi kegiatan belum tersedia.</p></div></article>
+                    <article class="news-card"><div class="news-thumb" data-caption="AGENDA WARGA" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20c.2-3.6 2.4-5.5 5.5-5.5s5.3 1.9 5.5 5.5m.2-5c3.4-.4 5.4 1.4 5.8 4.5"/></svg></div><div class="news-body"><small>Kegiatan · 23 Juni 2026</small><h3>Informasi kegiatan <span class="sample-label">Belum tersedia</span></h3><p>Informasi kegiatan belum tersedia.</p></div></article>
                 </div>
             </div>
         </section>
@@ -687,9 +684,9 @@
             <div class="site-width">
                 <div class="section-heading reveal"><div><span class="section-label">Agenda warga</span><h2>Kegiatan Desa</h2></div><p>Agenda dan aktivitas masyarakat.</p></div>
                 <div class="activity-grid portal-mobile-stack reveal-stagger">
-                    <article class="activity-card"><div class="activity-date"><strong>18</strong><span>Juni · Contoh</span><small>19.00</small></div><div class="activity-body"><small>Balai desa · Contoh agenda</small><h3>Pertemuan warga</h3><p>Contoh agenda diskusi lingkungan dan layanan warga.</p></div></article>
-                    <article class="activity-card"><div class="activity-date"><strong>18</strong><span>Juni · Contoh</span><small>19.00</small></div><div class="activity-body"><small>Balai desa · Contoh agenda</small><h3>Pertemuan warga</h3><p>Contoh agenda diskusi lingkungan dan layanan warga.</p></div></article>
-                    <article class="activity-card"><div class="activity-date"><strong>18</strong><span>Juni · Contoh</span><small>19.00</small></div><div class="activity-body"><small>Balai desa · Contoh agenda</small><h3>Pertemuan warga</h3><p>Contoh agenda diskusi lingkungan dan layanan warga.</p></div></article>
+                    <article class="activity-card"><div class="activity-date"><strong>18</strong><span>Belum tersedia</span><small>19.00</small></div><div class="activity-body"><small>Belum tersedia</small><h3>Pertemuan warga</h3><p>Informasi kegiatan belum tersedia.</p></div></article>
+                    <article class="activity-card"><div class="activity-date"><strong>18</strong><span>Belum tersedia</span><small>19.00</small></div><div class="activity-body"><small>Belum tersedia</small><h3>Pertemuan warga</h3><p>Informasi kegiatan belum tersedia.</p></div></article>
+                    <article class="activity-card"><div class="activity-date"><strong>18</strong><span>Belum tersedia</span><small>19.00</small></div><div class="activity-body"><small>Belum tersedia</small><h3>Pertemuan warga</h3><p>Informasi kegiatan belum tersedia.</p></div></article>
                 </div>
             </div>
         </section>
@@ -698,12 +695,12 @@
             <div class="site-width">
                 <div class="section-heading reveal"><div><span class="section-label">Tentang Pajurangan</span><h2>Profil dan Potensi Desa</h2></div><p>Kenali wilayah, kehidupan, dan potensi desa.</p></div>
                 <div class="profile-layout reveal">
-                    <article class="profile-panel"><span class="section-label" style="color:#ecd084">Profil desa</span><div><h3>Desa Pajurangan</h3><p>Contoh profil warga dan lingkungan Desa Pajurangan.</p></div></article>
+                    <article class="profile-panel"><span class="section-label" style="color:#ecd084">Profil desa</span><div><h3>Desa Pajurangan</h3><p>Informasi profil warga dan lingkungan belum tersedia.</p></div></article>
                     <div class="profile-facts">
-                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span><strong>Wilayah</strong><small>3 dusun · 325 ha <span class="sample-label">Contoh</span></small></span></article>
-                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-6h6v6"/></svg><span><strong>Sejarah</strong><small>Catatan sejarah desa <span class="sample-label">Contoh</span></small></span></article>
-                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19c4-1 6-4 9-4s5 3 9 2M4 15c3-.5 5-3 8-3s5 2 8 1M5 10c3 0 4-2 7-2s5 2 7 1"/></svg><span><strong>Potensi lokal</strong><small>Pertanian dan usaha warga <span class="sample-label">Contoh</span></small></span></article>
-                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span><strong>Budaya</strong><small>Tradisi dan kegiatan warga <span class="sample-label">Contoh</span></small></span></article>
+                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span><strong>Wilayah</strong><small>Belum tersedia · Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></article>
+                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-6h6v6"/></svg><span><strong>Sejarah</strong><small>Catatan sejarah desa <span class="sample-label">Belum tersedia</span></small></span></article>
+                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19c4-1 6-4 9-4s5 3 9 2M4 15c3-.5 5-3 8-3s5 2 8 1M5 10c3 0 4-2 7-2s5 2 7 1"/></svg><span><strong>Potensi lokal</strong><small>Pertanian dan usaha warga <span class="sample-label">Belum tersedia</span></small></span></article>
+                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span><strong>Budaya</strong><small>Tradisi dan kegiatan warga <span class="sample-label">Belum tersedia</span></small></span></article>
                     </div>
                 </div>
             </div>
@@ -715,9 +712,9 @@
                 <div class="contact-layout reveal">
                     <article class="contact-card">
                         <h3>Kantor Desa Pajurangan</h3>
-                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><strong>Alamat</strong><small>Jl. Desa Pajurangan No. 01 <span class="sample-label">Contoh</span></small></span></div>
-                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-3 2c1.5 3 3 4.5 6 6l2-3 5 2v4c0 1-1 2-2 2C9 21 3 15 3 6c0-1 1-2 2-2Z"/></svg></span><span><strong>Telepon</strong><small>08xx-xxxx-xxxx <span class="sample-label">Contoh</span></small></span></div>
-                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><strong>Jam pelayanan</strong><small>Senin–Jumat, 08.00–14.00 <span class="sample-label">Contoh</span></small></span></div>
+                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><strong>Alamat</strong><small>Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></div>
+                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-3 2c1.5 3 3 4.5 6 6l2-3 5 2v4c0 1-1 2-2 2C9 21 3 15 3 6c0-1 1-2 2-2Z"/></svg></span><span><strong>Telepon</strong><small>Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></div>
+                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><strong>Jam pelayanan</strong><small>Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></div>
                     </article>
                     <div class="map-placeholder">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d597.2978383527083!2d113.30638973693766!3d-7.792865385048131!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7ab00271fd589%3A0x2b5dc908dbb33453!2sKantor%20Desa%20Pajurangan!5e0!3m2!1sid!2sid!4v1794494987633!5m2!1sid!2sid" title="Peta Kantor Desa Pajurangan" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -749,7 +746,7 @@
 
     <dialog id="service-dialog" style="width:min(440px,calc(100% - 28px));padding:0;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)">
         <div style="padding:19px 21px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px"><strong id="service-dialog-title" style="font-size:15px"></strong><button id="service-dialog-close" class="overlay-close" type="button" aria-label="Tutup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
-        <div style="padding:20px 21px"><span class="sample-label"></span><p style="margin:10px 0 14px;color:var(--muted);font-size:12px">Persyaratan dan alur ilustrasi untuk melihat tampilan rincian.</p><div class="budget-line"><span>Persyaratan</span><strong>KTP, KK</strong></div><div class="budget-line"><span>Alur</span><strong>Formulir · Loket</strong></div><div class="budget-line"><span>Estimasi contoh</span><strong>1 hari kerja</strong></div></div>
+        <div style="padding:20px 21px"><span class="sample-label"></span><p style="margin:10px 0 14px;color:var(--muted);font-size:12px">Persyaratan dan alur ilustrasi untuk melihat tampilan rincian.</p><div class="budget-line"><span>Persyaratan</span><strong>KTP, KK</strong></div><div class="budget-line"><span>Alur</span><strong>Formulir · Loket</strong></div><div class="budget-line"><span>Estimasi belum tersedia</span><strong>1 hari kerja</strong></div></div>
     </dialog>
 
     <script>
@@ -880,10 +877,10 @@
             [['Pendapatan', budget.revenue], ['Belanja', budget.expenditure], ['Pembiayaan', budget.financing]].forEach(([label, value]) => {
                 const row = document.createElement('div');
                 row.className = 'budget-line';
-                row.append(safeText('span', '', label), safeText('strong', '', formatRupiah(value)));
+                row.append(safeText('span', '', label), safeText('strong', '', value > 0 ? formatRupiah(value) : 'Belum tersedia'));
                 budgetLines.append(row);
             });
-            budgetTotal.textContent = formatRupiah(budget.realized);
+            budgetTotal.textContent = budget.realized > 0 ? formatRupiah(budget.realized) : 'Belum tersedia';
         }
         yearSelect.addEventListener('change', () => renderBudget(yearSelect.value));
         fetch('/api/desa/pajurangan/budgets').then(response => {

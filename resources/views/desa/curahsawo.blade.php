@@ -527,18 +527,17 @@ details[open] .expand svg { transform:rotate(180deg) }
       <section class="budget-board" id="anggaran" aria-labelledby="anggaran-judul">
         <div class="board-heading">
           <div><p class="eyebrow">Keuangan Desa</p><h3 id="anggaran-judul">APBDes &amp; Realisasi</h3></div>
-          <label class="select-control" for="budget-year" hidden><span>Tahun anggaran</span><select id="budget-year"><option value="2026">2026</option><option value="2025" selected>2025</option></select></label>
+          <label class="select-control" for="budget-year" hidden><span>Tahun anggaran</span><select id="budget-year"><option value="">Tahun anggaran</option></select></label>
         </div>
-        <p class="budget-notice" id="budget-notice" aria-live="polite"><span>Ringkasan APBDes 2025</span></p>
-        <span class="sample-label" id="budget-sample">APBDes 2025</span><dl class="budget-metrics portal-mobile-two-col">
-          <div><dt>Pendapatan</dt><dd>Rp1.245.000.000</dd></div>
-          <div><dt>Belanja</dt><dd>Rp1.180.000.000</dd></div>
-          <div><dt>Pembiayaan</dt><dd>Rp45.000.000</dd></div>
-          <div><dt>Realisasi belanja</dt><dd>Rp623.500.000</dd></div>
+        <p class="budget-notice" id="budget-notice" aria-live="polite"><span>Belum tersedia</span></p><dl class="budget-metrics portal-mobile-two-col">
+          <div><dt>Pendapatan</dt><dd>Belum tersedia</dd></div>
+          <div><dt>Belanja</dt><dd>Belum tersedia</dd></div>
+          <div><dt>Pembiayaan</dt><dd>Belum tersedia</dd></div>
+          <div><dt>Realisasi belanja</dt><dd>Belum tersedia</dd></div>
         </dl>
-        <aside class="allocation" data-allocation="2025">
-          <div><p class="eyebrow">Transfer Pemerintah Pusat · 2025</p><h4>Pagu Dana Desa Curahsawo</h4></div>
-          <strong>Rp729.438.000</strong>
+        <aside class="allocation" data-allocation="" hidden>
+          <div><p class="eyebrow">Transfer Pemerintah Pusat</p><h4>Pagu Dana Desa Curahsawo</h4></div>
+          <strong>Belum tersedia</strong>
         </aside>
         <details class="board-docs">
           <summary><span class="icon tone-green"><svg><use href="#document"/></svg></span><span><strong>Dokumen yang bisa ditanyakan di balai desa</strong><small>Perencanaan, anggaran, dan pelaksanaan</small></span><span class="expand"><svg><use href="#chevron"/></svg></span></summary>
@@ -577,7 +576,7 @@ details[open] .expand svg { transform:rotate(180deg) }
       <p class="village-index-intro">Ringkasan enam dimensi perkembangan Desa Curahsawo.</p>
       <p class="index-status">Indeks Desa 2025 · Maju · 0,72</p>
     </div>
-    <div class="index-dimensions portal-mobile-stack" aria-label="Nilai contoh enam dimensi Indeks Desa">
+    <div class="index-dimensions portal-mobile-stack" aria-label="Dimensi Indeks Desa">
       <article class="index-dimension"><div class="index-dimension-top"><h3>Layanan dasar</h3><strong>0,76</strong></div><p>Pendidikan, kesehatan, dan utilitas dasar.</p><div class="index-weight" aria-hidden="true"><span style="width:76%"></span></div></article>
       <article class="index-dimension"><div class="index-dimension-top"><h3>Sosial</h3><strong>0,68</strong></div><p>Aktivitas warga dan fasilitas masyarakat.</p><div class="index-weight" aria-hidden="true"><span style="width:68%"></span></div></article>
       <article class="index-dimension"><div class="index-dimension-top"><h3>Ekonomi</h3><strong>0,72</strong></div><p>Produksi desa dan fasilitas pendukung ekonomi.</p><div class="index-weight" aria-hidden="true"><span style="width:72%"></span></div></article>
@@ -661,18 +660,18 @@ details[open] .expand svg { transform:rotate(180deg) }
 <script>
 async function applySiteContent(){
   const response=await fetch('/api/desa/curahsawo/content');if(!response.ok)throw new Error('Konten desa tidak dapat dimuat.');const data=await response.json();
-  const set=(selector,value)=>{const el=document.querySelector(selector);if(el&&value)el.textContent=value};
+  const set=(selector,value)=>{const el=document.querySelector(selector);if(el)el.textContent=value||'Belum tersedia'};
   set('#beranda h1',data.heroTitle);set('.hero-body>p:not(.eyebrow)',data.heroIntro);
   set('#layanan-judul',data.servicesTitle);set('#layanan .section-side>p:not(.eyebrow)',data.servicesIntro);
   set('#transparansi-judul',data.transparencyTitle);set('#transparansi .section-heading>p:not(.eyebrow)',data.transparencyIntro);
-  set('#anggaran h3',data.budgetTitle);
+  set('#anggaran h3',data.budgetTitle);set('#budget-notice span',data.budgetNotice);
   try{const budgetResponse=await fetch('/api/desa/curahsawo/budgets');const budgets=await budgetResponse.json();window.curahsawoBudgets=budgets;const selector=document.querySelector('#budget-year');if(budgets.length&&selector){selector.innerHTML=budgets.map(item=>`<option value="${item.year}">${item.year}</option>`).join('');selector.closest('label').hidden=false;selector.value=String(budgets[0].year);selector.addEventListener('change',()=>{const selected=budgets.find(item=>String(item.year)===selector.value);if(!selected)return;const note=document.querySelector('#budget-notice span');if(note)note.textContent=`Ringkasan APBDes · ${selected.year}`;if([selected.revenue,selected.expenditure,selected.financing,selected.realized].some(value=>value>0))document.querySelectorAll('.budget-metrics dd').forEach((cell,index)=>cell.textContent=formatRupiah([selected.revenue,selected.expenditure,selected.financing,selected.realized][index]));const allocation=document.querySelector('.allocation');allocation.hidden=!selected.villageFund;allocation.dataset.allocation=String(selected.year);allocation.querySelector('.allocation strong').textContent=formatRupiah(selected.villageFund);allocation.querySelector('.allocation .eyebrow').textContent=`Transfer Pemerintah Pusat · ${selected.year}`;const link=allocation.querySelector('.text-link');if(selected.sourceUrl&&link){link.href=selected.sourceUrl;link.textContent=`Dokumen APBDes ${selected.year}`}});selector.dispatchEvent(new Event('change'))}}catch{}
   set('#pembangunan-judul',data.projectsTitle);set('.projects-intro',data.projectsIntro);
   set('#kegiatan-judul',data.communityTitle);
   set('#lokasi-judul',data.locationTitle);set('.location-info p:not(.eyebrow)',data.locationAddress);
   set('#profil-judul',data.profileTitle);set('#profil h2+p',data.profileIntro);
   const serviceList=document.querySelector('#layanan .service-list');
-  if(serviceList&&Array.isArray(data.services)&&data.services.length){serviceList.replaceChildren(...data.services.map((item,i)=>{const d=document.createElement('details');if(i===0)d.open=true;const summary=document.createElement('summary');summary.innerHTML='<span class="icon tone-green"><svg><use href="#document"></use></svg></span>';const text=document.createElement('span');const strong=document.createElement('strong');strong.textContent=item.title||'';const small=document.createElement('small');small.textContent=item.subtitle||'';text.append(strong,small);summary.append(text);summary.insertAdjacentHTML('beforeend','<span class="expand"><svg><use href="#chevron"></use></svg></span>');const body=document.createElement('div');body.className='detail-body';const p=document.createElement('p');p.textContent=item.description||'';body.append(p);if(item.url){const a=document.createElement('a');a.className='text-link';a.href=item.url;a.textContent='Buka informasi terkait';a.target='_blank';a.rel='noopener noreferrer';body.append(a)}d.append(summary,body);return d}))}
+  if(serviceList){const services=Array.isArray(data.services)?data.services:[];if(services.length){serviceList.replaceChildren(...services.map((item,i)=>{const d=document.createElement('details');if(i===0)d.open=true;const summary=document.createElement('summary');summary.innerHTML='<span class="icon tone-green"><svg><use href="#document"></use></svg></span>';const text=document.createElement('span');const strong=document.createElement('strong');strong.textContent=item.title||'Belum tersedia';const small=document.createElement('small');small.textContent=item.subtitle||'';text.append(strong,small);summary.append(text);summary.insertAdjacentHTML('beforeend','<span class="expand"><svg><use href="#chevron"></use></svg></span>');const body=document.createElement('div');body.className='detail-body';const p=document.createElement('p');p.textContent=item.description||'Belum tersedia';body.append(p);if(item.url){const a=document.createElement('a');a.className='text-link';a.href=item.url;a.textContent='Buka informasi terkait';a.target='_blank';a.rel='noopener noreferrer';body.append(a)}d.append(summary,body);return d}))}else{serviceList.replaceChildren(Object.assign(document.createElement('p'),{className:'portal-data-empty',textContent:'Belum tersedia'}))}}
   const grid=document.querySelector('#project-grid');
   if(grid&&Array.isArray(data.projects)){const projects=data.projects;grid.dataset.loaded='true';grid.setAttribute('aria-busy','false');if(!projects.length){grid.replaceChildren();const empty=document.querySelector('#project-empty');empty.textContent='Belum ada informasi pembangunan yang dapat ditampilkan.';empty.hidden=false;}else{const locationSelect=document.querySelector('#project-filters [name=lokasi]'),yearSelect=document.querySelector('#project-filters [name=tahun]'),statusSelect=document.querySelector('#project-filters [name=status]');for(const [select,values] of [[locationSelect,[...new Set(projects.map(project=>project.location).filter(Boolean))]],[yearSelect,[...new Set(projects.map(project=>String(project.year||'')).filter(Boolean))]],[statusSelect,[...new Set(projects.map(project=>project.status).filter(Boolean))]]]){for(const value of values){const option=document.createElement('option');option.value=value;option.textContent=value;select.append(option)}}grid.replaceChildren(...projects.map(project=>{const card=document.createElement('article');card.className='project-card';card.dataset.location=project.location||'';card.dataset.year=project.year||'';card.dataset.status=project.status||'';card.innerHTML='<div class="project-top"><span class="icon tone-green"><svg><use href="#document"></use></svg></span><span class="status green"></span></div><h4></h4><p class="project-address"><svg><use href="#pin"></use></svg></p><div class="project-summary"><span>Tahun <strong class="year"></strong></span><span>Anggaran <strong class="summary"></strong></span></div><details class="project-details"><summary><span>Rincian pekerjaan</span><span class="expand"><svg><use href="#chevron"></use></svg></span></summary><div class="project-details-body"><p class="details-copy"></p><dl><div><dt>Volume</dt><dd class="volume"></dd></div><div><dt>Sumber dana</dt><dd>Belum tersedia</dd></div><div><dt>Pelaksana</dt><dd>Belum tersedia</dd></div><div><dt>Jadwal</dt><dd>Belum tersedia</dd></div><div><dt>Progres fisik</dt><dd>Belum tersedia</dd></div><div><dt>Realisasi belanja</dt><dd>Belum tersedia</dd></div></dl></div></details>';card.querySelector('.status').textContent=project.status||'';card.querySelector('h4').textContent=project.title||'';card.querySelector('.project-address').append(document.createTextNode(' '+(project.location||'')));card.querySelector('.year').textContent=project.year||'';card.querySelector('.summary').textContent=project.summary||'Belum tersedia';card.querySelector('.details-copy').textContent=project.details||'';if(!project.details)card.querySelector('.details-copy').hidden=true;card.querySelector('.volume').textContent=project.volume||'Belum tersedia';const source=card.querySelector('.project-details-body');if(project.source){const a=document.createElement('a');a.className='text-link';a.href=project.sourceUrl||'#';a.textContent=project.source+'';a.target='_blank';a.rel='noopener noreferrer';source.append(a)}const details=card.querySelector('.project-details');details.addEventListener('toggle',()=>{if(details.open)document.querySelectorAll('#project-grid .project-details[open]').forEach(other=>{if(other!==details)other.open=false})});return card}));document.querySelector('#project-filters').hidden=false;document.querySelector('#project-count').hidden=false;document.querySelector('#project-empty').hidden=true}}
   const activityCards=document.querySelectorAll('#kegiatan .community-card');if(Array.isArray(data.activities)&&data.activities.length){data.activities.forEach((item,i)=>{const card=activityCards[i];if(!card)return;const heading=card.querySelector('h3');const p=card.querySelector('p');if(heading)heading.textContent=item.title||'';if(p)p.textContent=item.description||item.subtitle||'';const link=card.querySelector('.text-link');if(item.url&&link)link.href=item.url})}
@@ -1099,12 +1098,9 @@ function showBudgetYear() {
   const year = yearSelect.value;
   const budget = (window.curahsawoBudgets || []).find(item => String(item.year) === year);
   const hasBudgetValues = budget && [budget.revenue, budget.expenditure, budget.financing, budget.realized].some((value) => value > 0);
-  const note = hasBudgetValues ? `Ringkasan APBDes · ${year}` : `Ringkasan APBDes ${year}`;
-  const sampleBadge = document.querySelector("#budget-sample");
-  if (sampleBadge) { sampleBadge.hidden = Boolean(hasBudgetValues); sampleBadge.textContent = `APBDes ${year}`; }
-  const noteText = budgetNotice.querySelector("span");
-  if (noteText) noteText.textContent = note;
-  else budgetNotice.textContent = note;
+  if (hasBudgetValues) {
+    budgetNotice.textContent = `Ringkasan APBDes · ${year}`;
+  }
   if (budget) {
     if (hasBudgetValues) {
       document.querySelectorAll(".budget-metrics dd").forEach((cell,index) => { cell.textContent = formatRupiah([budget.revenue,budget.expenditure,budget.financing,budget.realized][index]); });
