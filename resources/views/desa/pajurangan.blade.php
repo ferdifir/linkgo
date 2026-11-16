@@ -541,7 +541,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
             </button>
             <nav class="main-nav" id="main-nav" aria-label="Navigasi utama">
-                <a href="#beranda">Beranda</a><a href="#profil">Profil</a><a href="#layanan">Layanan</a><a href="#apbdes">APBDes</a><a href="#proyek">Pembangunan</a><a href="#kabar">Kabar desa</a><a class="nav-cta" href="#lokasi">Hubungi desa</a>
+                <a href="#beranda">Beranda</a><a href="#profil">Profil</a><a href="#layanan">Layanan</a><a href="#apbdes">Anggaran</a><a href="#proyek">Pembangunan</a><a href="#kabar">Kabar desa</a><a class="nav-cta" href="#lokasi">Hubungi desa</a>
             </nav>
         </div>
     </header>
@@ -571,7 +571,7 @@
             </div>
             <div class="quick-links reveal" aria-label="Akses cepat">
                 <a class="quick-link" href="#layanan"><span class="quick-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.75h8l4 4v12.5H6zM14 4v4h4M9 12h6M9 15.5h6"/></svg></span><span><strong>Layanan desa</strong><small>Persyaratan dan panduan</small></span></a>
-                <a class="quick-link" href="#apbdes"><span class="quick-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5h16M6.5 16V9m5.5 7V4.5m5.5 11.5v-5"/></svg></span><span><strong>APBDes</strong><small>Anggaran dan realisasi</small></span></a>
+                <a class="quick-link" href="#apbdes"><span class="quick-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5h16M6.5 16V9m5.5 7V4.5m5.5 11.5v-5"/></svg></span><span><strong>Anggaran</strong><small>Alokasi transfer desa</small></span></a>
                 <a class="quick-link" href="#proyek"><span class="quick-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 20V9l6-4 6 4v11M9 20v-6h6v6M3.5 9h17"/></svg></span><span><strong>Proyek desa</strong><small>Pantau pembangunan</small></span></a>
                 <a class="quick-link" href="#kabar"><span class="quick-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5h14v13H5zM8 9h8M8 12.5h8M8 16h5"/></svg></span><span><strong>Kabar desa</strong><small>Berita dan kegiatan</small></span></a>
             </div>
@@ -639,7 +639,7 @@
                 <div class="section-heading reveal"><div><span class="section-label">Transparansi desa</span><h2>Anggaran dan Pembangunan</h2></div><p>Pantau ringkasan anggaran serta pekerjaan desa.</p></div>
                 <div class="content-grid reveal-stagger">
                     <article class="content-card">
-                        <div class="budget-head"><h3>APBDes</h3><select class="year-select" id="budget-year" aria-label="Tahun anggaran"><option value="">Pilih tahun</option></select></div>
+                        <div class="budget-head"><h3>Alokasi transfer</h3><select class="year-select" id="budget-year" aria-label="Tahun anggaran"><option value="">Pilih tahun</option></select></div>
                         <div id="budget-lines" class="budget-lines">
             <p class="portal-data-empty">Belum tersedia</p>
         </div>
@@ -723,7 +723,7 @@
                 'links' => [
                     ['label' => 'Profil Desa', 'href' => '#profil'],
                     ['label' => 'Layanan', 'href' => '#layanan'],
-                    ['label' => 'APBDes', 'href' => '#apbdes'],
+                    ['label' => 'Anggaran', 'href' => '#apbdes'],
                     ['label' => 'Papan proyek', 'href' => '#proyek'],
                     ['label' => 'Lokasi kantor', 'href' => '#lokasi'],
                 ],
@@ -869,13 +869,13 @@
             }
             document.querySelector('#budget-sample')?.remove();
             budgetLines.replaceChildren();
-            [['Pendapatan', budget.revenue], ['Belanja', budget.expenditure], ['Pembiayaan', budget.financing]].forEach(([label, value]) => {
+            [['Dana Desa', budget.villageFund], ['Alokasi Dana Desa', budget.villageAllocation], ['Bagi Hasil Pajak', budget.taxRevenueShare], ['Bagi Hasil Retribusi', budget.retributionShare]].forEach(([label, value]) => {
                 const row = document.createElement('div');
                 row.className = 'budget-line';
                 row.append(safeText('span', '', label), safeText('strong', '', value > 0 ? formatRupiah(value) : 'Belum tersedia'));
                 budgetLines.append(row);
             });
-            budgetTotal.textContent = budget.realized > 0 ? formatRupiah(budget.realized) : 'Belum tersedia';
+            budgetTotal.textContent = 'Belum tersedia';
         }
         yearSelect.addEventListener('change', () => renderBudget(yearSelect.value));
         fetch('/api/desa/pajurangan/budgets').then(response => {

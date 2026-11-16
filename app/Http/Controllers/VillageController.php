@@ -731,6 +731,9 @@ class VillageController
             'id' => (int) $row->id, 'villageSlug' => $row->village_slug ?? 'curahsawo', 'year' => (int) $row->year, 'revenue' => (int) $row->revenue,
             'expenditure' => (int) $row->expenditure, 'financing' => (int) $row->financing,
             'villageFund' => (int) $row->village_fund, 'realized' => (int) $row->realized,
+            'villageAllocation' => (int) $row->village_allocation,
+            'taxRevenueShare' => (int) $row->tax_revenue_share,
+            'retributionShare' => (int) $row->retribution_share,
             'notes' => $row->notes, 'sourceUrl' => $row->source_url, 'published' => (bool) $row->published,
         ];
     }
@@ -738,7 +741,7 @@ class VillageController
     private function budgetInput(array $data, string $villageSlug): array
     {
         $values = [];
-        foreach (['revenue', 'expenditure', 'financing', 'villageFund', 'realized'] as $field) {
+        foreach (['revenue', 'expenditure', 'financing', 'villageFund', 'villageAllocation', 'taxRevenueShare', 'retributionShare', 'realized'] as $field) {
             $values[Str::snake($field)] = (int) ($data[$field] ?? 0);
         }
 

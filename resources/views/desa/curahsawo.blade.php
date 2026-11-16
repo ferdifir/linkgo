@@ -462,7 +462,7 @@ details[open] .expand svg { transform:rotate(180deg) }
     <div class="quick" aria-label="Akses cepat">
       <a class="quick-card" href="#layanan"><span class="icon tone-green"><svg><use href="#document"/></svg></span><span><strong>Layanan balai desa</strong><small>Surat dan administrasi</small></span><svg class="quick-arrow"><use href="#arrow"/></svg></a>
       <a class="quick-card" href="#pembangunan"><span class="icon tone-gold"><svg><use href="#pin"/></svg></span><span><strong>Cek proyek dusun</strong><small>Papan proyek desa</small></span><svg class="quick-arrow"><use href="#arrow"/></svg></a>
-      <a class="quick-card" href="#anggaran"><span class="icon tone-blue"><svg><use href="#chart"/></svg></span><span><strong>Lihat APBDes</strong><small>Anggaran dan realisasi</small></span><svg class="quick-arrow"><use href="#arrow"/></svg></a>
+      <a class="quick-card" href="#anggaran"><span class="icon tone-blue"><svg><use href="#chart"/></svg></span><span><strong>Lihat Anggaran</strong><small>Alokasi transfer desa</small></span><svg class="quick-arrow"><use href="#arrow"/></svg></a>
       <a class="quick-card" href="#lokasi"><span class="icon tone-rose"><svg><use href="#pin"/></svg></span><span><strong>Lokasi balai desa</strong><small>Alamat dan petunjuk arah</small></span><svg class="quick-arrow"><use href="#arrow"/></svg></a>
     </div>
   </section>
@@ -520,29 +520,25 @@ details[open] .expand svg { transform:rotate(180deg) }
         <p>Ringkasan anggaran dan pembangunan Desa Curahsawo.</p>
       </div>
       <div class="transparency-links">
-        <a href="#anggaran"><span class="icon tone-blue"><svg><use href="#chart"/></svg></span><span><strong>Lihat APBDes</strong><small>Ringkasan anggaran dan realisasi</small></span><svg><use href="#arrow"/></svg></a>
+        <a href="#anggaran"><span class="icon tone-blue"><svg><use href="#chart"/></svg></span><span><strong>Lihat Anggaran</strong><small>Ringkasan anggaran dan realisasi</small></span><svg><use href="#arrow"/></svg></a>
         <a href="#pembangunan"><span class="icon tone-gold"><svg><use href="#pin"/></svg></span><span><strong>Cek proyek di dusun Anda</strong><small>Lokasi dan rincian pekerjaan</small></span><svg><use href="#arrow"/></svg></a>
       </div>
 
       <section class="budget-board" id="anggaran" aria-labelledby="anggaran-judul">
         <div class="board-heading">
-          <div><p class="eyebrow">Keuangan Desa</p><h3 id="anggaran-judul">APBDes &amp; Realisasi</h3></div>
+          <div><p class="eyebrow">Anggaran Desa</p><h3 id="anggaran-judul">Alokasi Transfer Desa</h3></div>
           <label class="select-control" for="budget-year" hidden><span>Tahun anggaran</span><select id="budget-year"><option value="">Tahun anggaran</option></select></label>
         </div>
         <p class="budget-notice" id="budget-notice" aria-live="polite"><span>Belum tersedia</span></p><dl class="budget-metrics">
-          <div><dt>Pendapatan</dt><dd>Belum tersedia</dd></div>
-          <div><dt>Belanja</dt><dd>Belum tersedia</dd></div>
-          <div><dt>Pembiayaan</dt><dd>Belum tersedia</dd></div>
-          <div><dt>Realisasi belanja</dt><dd>Belum tersedia</dd></div>
+          <div><dt>Dana Desa</dt><dd>Belum tersedia</dd></div>
+          <div><dt>Alokasi Dana Desa</dt><dd>Belum tersedia</dd></div>
+          <div><dt>Bagi Hasil Pajak</dt><dd>Belum tersedia</dd></div>
+          <div><dt>Bagi Hasil Retribusi</dt><dd>Belum tersedia</dd></div>
         </dl>
-        <aside class="allocation" data-allocation="" hidden>
-          <div><p class="eyebrow">Transfer Pemerintah Pusat</p><h4>Pagu Dana Desa Curahsawo</h4></div>
-          <strong>Belum tersedia</strong>
-        </aside>
         <details class="board-docs">
           <summary><span class="icon tone-green"><svg><use href="#document"/></svg></span><span><strong>Dokumen yang bisa ditanyakan di balai desa</strong><small>Perencanaan, anggaran, dan pelaksanaan</small></span><span class="expand"><svg><use href="#chevron"/></svg></span></summary>
           <div class="detail-body">
-            <dl><div><dt>RKP Desa</dt><dd>Prioritas dan rencana kerja tahunan.</dd></div><div><dt>Peraturan Desa tentang APBDes</dt><dd>Anggaran beserta perubahan, jika ada.</dd></div><div><dt>Laporan realisasi APBDes</dt><dd>Pendapatan, belanja, dan pembiayaan yang terealisasi.</dd></div></dl>
+            <dl><div><dt>RKP Desa</dt><dd>Prioritas dan rencana kerja tahunan.</dd></div><div><dt>Peraturan Desa tentang Anggaran</dt><dd>Anggaran beserta perubahan, jika ada.</dd></div><div><dt>Laporan realisasi Anggaran</dt><dd>Pendapatan, belanja, dan pembiayaan yang terealisasi.</dd></div></dl>
             <a class="text-link" href="#lokasi">Petunjuk ke balai desa <svg><use href="#arrow"/></svg></a>
           </div>
         </details>
@@ -623,7 +619,7 @@ details[open] .expand svg { transform:rotate(180deg) }
     'links' => [
         ['label' => 'Profil Desa', 'href' => '#profil'],
         ['label' => 'Layanan', 'href' => '#layanan'],
-        ['label' => 'APBDes', 'href' => '#anggaran'],
+        ['label' => 'Anggaran', 'href' => '#anggaran'],
         ['label' => 'Papan proyek', 'href' => '#pembangunan'],
         ['label' => 'Lokasi kantor', 'href' => '#lokasi'],
     ],
@@ -657,8 +653,8 @@ async function applySiteContent(){
   set('#beranda h1',data.heroTitle);set('.hero-body>p:not(.eyebrow)',data.heroIntro);
   set('#layanan-judul',data.servicesTitle);set('#layanan .section-side>p:not(.eyebrow)',data.servicesIntro);
   set('#transparansi-judul',data.transparencyTitle);set('#transparansi .section-heading>p:not(.eyebrow)',data.transparencyIntro);
-  set('#anggaran h3',data.budgetTitle);set('#budget-notice span',data.budgetNotice);
-  try{const budgetResponse=await fetch('/api/desa/curahsawo/budgets');const budgets=await budgetResponse.json();window.curahsawoBudgets=budgets;const selector=document.querySelector('#budget-year');if(budgets.length&&selector){selector.innerHTML=budgets.map(item=>`<option value="${item.year}">${item.year}</option>`).join('');selector.closest('label').hidden=false;selector.value=String(budgets[0].year);selector.addEventListener('change',()=>{const selected=budgets.find(item=>String(item.year)===selector.value);if(!selected)return;const note=document.querySelector('#budget-notice span');if(note)note.textContent=`Ringkasan APBDes · ${selected.year}`;if([selected.revenue,selected.expenditure,selected.financing,selected.realized].some(value=>value>0))document.querySelectorAll('.budget-metrics dd').forEach((cell,index)=>cell.textContent=formatRupiah([selected.revenue,selected.expenditure,selected.financing,selected.realized][index]));const allocation=document.querySelector('.allocation');allocation.hidden=!selected.villageFund;allocation.dataset.allocation=String(selected.year);allocation.querySelector('.allocation strong').textContent=formatRupiah(selected.villageFund);allocation.querySelector('.allocation .eyebrow').textContent=`Transfer Pemerintah Pusat · ${selected.year}`;const link=allocation.querySelector('.text-link');if(selected.sourceUrl&&link){link.href=selected.sourceUrl;link.textContent=`Dokumen APBDes ${selected.year}`}});selector.dispatchEvent(new Event('change'))}}catch{}
+
+  try{const budgetResponse=await fetch('/api/desa/curahsawo/budgets');const budgets=await budgetResponse.json();window.curahsawoBudgets=budgets;const selector=document.querySelector('#budget-year');if(budgets.length&&selector){selector.innerHTML=budgets.map(item=>`<option value="${item.year}">${item.year}</option>`).join('');selector.closest('label').hidden=false;selector.value=String(budgets[0].year);selector.dispatchEvent(new Event('change'))}}catch{}
   set('#pembangunan-judul',data.projectsTitle);set('.projects-intro',data.projectsIntro);
   set('#kegiatan-judul',data.communityTitle);
   set('#lokasi-judul',data.locationTitle);set('.location-info p:not(.eyebrow)',data.locationAddress);
@@ -1085,28 +1081,23 @@ markCurrent();
 
 const yearSelect = document.querySelector("#budget-year");
 const budgetNotice = document.querySelector("#budget-notice span");
-const allocation = document.querySelector("[data-allocation]");
+
 
 function showBudgetYear() {
   const year = yearSelect.value;
   const budget = (window.curahsawoBudgets || []).find(item => String(item.year) === year);
-  const hasBudgetValues = budget && [budget.revenue, budget.expenditure, budget.financing, budget.realized].some((value) => value > 0);
+  const hasBudgetValues = budget && [budget.villageFund, budget.villageAllocation, budget.taxRevenueShare, budget.retributionShare].some((value) => value > 0);
   if (hasBudgetValues) {
-    budgetNotice.textContent = `Ringkasan APBDes · ${year}`;
+    budgetNotice.textContent = `Alokasi transfer · ${year}`;
   }
   if (budget) {
     if (hasBudgetValues) {
-      document.querySelectorAll(".budget-metrics dd").forEach((cell,index) => { cell.textContent = formatRupiah([budget.revenue,budget.expenditure,budget.financing,budget.realized][index]); });
+      document.querySelectorAll(".budget-metrics dd").forEach((cell,index) => { cell.textContent = formatRupiah([budget.villageFund,budget.villageAllocation,budget.taxRevenueShare,budget.retributionShare][index]); });
     }
-    allocation.hidden = !budget.villageFund;
-    allocation.dataset.allocation = year;
-    allocation.querySelector(".allocation strong").textContent = formatRupiah(budget.villageFund);
-    allocation.querySelector(".allocation .eyebrow").textContent = `Transfer Pemerintah Pusat · ${year}`;
-    const source = allocation.querySelector(".text-link");
-    if (source && budget.sourceUrl) { source.href = budget.sourceUrl; source.textContent = `Dokumen APBDes ${year}`; }
+
   } else {
 
-    allocation.hidden = allocation.dataset.allocation !== year;
+
   }
 }
 

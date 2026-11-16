@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             VillageIndexSeeder::class,
             ShowcaseVillageDataSeeder::class,
+            VillageBudgetSeeder::class,
         ]);
 
         User::factory()->create([

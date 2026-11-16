@@ -8,13 +8,12 @@ use Illuminate\Support\Facades\DB;
 class ShowcaseVillageDataSeeder extends Seeder
 {
     /**
-     * Seed project and budget records used by the village website showcase.
+     * Seed project records used by the village website showcase.
      *
-     * @var array<string, array{budget: array{revenue: int, villageFund: int, financing: int}, projects: list<array{title: string, location: string, year: int, status: string, summary: string, details: string, volume: string, amount: int, funding: string, executor: string, schedule: string, progress: int, matchLocation?: string}>}>
+     * @var array<string, array{projects: list<array{title: string, location: string, year: int, status: string, summary: string, details: string, volume: string, amount: int, funding: string, executor: string, schedule: string, progress: int, matchLocation?: string}>}>
      */
     private array $villages = [
         'banyuanyar-lor' => [
-            'budget' => ['revenue' => 2180, 'villageFund' => 760, 'financing' => 70],
             'projects' => [
                 ['title' => 'Peningkatan jalan usaha tani', 'location' => 'Dusun Krajan · jalur area persawahan', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Perkerasan jalan untuk memperlancar akses warga dan hasil panen.', 'details' => 'Peningkatan permukaan jalan usaha tani pada titik yang membutuhkan perbaikan.', 'volume' => 'Jalan lingkungan · 240 meter', 'amount' => 185000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Maret–Juni 2026', 'progress' => 65],
                 ['title' => 'Perbaikan saluran irigasi', 'location' => 'Dusun Tengah · saluran persawahan', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Perbaikan saluran untuk mendukung distribusi air ke lahan pertanian.', 'details' => 'Pembersihan dan perbaikan beberapa bagian saluran irigasi lingkungan.', 'volume' => 'Saluran irigasi · 180 meter', 'amount' => 125000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Juli–September 2026', 'progress' => 10],
@@ -22,7 +21,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'brumbungan-lor' => [
-            'budget' => ['revenue' => 2460, 'villageFund' => 825, 'financing' => 85],
             'projects' => [
                 ['title' => 'Peningkatan jalan lingkungan', 'location' => 'Dusun Brumbungan · RT 02/RW 01', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Perbaikan akses lingkungan untuk mendukung mobilitas warga.', 'details' => 'Peningkatan permukaan jalan dan perapian bahu jalan di lingkungan permukiman.', 'volume' => 'Jalan lingkungan · 210 meter', 'amount' => 195000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Maret–Juni 2026', 'progress' => 58],
                 ['title' => 'Perbaikan saluran drainase', 'location' => 'Dusun Lor · kawasan permukiman', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Penataan saluran untuk membantu aliran air saat musim hujan.', 'details' => 'Perbaikan saluran lingkungan pada titik yang memerlukan penanganan.', 'volume' => 'Drainase · 160 meter', 'amount' => 142000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Juli–September 2026', 'progress' => 15],
@@ -30,7 +28,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'bulang' => [
-            'budget' => ['revenue' => 2320, 'villageFund' => 790, 'financing' => 80],
             'projects' => [
                 ['title' => 'Paving jalan permukiman', 'location' => 'Dusun Bulang · RT 03/RW 02', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Penataan jalan lingkungan untuk akses harian warga.', 'details' => 'Pemasangan paving dan perapian sisi jalan di area permukiman.', 'volume' => 'Jalan lingkungan · 225 meter', 'amount' => 178000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Februari–Mei 2026', 'progress' => 72],
                 ['title' => 'Pembangunan saluran lingkungan', 'location' => 'Dusun Krajan · sisi jalan utama', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Penambahan saluran untuk mengurangi genangan di lingkungan.', 'details' => 'Pembangunan saluran terbuka pada jalur permukiman.', 'volume' => 'Saluran · 145 meter', 'amount' => 132000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Juni–Agustus 2026', 'progress' => 5],
@@ -38,7 +35,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'curahsawo' => [
-            'budget' => ['revenue' => 2580, 'villageFund' => 729, 'financing' => 90],
             'projects' => [
                 ['title' => 'Pengaspalan jalan', 'location' => 'Dusun Krajan · RT 02/RW 01', 'year' => 2025, 'status' => 'Selesai', 'summary' => 'Peningkatan jalan lingkungan untuk memperlancar akses warga.', 'details' => 'Pengaspalan jalan pada ruas lingkungan Dusun Krajan.', 'volume' => 'Jalan · 260 meter', 'amount' => 225000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa Curahsawo', 'schedule' => 'Maret–Juni 2025', 'progress' => 100],
                 ['title' => 'Pembangunan pagar kantor desa', 'location' => 'Kantor Desa Curahsawo', 'year' => 2025, 'status' => 'Selesai', 'summary' => 'Penataan batas dan akses lingkungan kantor desa.', 'details' => 'Pembangunan pagar pada sisi depan dan samping kantor desa.', 'volume' => 'Pagar · 86 meter', 'amount' => 118000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa Curahsawo', 'schedule' => 'April–Juli 2025', 'progress' => 100],
@@ -49,7 +45,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'gending' => [
-            'budget' => ['revenue' => 3120, 'villageFund' => 905, 'financing' => 110],
             'projects' => [
                 ['title' => 'Perbaikan jalan penghubung dusun', 'location' => 'Dusun Gending · ruas penghubung permukiman', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Perbaikan ruas penghubung untuk akses layanan dan kegiatan warga.', 'details' => 'Peningkatan permukaan jalan pada titik yang mengalami kerusakan.', 'volume' => 'Jalan · 280 meter', 'amount' => 235000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Maret–Juli 2026', 'progress' => 62],
                 ['title' => 'Peningkatan saluran pertanian', 'location' => 'Area persawahan Desa Gending', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Pembenahan saluran air untuk mendukung kegiatan pertanian.', 'details' => 'Pembersihan dan perbaikan dinding saluran pada beberapa titik.', 'volume' => 'Saluran · 210 meter', 'amount' => 174000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Agustus–Oktober 2026', 'progress' => 8],
@@ -57,7 +52,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'jatiadi' => [
-            'budget' => ['revenue' => 2780, 'villageFund' => 920, 'financing' => 95],
             'projects' => [
                 ['title' => 'Peningkatan jalan lingkungan', 'location' => 'Dusun Jatiadi · RT 01/RW 01', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Peningkatan jalan untuk kenyamanan akses lingkungan.', 'details' => 'Perkerasan dan perapian ruas jalan di kawasan permukiman.', 'volume' => 'Jalan · 230 meter', 'amount' => 205000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Maret–Juni 2026', 'progress' => 55],
                 ['title' => 'Pembangunan drainase permukiman', 'location' => 'Dusun Krajan · sisi jalan desa', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Pembangunan saluran untuk memperbaiki aliran air lingkungan.', 'details' => 'Pembangunan drainase pada kawasan permukiman yang membutuhkan.', 'volume' => 'Drainase · 175 meter', 'amount' => 158000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Juli–September 2026', 'progress' => 12],
@@ -65,7 +59,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'klaseman' => [
-            'budget' => ['revenue' => 2450, 'villageFund' => 850, 'financing' => 80],
             'projects' => [
                 ['title' => 'Perbaikan akses jalan desa', 'location' => 'Dusun Klaseman · jalan lingkungan', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Perbaikan jalan untuk memudahkan akses warga dan layanan desa.', 'details' => 'Peningkatan permukaan pada ruas jalan lingkungan.', 'volume' => 'Jalan · 215 meter', 'amount' => 188000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Februari–Mei 2026', 'progress' => 68],
                 ['title' => 'Peningkatan penerangan jalan', 'location' => 'Jalur permukiman Desa Klaseman', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Penambahan titik penerangan untuk mendukung aktivitas malam warga.', 'details' => 'Pengadaan dan pemasangan lampu jalan pada titik prioritas.', 'volume' => '6 titik penerangan', 'amount' => 74000000, 'funding' => 'APBDes', 'executor' => 'Pemerintah Desa Klaseman', 'schedule' => 'Juni–Agustus 2026', 'progress' => 5],
@@ -73,7 +66,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'pajurangan' => [
-            'budget' => ['revenue' => 2360, 'villageFund' => 805, 'financing' => 75],
             'projects' => [
                 ['title' => 'Peningkatan jalan lingkungan', 'location' => 'Dusun Pajurangan · RT 02/RW 01', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Perbaikan akses jalan di kawasan permukiman warga.', 'details' => 'Perkerasan dan penataan permukaan jalan lingkungan.', 'volume' => 'Jalan · 220 meter', 'amount' => 182000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Maret–Juni 2026', 'progress' => 61],
                 ['title' => 'Perbaikan saluran air', 'location' => 'Dusun Krajan · kawasan permukiman', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Perbaikan saluran untuk mendukung aliran air di lingkungan warga.', 'details' => 'Pembersihan dan perbaikan saluran pada titik prioritas.', 'volume' => 'Saluran · 155 meter', 'amount' => 128000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Juli–September 2026', 'progress' => 10],
@@ -81,7 +73,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'pesisir' => [
-            'budget' => ['revenue' => 2510, 'villageFund' => 870, 'financing' => 90],
             'projects' => [
                 ['title' => 'Perbaikan jalan akses pesisir', 'location' => 'Dusun Pesisir · jalur permukiman', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Peningkatan akses lingkungan untuk mendukung mobilitas warga pesisir.', 'details' => 'Perbaikan permukaan jalan pada jalur penghubung permukiman.', 'volume' => 'Jalan · 245 meter', 'amount' => 215000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Maret–Juli 2026', 'progress' => 57],
                 ['title' => 'Penataan saluran lingkungan', 'location' => 'Dusun Pesisir · sisi jalan utama', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Penataan saluran air pada kawasan permukiman.', 'details' => 'Pembangunan dan perapian saluran di sepanjang jalur lingkungan.', 'volume' => 'Drainase · 190 meter', 'amount' => 165000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Agustus–Oktober 2026', 'progress' => 8],
@@ -89,7 +80,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'pikatan' => [
-            'budget' => ['revenue' => 2240, 'villageFund' => 775, 'financing' => 70],
             'projects' => [
                 ['title' => 'Pengerasan jalan usaha tani', 'location' => 'Dusun Pikatan · area pertanian', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Peningkatan jalur untuk memudahkan akses menuju lahan pertanian.', 'details' => 'Pengerasan jalan dan perapian bahu pada jalur usaha tani.', 'volume' => 'Jalan usaha tani · 250 meter', 'amount' => 192000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Februari–Juni 2026', 'progress' => 70],
                 ['title' => 'Perbaikan saluran irigasi', 'location' => 'Area persawahan Desa Pikatan', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Pembenahan saluran untuk menunjang pengairan lahan.', 'details' => 'Perbaikan bagian saluran dan pembersihan sedimentasi.', 'volume' => 'Saluran irigasi · 170 meter', 'amount' => 138000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Juli–September 2026', 'progress' => 10],
@@ -97,7 +87,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'randupitu' => [
-            'budget' => ['revenue' => 2680, 'villageFund' => 930, 'financing' => 100],
             'projects' => [
                 ['title' => 'Peningkatan jalan lingkungan', 'location' => 'Dusun Randupitu · RT 03/RW 02', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Perbaikan akses jalan untuk mendukung mobilitas masyarakat.', 'details' => 'Peningkatan jalan lingkungan pada jalur permukiman.', 'volume' => 'Jalan · 270 meter', 'amount' => 228000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Maret–Juli 2026', 'progress' => 64],
                 ['title' => 'Pembangunan saluran drainase', 'location' => 'Dusun Krajan · jalur permukiman', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Penataan aliran air untuk mengurangi genangan lingkungan.', 'details' => 'Pembangunan drainase pada beberapa titik prioritas.', 'volume' => 'Drainase · 185 meter', 'amount' => 158000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Agustus–Oktober 2026', 'progress' => 8],
@@ -105,7 +94,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'sebaung' => [
-            'budget' => ['revenue' => 2390, 'villageFund' => 815, 'financing' => 80],
             'projects' => [
                 ['title' => 'Peningkatan jalan lingkungan', 'location' => 'Dusun Sebaung · RT 02/RW 01', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Peningkatan akses jalan untuk mendukung kegiatan harian warga.', 'details' => 'Perbaikan permukaan jalan pada jalur permukiman.', 'volume' => 'Jalan · 230 meter', 'amount' => 188000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Maret–Juni 2026', 'progress' => 59],
                 ['title' => 'Perawatan ruang terbuka desa', 'location' => 'Area kegiatan warga Desa Sebaung', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Penataan area terbuka untuk mendukung aktivitas masyarakat.', 'details' => 'Pembersihan, perapian, dan penambahan sarana pendukung.', 'volume' => '1 area kegiatan', 'amount' => 92000000, 'funding' => 'APBDes', 'executor' => 'Pemerintah Desa Sebaung', 'schedule' => 'Juli–September 2026', 'progress' => 10],
@@ -113,7 +101,6 @@ class ShowcaseVillageDataSeeder extends Seeder
             ],
         ],
         'sumberkerang' => [
-            'budget' => ['revenue' => 2810, 'villageFund' => 960, 'financing' => 105],
             'projects' => [
                 ['title' => 'Peningkatan jalan antarlingkungan', 'location' => 'Dusun Sumberkerang · ruas penghubung warga', 'year' => 2026, 'status' => 'Berjalan', 'summary' => 'Perbaikan akses jalan untuk menghubungkan area permukiman.', 'details' => 'Peningkatan permukaan jalan dan perapian sisi ruas.', 'volume' => 'Jalan · 295 meter', 'amount' => 245000000, 'funding' => 'Dana Desa', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Maret–Juli 2026', 'progress' => 66],
                 ['title' => 'Perbaikan saluran pertanian', 'location' => 'Area pertanian Desa Sumberkerang', 'year' => 2026, 'status' => 'Perencanaan', 'summary' => 'Pembenahan saluran untuk menunjang kebutuhan pengairan.', 'details' => 'Perbaikan dinding saluran dan pembersihan pada titik terpilih.', 'volume' => 'Saluran · 205 meter', 'amount' => 168000000, 'funding' => 'APBDes', 'executor' => 'Tim Pelaksana Kegiatan Desa', 'schedule' => 'Agustus–Oktober 2026', 'progress' => 7],
@@ -164,32 +151,6 @@ class ShowcaseVillageDataSeeder extends Seeder
                 );
             }
 
-            foreach ([2025 => 0, 2026 => 1] as $year => $projectionIndex) {
-                $baseRevenue = $village['budget']['revenue'] * 1_000_000;
-                $revenue = $projectionIndex === 1 ? (int) round($baseRevenue * 1.04, -6) : $baseRevenue;
-                $financing = $village['budget']['financing'] * 1_000_000;
-                $expenditure = $revenue - $financing;
-                $realizationRate = $projectionIndex === 1 ? 0.41 : 0.92;
-                $villageFund = $village['budget']['villageFund'] * 1_000_000;
-
-                if ($projectionIndex === 1) {
-                    $villageFund = (int) round($villageFund * 1.03, -6);
-                }
-
-                DB::table('budgets')->updateOrInsert(
-                    ['village_slug' => $villageSlug, 'year' => $year],
-                    [
-                        'revenue' => $revenue,
-                        'expenditure' => $expenditure,
-                        'financing' => $financing,
-                        'village_fund' => $villageFund,
-                        'realized' => (int) round($expenditure * $realizationRate, -6),
-                        'notes' => '',
-                        'source_url' => '',
-                        'published' => true,
-                    ],
-                );
-            }
         }
     }
 }

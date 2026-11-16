@@ -335,7 +335,7 @@
             <a class="brand" href="#beranda" aria-label="Beranda Desa Gending"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="brand-name"><strong>Desa Gending</strong><small>Kabupaten Probolinggo</small></span></a>
             <button class="menu-button" id="menu-button" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="main-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
             <nav class="nav" id="main-nav" aria-label="Navigasi utama">
-                <a href="#sambutan">Pemerintahan</a><a href="#layanan">Layanan</a><a href="#potensi">Potensi</a><a href="#transparansi">APBDes</a><a href="#pembangunan">Pembangunan</a><a class="nav-action" href="#lokasi">Kontak Desa</a>
+                <a href="#sambutan">Pemerintahan</a><a href="#layanan">Layanan</a><a href="#potensi">Potensi</a><a href="#transparansi">Anggaran</a><a href="#pembangunan">Pembangunan</a><a class="nav-action" href="#lokasi">Kontak Desa</a>
             </nav>
         </div>
     </header>
@@ -408,9 +408,9 @@
             <div class="wrap">
                 <div class="section-head"><div><span class="eyebrow">Informasi terbuka</span><h2>Transparansi Desa</h2></div><p>Ringkasan anggaran dan indeks desa.</p></div>
                 <div class="transparency-grid">
-                    <article class="info-card"><div class="info-card-head"><div><h3>APBDes</h3><p>Anggaran Pendapatan dan Belanja Desa</p></div><label><span class="sr-only">Tahun anggaran</span><select class="year-picker" id="budget-year" aria-label="Pilih tahun anggaran" hidden><option value="">Tahun</option></select></label></div><div class="budget-lines" id="budget-lines">
+                    <article class="info-card"><div class="info-card-head"><div><h3>Alokasi transfer</h3><p>Anggaran Alokasi transfer desa</p></div><label><span class="sr-only">Tahun anggaran</span><select class="year-picker" id="budget-year" aria-label="Pilih tahun anggaran" hidden><option value="">Tahun</option></select></label></div><div class="budget-lines" id="budget-lines">
             <p class="portal-data-empty">Belum tersedia</p>
-        </div><div class="budget-total"><span>Realisasi</span><strong id="budget-realized">Belum tersedia</strong></div><p class="source-line" id="budget-source" hidden></p></article>
+        </div><div class="budget-total"><span>Realisasi</span><strong id="budget-realized">Belum tersedia</strong></div></article>
                     <article class="info-card"><div class="info-card-head"><div><h3>Indeks Desa</h3><p>Status dan skor Indeks Desa 2025</p></div></div>@include('desa.partials.indeks-desa-result')</article>
                 </div>
             </div>
@@ -459,7 +459,7 @@
         'links' => [
             ['label' => 'Profil Desa', 'href' => '#profil'],
             ['label' => 'Layanan', 'href' => '#layanan'],
-            ['label' => 'APBDes', 'href' => '#transparansi'],
+            ['label' => 'Anggaran', 'href' => '#transparansi'],
             ['label' => 'Papan proyek', 'href' => '#pembangunan'],
             ['label' => 'Lokasi kantor', 'href' => '#lokasi'],
         ],
@@ -634,29 +634,19 @@
         const budgetYear = document.querySelector('#budget-year');
         const budgetLines = document.querySelector('#budget-lines');
         const budgetRealized = document.querySelector('#budget-realized');
-        const budgetSource = document.querySelector('#budget-source');
         let budgets = [];
         function renderBudget(year) {
             const budget = budgets.find(item => String(item.year) === String(year));
             if (!budget) return;
             document.querySelector('#budget-sample')?.remove();
             budgetLines.replaceChildren();
-            [['Pendapatan', budget.revenue], ['Belanja', budget.expenditure], ['Pembiayaan', budget.financing]].forEach(([label, amount]) => {
+            [['Dana Desa', budget.villageFund], ['Alokasi Dana Desa', budget.villageAllocation], ['Bagi Hasil Pajak', budget.taxRevenueShare], ['Bagi Hasil Retribusi', budget.retributionShare]].forEach(([label, amount]) => {
                 const row = document.createElement('div');
                 row.className = 'budget-line';
                 row.append(safeNode('span', '', label), safeNode('strong', '', amount > 0 ? money(amount) : 'Belum tersedia'));
                 budgetLines.append(row);
             });
-            budgetRealized.textContent = budget.realized > 0 ? money(budget.realized) : 'Belum tersedia';
-            budgetSource.hidden = !budget.sourceUrl;
-            if (budget.sourceUrl) {
-                const link = document.createElement('a');
-                link.href = budget.sourceUrl;
-                link.target = '_blank';
-                link.rel = 'noopener noreferrer';
-                link.textContent = `Dokumen APBDes ${budget.year}`;
-                budgetSource.replaceChildren(link);
-            }
+            budgetRealized.textContent = 'Belum tersedia';
         }
         budgetYear.addEventListener('change', () => renderBudget(budgetYear.value));
         fetch('/api/desa/gending/budgets').then(response => response.ok ? response.json() : Promise.reject()).then(data => {
