@@ -789,6 +789,7 @@
         });
         document.querySelector('#proposal-close').addEventListener('click', () => closeChat(false));
     </script>
+    @include('desa.partials.managed-content')
     @include('desa.partials.responsive')
 </body>
 </html>

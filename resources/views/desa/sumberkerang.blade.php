@@ -138,6 +138,7 @@
         async function skSubmitProposal(){skError.textContent='';const send=skActions.querySelector('.primary');send.disabled=true;try{const response=await fetch('/api/desa/sumberkerang/proposals',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json','X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').content},body:JSON.stringify({...skAnswers,website:''})});const result=response.status===204?{}:await response.json();if(!response.ok)throw new Error(result.message||'Usulan belum berhasil dikirim.');skMessages.replaceChildren();skControls.replaceChildren();skActions.replaceChildren();skSay(result.message||'Usulan berhasil dikirim.');skActions.append(skAction('Selesai',()=>skCloseChat(),true))}catch(exception){skError.textContent=exception.message;send.disabled=false}}
         skToggle.addEventListener('click',()=>{const open=!skChat.classList.contains('open');skChat.classList.toggle('open',open);skChat.setAttribute('aria-hidden',String(!open));skToggle.setAttribute('aria-expanded',String(open));if(open&&!skMessages.childElementCount)skRenderQuestion()});document.querySelector('#sk-chat-close').addEventListener('click',()=>skCloseChat(false));
     </script>
+    @include('desa.partials.managed-content')
     @include('desa.partials.responsive')
 </body>
 </html>

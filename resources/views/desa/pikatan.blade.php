@@ -86,6 +86,7 @@
         async function pkSubmitProposal(){pkError.textContent='';const submit=pkActions.querySelector('.primary');submit.disabled=true;try{const response=await fetch('/api/desa/pikatan/proposals',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json','X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').content},body:JSON.stringify({...pkAnswers,website:''})});const result=response.status===204?{}:await response.json();if(!response.ok)throw new Error(result.message||'Usulan belum berhasil dikirim.');pkMessages.replaceChildren();pkControls.replaceChildren();pkActions.replaceChildren();pkSay(result.message||'Usulan berhasil dikirim.');pkActions.append(pkAction('Selesai',()=>pkCloseChat(),true))}catch(exception){pkError.textContent=exception.message;submit.disabled=false}}
         pkToggle.addEventListener('click',()=>{const open=!pkChat.classList.contains('open');pkChat.classList.toggle('open',open);pkChat.setAttribute('aria-hidden',String(!open));pkToggle.setAttribute('aria-expanded',String(open));if(open&&!pkMessages.childElementCount)pkRenderQuestion()});document.querySelector('#pk-chat-close').addEventListener('click',()=>pkCloseChat(false));
     </script>
+    @include('desa.partials.managed-content')
     @include('desa.partials.responsive')
 </body>
 </html>

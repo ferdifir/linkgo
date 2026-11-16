@@ -1161,6 +1161,7 @@ projectFilters.addEventListener("reset", event => {
 filterProjects();
 
   </script>
+    @include('desa.partials.managed-content')
     @include('desa.partials.responsive')
 </body>
 </html>

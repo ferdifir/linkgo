@@ -96,6 +96,7 @@
         async function sbSubmitProposal(){sbError.textContent='';const send=sbActions.querySelector('.primary');send.disabled=true;try{const response=await fetch('/api/desa/sebaung/proposals',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json','X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').content},body:JSON.stringify({...sbAnswers,website:''})});const result=response.status===204?{}:await response.json();if(!response.ok)throw new Error(result.message||'Usulan belum berhasil dikirim.');sbMessages.replaceChildren();sbControls.replaceChildren();sbActions.replaceChildren();sbSay(result.message||'Usulan berhasil dikirim.');sbActions.append(sbAction('Selesai',()=>sbCloseChat(),true))}catch(exception){sbError.textContent=exception.message;send.disabled=false}}
         sbToggle.addEventListener('click',()=>{const open=!sbChat.classList.contains('open');sbChat.classList.toggle('open',open);sbChat.setAttribute('aria-hidden',String(!open));sbToggle.setAttribute('aria-expanded',String(open));if(open&&!sbMessages.childElementCount)sbRenderQuestion()});document.querySelector('#sb-chat-close').addEventListener('click',()=>sbCloseChat(false));
     </script>
+    @include('desa.partials.managed-content')
     @include('desa.partials.responsive')
 </body>
 </html>

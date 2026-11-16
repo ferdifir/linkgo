@@ -1,73 +1,95 @@
 <section class="card admin-page" id="content-management" data-admin-page="content" @if ($adminPage !== 'content') hidden @endif>
-    <p id="content-empty-state" class="content-empty-state" hidden>Belum ada konten website. Mulai dengan menambahkan berita, layanan, atau profil desa.</p>
+    <p id="content-empty-state" class="content-empty-state" hidden>Belum ada konten website. Tambahkan berita, kegiatan, layanan, atau profil desa.</p>
     <div class="content-managers">
         <section class="content-manager" data-content-manager="news">
             <div class="section-top"><div><h2>Berita dan pengumuman <span class="content-count" data-content-count>0</span></h2><p class="muted">Kabar, agenda, dan informasi warga.</p></div><button class="btn" type="button" data-content-add>Tambah berita</button></div>
-            <form hidden class="grid content-form">
+            <dialog class="admin-dialog content-dialog"><div class="admin-dialog-head"><h2 data-content-dialog-title>Tambah berita</h2><button class="btn light" type="button" data-content-cancel aria-label="Tutup form">Tutup</button></div><form class="grid content-form">
                 <input type="hidden" name="id">
-                <div class="field"><label>Judul</label><input name="title" maxlength="180" required></div>
-                <div class="field"><label>Kategori</label><input name="category" maxlength="80" placeholder="Berita, Pengumuman, Kegiatan"></div>
-                <div class="field wide"><label>Ringkasan</label><input name="summary" maxlength="300"></div>
-                <div class="field wide"><label>Isi</label><textarea name="body" maxlength="5000" required></textarea></div>
-                <div class="field"><label>Tanggal publikasi</label><input name="publishedAt" type="date"></div>
-                <div class="field"><label>Tautan sumber <span class="optional">(opsional)</span></label><input name="link" type="url" placeholder="https://"></div>
-                <div class="field wide"><label>URL gambar dari media desa <span class="optional">(opsional)</span></label><input name="imageUrl" type="url" placeholder="Unggah gambar di bagian Media desa, lalu pilih Gunakan"></div>
-                <div class="field"><label>Urutan</label><input name="sortOrder" type="number" min="0" max="9999" value="0"></div>
-                <label class="check"><input name="published" type="checkbox" checked> Tampilkan di website</label>
-                <div class="row wide"><button class="btn" type="submit">Simpan berita</button><button class="btn light" type="button" data-content-cancel>Batal</button><span class="notice" role="status"></span></div>
-            </form>
+                <div class="field"><label for="news-title">Judul</label><input id="news-title" name="title" maxlength="180" required autocomplete="off"></div>
+                <div class="field"><label for="news-category">Kategori</label><select id="news-category" name="category"><option value="Berita">Berita</option><option value="Pengumuman">Pengumuman</option><option value="Agenda">Agenda</option></select></div>
+                <div class="field wide"><label for="news-summary">Ringkasan <span class="optional">(opsional, maks. 300 karakter)</span></label><input id="news-summary" name="summary" maxlength="300"></div>
+                <div class="field wide"><label for="news-body">Isi kabar</label><textarea id="news-body" name="body" maxlength="5000" required aria-describedby="news-body-help"></textarea><span id="news-body-help" class="field-help">Gunakan paragraf singkat. Maksimal 5.000 karakter.</span></div>
+                <div class="field"><label for="news-published-at">Tanggal publikasi <span class="optional">(opsional)</span></label><input id="news-published-at" name="publishedAt" type="date"></div>
+                <div class="field"><label for="news-link">Tautan informasi <span class="optional">(opsional)</span></label><input id="news-link" name="link" type="url" placeholder="https://" autocomplete="url"></div>
+                <div class="field wide"><label for="news-image-url">Gambar <span class="optional">(opsional)</span></label><input id="news-image-url" name="imageUrl" type="url" placeholder="Gunakan gambar dari Media desa" autocomplete="url"></div>
+                <div class="field"><label for="news-sort-order">Urutan tampil</label><input id="news-sort-order" name="sortOrder" type="number" min="0" max="9999" value="0" inputmode="numeric"></div>
+                <label class="check"><input name="published" type="checkbox" checked> Terbitkan di website</label>
+                <div class="row wide"><button class="btn" type="submit">Simpan berita</button><button class="btn light" type="button" data-content-cancel>Batal</button></div>
+            </form></dialog>
+            <p class="notice" data-content-notice role="status" aria-live="polite"></p>
+            <div class="list" data-content-list hidden></div>
+        </section>
+
+        <section class="content-manager" data-content-manager="activity">
+            <div class="section-top"><div><h2>Kegiatan desa <span class="content-count" data-content-count>0</span></h2><p class="muted">Agenda, kegiatan warga, dan catatan pelaksanaannya.</p></div><button class="btn" type="button" data-content-add>Tambah kegiatan</button></div>
+            <dialog class="admin-dialog content-dialog"><div class="admin-dialog-head"><h2 data-content-dialog-title>Tambah kegiatan</h2><button class="btn light" type="button" data-content-cancel aria-label="Tutup form">Tutup</button></div><form class="grid content-form">
+                <input type="hidden" name="id">
+                <div class="field"><label for="activity-title">Nama kegiatan</label><input id="activity-title" name="title" maxlength="180" required autocomplete="off"></div>
+                <div class="field"><label for="activity-category">Jenis kegiatan</label><select id="activity-category" name="category"><option value="Agenda">Agenda</option><option value="Kegiatan warga">Kegiatan warga</option><option value="Pelayanan">Pelayanan</option><option value="Lainnya">Lainnya</option></select></div>
+                <div class="field wide"><label for="activity-summary">Ringkasan <span class="optional">(opsional, maks. 300 karakter)</span></label><input id="activity-summary" name="summary" maxlength="300"></div>
+                <div class="field wide"><label for="activity-body">Rincian kegiatan</label><textarea id="activity-body" name="body" maxlength="5000" required aria-describedby="activity-body-help"></textarea><span id="activity-body-help" class="field-help">Jelaskan jadwal, lokasi, atau hasil kegiatan yang sudah berlangsung.</span></div>
+                <div class="field"><label for="activity-published-at">Tanggal kegiatan</label><input id="activity-published-at" name="publishedAt" type="date"></div>
+                <div class="field"><label for="activity-link">Tautan informasi <span class="optional">(opsional)</span></label><input id="activity-link" name="link" type="url" placeholder="https://" autocomplete="url"></div>
+                <div class="field wide"><label for="activity-image-url">Gambar <span class="optional">(opsional)</span></label><input id="activity-image-url" name="imageUrl" type="url" placeholder="Gunakan gambar dari Media desa" autocomplete="url"></div>
+                <div class="field"><label for="activity-sort-order">Urutan tampil</label><input id="activity-sort-order" name="sortOrder" type="number" min="0" max="9999" value="0" inputmode="numeric"></div>
+                <label class="check"><input name="published" type="checkbox" checked> Terbitkan di website</label>
+                <div class="row wide"><button class="btn" type="submit">Simpan kegiatan</button><button class="btn light" type="button" data-content-cancel>Batal</button></div>
+            </form></dialog>
+            <p class="notice" data-content-notice role="status" aria-live="polite"></p>
             <div class="list" data-content-list hidden></div>
         </section>
 
         <section class="content-manager" data-content-manager="service">
             <div class="section-top"><div><h2>Layanan warga <span class="content-count" data-content-count>0</span></h2><p class="muted">Persyaratan, alur, jadwal, atau informasi layanan.</p></div><button class="btn" type="button" data-content-add>Tambah layanan</button></div>
-            <form hidden class="grid content-form">
+            <dialog class="admin-dialog content-dialog"><div class="admin-dialog-head"><h2 data-content-dialog-title>Tambah layanan</h2><button class="btn light" type="button" data-content-cancel aria-label="Tutup form">Tutup</button></div><form class="grid content-form">
                 <input type="hidden" name="id">
-                <div class="field"><label>Nama layanan</label><input name="title" maxlength="180" required></div>
-                <div class="field"><label>Urutan tampil</label><input name="sortOrder" type="number" min="0" max="9999" value="0"></div>
-                <div class="field wide"><label>Ringkasan</label><input name="summary" maxlength="300"></div>
-                <div class="field wide"><label>Persyaratan dan alur</label><textarea name="body" maxlength="5000" required></textarea></div>
-                <div class="field wide"><label>Tautan informasi <span class="optional">(opsional)</span></label><input name="link" type="url" placeholder="https://"></div>
-                <div class="field wide"><label>URL gambar dari media desa <span class="optional">(opsional)</span></label><input name="imageUrl" type="url" placeholder="Unggah gambar di bagian Media desa, lalu pilih Gunakan"></div>
+                <div class="field"><label for="service-title">Nama layanan</label><input id="service-title" name="title" maxlength="180" required></div>
+                <div class="field"><label for="service-sort-order">Urutan tampil</label><input id="service-sort-order" name="sortOrder" type="number" min="0" max="9999" value="0"></div>
+                <div class="field wide"><label for="service-summary">Ringkasan</label><input id="service-summary" name="summary" maxlength="300"></div>
+                <div class="field wide"><label for="service-body">Persyaratan dan alur</label><textarea id="service-body" name="body" maxlength="5000" required></textarea></div>
+                <div class="field wide"><label for="service-link">Tautan informasi <span class="optional">(opsional)</span></label><input id="service-link" name="link" type="url" placeholder="https://"></div>
+                <div class="field wide"><label for="service-image-url">URL gambar dari media desa <span class="optional">(opsional)</span></label><input id="service-image-url" name="imageUrl" type="url" placeholder="Unggah gambar di bagian Media desa, lalu pilih Gunakan"></div>
                 <label class="check"><input name="published" type="checkbox" checked> Tampilkan di website</label>
-                <div class="row wide"><button class="btn" type="submit">Simpan layanan</button><button class="btn light" type="button" data-content-cancel>Batal</button><span class="notice" role="status"></span></div>
-            </form>
+                <div class="row wide"><button class="btn" type="submit">Simpan layanan</button><button class="btn light" type="button" data-content-cancel>Batal</button></div>
+            </form></dialog>
+            <p class="notice" data-content-notice role="status" aria-live="polite"></p>
             <div class="list" data-content-list hidden></div>
         </section>
 
         <section class="content-manager" data-content-manager="profile">
             <div class="section-top"><div><h2>Profil dan potensi desa <span class="content-count" data-content-count>0</span></h2><p class="muted">Ringkasan profil dan potensi yang ingin ditampilkan.</p></div><button class="btn" type="button" data-content-add>Tambah profil</button></div>
-            <form hidden class="grid content-form">
+            <dialog class="admin-dialog content-dialog"><div class="admin-dialog-head"><h2 data-content-dialog-title>Tambah profil</h2><button class="btn light" type="button" data-content-cancel aria-label="Tutup form">Tutup</button></div><form class="grid content-form">
                 <input type="hidden" name="id">
-                <div class="field wide"><label>Judul</label><input name="title" maxlength="180" required></div>
-                <div class="field wide"><label>Ringkasan</label><input name="summary" maxlength="300"></div>
-                <div class="field wide"><label>Gambaran desa dan potensi utama</label><textarea name="body" maxlength="5000" required></textarea></div>
-                <div class="field wide"><label>Tautan pendukung <span class="optional">(opsional)</span></label><input name="link" type="url" placeholder="https://"></div>
-                <div class="field wide"><label>URL gambar dari media desa <span class="optional">(opsional)</span></label><input name="imageUrl" type="url" placeholder="Unggah gambar di bagian Media desa, lalu pilih Gunakan"></div>
+                <div class="field wide"><label for="profile-title">Judul</label><input id="profile-title" name="title" maxlength="180" required></div>
+                <div class="field wide"><label for="profile-summary">Ringkasan</label><input id="profile-summary" name="summary" maxlength="300"></div>
+                <div class="field wide"><label for="profile-body">Gambaran desa dan potensi utama</label><textarea id="profile-body" name="body" maxlength="5000" required></textarea></div>
+                <div class="field wide"><label for="profile-link">Tautan pendukung <span class="optional">(opsional)</span></label><input id="profile-link" name="link" type="url" placeholder="https://"></div>
+                <div class="field wide"><label for="profile-image-url">URL gambar dari media desa <span class="optional">(opsional)</span></label><input id="profile-image-url" name="imageUrl" type="url" placeholder="Unggah gambar di bagian Media desa, lalu pilih Gunakan"></div>
                 <div class="field wide"><strong>Informasi pemerintahan</strong></div>
-                <div class="field"><label>Nama kepala desa</label><input data-profile-field="headName" maxlength="180"></div>
-                <div class="field"><label>Alamat kantor</label><input data-profile-field="address" maxlength="255"></div>
-                <div class="field"><label>Telepon</label><input data-profile-field="phone" maxlength="40"></div>
-                <div class="field"><label>Email</label><input data-profile-field="email" type="email" maxlength="180"></div>
-                <div class="field wide"><label>Jam pelayanan</label><input data-profile-field="officeHours" maxlength="160" placeholder="Hari dan jam pelayanan"></div>
-                <div class="field"><label>Jumlah dusun</label><input data-profile-field="hamlets" type="number" min="0" max="10000"></div>
-                <div class="field"><label>Jumlah RW</label><input data-profile-field="rw" type="number" min="0" max="10000"></div>
-                <div class="field"><label>Jumlah RT</label><input data-profile-field="rt" type="number" min="0" max="10000"></div>
+                <div class="field"><label for="profile-headName">Nama kepala desa</label><input id="profile-headName" data-profile-field="headName" maxlength="180"></div>
+                <div class="field"><label for="profile-address">Alamat kantor</label><input id="profile-address" data-profile-field="address" maxlength="255"></div>
+                <div class="field"><label for="profile-phone">Telepon</label><input id="profile-phone" data-profile-field="phone" maxlength="40"></div>
+                <div class="field"><label for="profile-email">Email</label><input id="profile-email" data-profile-field="email" type="email" maxlength="180"></div>
+                <div class="field wide"><label for="profile-officeHours">Jam pelayanan</label><input id="profile-officeHours" data-profile-field="officeHours" maxlength="160" placeholder="Hari dan jam pelayanan"></div>
+                <div class="field"><label for="profile-hamlets">Jumlah dusun</label><input id="profile-hamlets" data-profile-field="hamlets" type="number" min="0" max="10000"></div>
+                <div class="field"><label for="profile-rw">Jumlah RW</label><input id="profile-rw" data-profile-field="rw" type="number" min="0" max="10000"></div>
+                <div class="field"><label for="profile-rt">Jumlah RT</label><input id="profile-rt" data-profile-field="rt" type="number" min="0" max="10000"></div>
                 <div class="field wide"><strong>Data Indeks Desa terbaru</strong><span class="optional">Masukkan angka sesuai hasil resmi. Ini berbeda dari seri IDM.</span></div>
-                <div class="field"><label>Tahun pengukuran</label><input data-profile-field="indexYear" type="number" min="2025" max="2100"></div>
-                <div class="field"><label>Nilai Indeks Desa (0–100)</label><input data-profile-field="indexScore" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label>Status desa</label><select data-profile-field="indexStatus"><option value="">Pilih status</option><option>Mandiri</option><option>Maju</option><option>Berkembang</option><option>Tertinggal</option><option>Sangat Tertinggal</option></select></div>
-                <div class="field"><label>Tanggal verifikasi</label><input data-profile-field="indexVerifiedAt" type="date"></div>
-                <div class="field wide"><label>Sumber data resmi</label><input data-profile-field="indexSource" type="url" placeholder="https://"></div>
-                <div class="field"><label>Layanan dasar</label><input data-profile-field="indexBasicServices" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label>Sosial</label><input data-profile-field="indexSocial" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label>Ekonomi</label><input data-profile-field="indexEconomic" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label>Lingkungan</label><input data-profile-field="indexEnvironment" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label>Aksesibilitas</label><input data-profile-field="indexAccessibility" type="number" min="0" max="100" step="0.01"></div>
-                <div class="field"><label>Tata kelola pemerintahan</label><input data-profile-field="indexGovernance" type="number" min="0" max="100" step="0.01"></div>
+                <div class="field"><label for="profile-indexYear">Tahun pengukuran</label><input id="profile-indexYear" data-profile-field="indexYear" type="number" min="2025" max="2100"></div>
+                <div class="field"><label for="profile-indexScore">Nilai Indeks Desa (0–100)</label><input id="profile-indexScore" data-profile-field="indexScore" type="number" min="0" max="100" step="0.01"></div>
+                <div class="field"><label for="profile-indexStatus">Status desa</label><select id="profile-indexStatus" data-profile-field="indexStatus"><option value="">Pilih status</option><option>Mandiri</option><option>Maju</option><option>Berkembang</option><option>Tertinggal</option><option>Sangat Tertinggal</option></select></div>
+                <div class="field"><label for="profile-indexVerifiedAt">Tanggal verifikasi</label><input id="profile-indexVerifiedAt" data-profile-field="indexVerifiedAt" type="date"></div>
+                <div class="field wide"><label for="profile-indexSource">Sumber data resmi</label><input id="profile-indexSource" data-profile-field="indexSource" type="url" placeholder="https://"></div>
+                <div class="field"><label for="profile-indexBasicServices">Layanan dasar</label><input id="profile-indexBasicServices" data-profile-field="indexBasicServices" type="number" min="0" max="100" step="0.01"></div>
+                <div class="field"><label for="profile-indexSocial">Sosial</label><input id="profile-indexSocial" data-profile-field="indexSocial" type="number" min="0" max="100" step="0.01"></div>
+                <div class="field"><label for="profile-indexEconomic">Ekonomi</label><input id="profile-indexEconomic" data-profile-field="indexEconomic" type="number" min="0" max="100" step="0.01"></div>
+                <div class="field"><label for="profile-indexEnvironment">Lingkungan</label><input id="profile-indexEnvironment" data-profile-field="indexEnvironment" type="number" min="0" max="100" step="0.01"></div>
+                <div class="field"><label for="profile-indexAccessibility">Aksesibilitas</label><input id="profile-indexAccessibility" data-profile-field="indexAccessibility" type="number" min="0" max="100" step="0.01"></div>
+                <div class="field"><label for="profile-indexGovernance">Tata kelola pemerintahan</label><input id="profile-indexGovernance" data-profile-field="indexGovernance" type="number" min="0" max="100" step="0.01"></div>
                 <label class="check"><input name="published" type="checkbox" checked> Tampilkan di website</label>
-                <div class="row wide"><button class="btn" type="submit">Simpan profil</button><button class="btn light" type="button" data-content-cancel>Batal</button><span class="notice" role="status"></span></div>
-            </form>
+                <div class="row wide"><button class="btn" type="submit">Simpan profil</button><button class="btn light" type="button" data-content-cancel>Batal</button></div>
+            </form></dialog>
+            <p class="notice" data-content-notice role="status" aria-live="polite"></p>
             <div class="list" data-content-list hidden></div>
         </section>
     </div>
@@ -79,6 +101,7 @@
 </section>
 <style>
     .content-empty-state { margin: 0 0 10px; padding: 12px 14px; border-radius: 9px; background: #f5f8f2; color: #536158; font-size: 14px; }
+    .field-help { color: var(--muted); font-size: 12px; line-height: 1.45; }
     .content-managers { display: grid; gap: 16px; }
     .content-manager { padding-top: 16px; border-top: 1px solid var(--line); }
     .content-manager:first-child { padding-top: 0; border-top: 0; }

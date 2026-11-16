@@ -103,6 +103,7 @@
         async function submitProposal(){error.textContent='';const submit=actions.querySelector('.primary');submit.disabled=true;try{const response=await fetch('/api/desa/brumbungan-lor/proposals',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json','X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').content},body:JSON.stringify({...answers,website:''})});const result=response.status===204?{}:await response.json();if(!response.ok)throw new Error(result.message||'Usulan belum berhasil dikirim.');messages.replaceChildren();controls.replaceChildren();actions.replaceChildren();say(result.message||'Usulan berhasil dikirim.');actions.append(action('Selesai',()=>closeChat(),true))}catch(exception){error.textContent=exception.message;submit.disabled=false}}
         toggle.addEventListener('click',()=>{chat.classList.add('open');chat.setAttribute('aria-hidden','false');toggle.setAttribute('aria-expanded','true');if(!messages.childElementCount)renderQuestion()});document.querySelector('#chat-close').addEventListener('click',()=>closeChat(false));document.addEventListener('keydown',event=>{if(event.key==='Escape'){document.querySelectorAll('.bl-project-overlay.open').forEach(overlay=>overlay.classList.remove('open'));if(chat.classList.contains('open'))closeChat(false)}});
     </script>
+    @include('desa.partials.managed-content')
     @include('desa.partials.responsive')
 </body>
 </html>

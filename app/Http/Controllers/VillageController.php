@@ -77,6 +77,7 @@ class VillageController
 
         return response()->json([
             'news' => $rows->where('type', 'news')->values(),
+            'activities' => $rows->where('type', 'activity')->values(),
             'services' => $rows->where('type', 'service')->values(),
             'profile' => $rows->firstWhere('type', 'profile'),
         ]);
@@ -645,7 +646,7 @@ class VillageController
 
     private function validateContentType(string $type): void
     {
-        abort_unless(in_array($type, ['news', 'service', 'profile'], true), 404);
+        abort_unless(in_array($type, ['news', 'activity', 'service', 'profile'], true), 404);
     }
 
     private function recordPageView(string $slug): void

@@ -1026,6 +1026,7 @@
             proposalButton.setAttribute('aria-expanded', 'false');
         });
     </script>
+    @include('desa.partials.managed-content')
     @include('desa.partials.responsive')
 </body>
 </html>
