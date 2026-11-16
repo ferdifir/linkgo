@@ -350,7 +350,7 @@
                         <div class="hero-actions"><a class="btn btn-dark" href="#potensi">Jelajahi potensi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="btn btn-light" href="#layanan">Cari layanan</a></div>
                     </div>
                     <figure class="hero-art">
-                        <img src="{{ asset('images/gending-bumdes-bebek.jpg') }}" alt="Direktur BUMDes Mandiri Utama melihat peternakan bebek petelur di Desa Gending" width="1200" height="705" fetchpriority="high">
+                        <img src="{{ asset('images/gending-bumdes-bebek.jpg') }}" alt="Direktur Belum tersedia melihat peternakan bebek petelur di Desa Gending" width="1200" height="705" fetchpriority="high">
                     </figure>
                 </div>
                 <div class="quick-strip" aria-label="Ringkasan wilayah">
@@ -379,7 +379,7 @@
 
         <section class="section" id="layanan">
             <div class="wrap">
-                <div class="section-head"><div><span class="eyebrow">Urusan warga</span><h2>Layanan Desa</h2><span class="sample-label"></span></div><p>Pilih kebutuhan layanan untuk melihat informasi pengajuan.</p></div>
+                <div class="section-head"><div><span class="eyebrow">Urusan warga</span><h2>Layanan Desa</h2></div><p>Pilih kebutuhan layanan untuk melihat informasi pengajuan.</p></div>
                 <div class="service-grid portal-mobile-two-col">
                     <article class="service-card"><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 13h7m-7 4h7"/></svg></span><h3>Surat keterangan</h3><p>Persyaratan layanan belum tersedia.</p><button class="service-open" data-service="Surat keterangan" type="button">Lihat informasi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></article>
                     <article class="service-card"><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-4 2-6 6-6s6 2 6 6m2-9h5m-2.5-2.5v5"/></svg></span><h3>Administrasi penduduk</h3><p>Informasi layanan belum tersedia.</p><button class="service-open" data-service="Administrasi penduduk" type="button">Lihat informasi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></article>
@@ -393,7 +393,7 @@
             <div class="wrap">
                 <div class="section-head"><div><span class="eyebrow">Potensi desa</span><h2>Ketahanan pangan, kerja bersama</h2></div><p>Pertanian, peternakan, dan usaha produktif warga.</p></div>
                 <div class="bumdes-grid">
-                    <article class="bumdes-lead"><div><span class="eyebrow">Badan Usaha Milik Desa</span><h3>BUMDes Mandiri Utama</h3><p>Berbagai unit usaha pangan dikembangkan untuk mendukung ketahanan pangan dan memberi manfaat bagi warga.</p></div><span class="sample-label sample-label--inverse"></span></article>
+                    <article class="bumdes-lead"><div><span class="eyebrow">Badan Usaha Milik Desa</span><h3>Belum tersedia</h3><p>Informasi BUMDes belum tersedia.</p></div></article>
                     <div class="usaha-grid">
                         <article class="usaha-card"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21V9m0 2c-5 0-7-3-7-7 5 0 7 3 7 7Zm0 3c5 0 7-3 7-7-5 0-7 3-7 7Z"/></svg></span><div><strong>Penanaman pisang</strong><small>Unit usaha pangan</small></div></article>
                         <article class="usaha-card"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19c0-5 3-8 7-8s7 3 7 8M8 11V8m8 3V8M9 6h.01M15 6h.01M3 20h18"/></svg></span><div><strong>Bebek petelur</strong><small>Peternakan produktif</small></div></article>
@@ -411,7 +411,7 @@
                     <article class="info-card"><div class="info-card-head"><div><h3>APBDes</h3><p>Anggaran Pendapatan dan Belanja Desa</p></div><label><span class="sr-only">Tahun anggaran</span><select class="year-picker" id="budget-year" aria-label="Pilih tahun anggaran" hidden><option value="">Tahun</option></select></label></div><div class="budget-lines" id="budget-lines">
             <p class="portal-data-empty">Belum tersedia</p>
         </div><div class="budget-total"><span>Realisasi</span><strong id="budget-realized">Belum tersedia</strong></div><p class="source-line" id="budget-source" hidden></p></article>
-                    <article class="info-card"><div class="info-card-head"><div><h3>Indeks Desa</h3><p>Ringkasan status dan dimensi pembangunan</p></div><span class="sample-label">2025</span></div><div class="idm-stat"><span>Nilai indeks</span><strong>Belum tersedia</strong></div><div class="idm-dimensions"><span>Layanan dasar · Belum tersedia</span><span>Sosial · Belum tersedia</span><span>Ekonomi · Belum tersedia</span><span>Lingkungan · Belum tersedia</span><span>Aksesibilitas · Belum tersedia</span><span>Tata kelola · Belum tersedia</span></div></article>
+                    <article class="info-card"><div class="info-card-head"><div><h3>Indeks Desa</h3><p>Ringkasan status dan dimensi pembangunan</p></div></div><div class="idm-stat"><span>Nilai indeks</span><strong>Belum tersedia</strong></div><div class="idm-dimensions"><span>Layanan dasar · Belum tersedia</span><span>Sosial · Belum tersedia</span><span>Ekonomi · Belum tersedia</span><span>Lingkungan · Belum tersedia</span><span>Aksesibilitas · Belum tersedia</span><span>Tata kelola · Belum tersedia</span></div></article>
                 </div>
             </div>
         </section>
@@ -446,7 +446,7 @@
             <div class="wrap">
                 <div class="section-head"><div><span class="eyebrow">Kunjungi kantor</span><h2>Lokasi dan Kontak</h2></div><p>Informasi alamat dan kanal komunikasi Pemerintah Desa Gending.</p></div>
                 <div class="contact-grid">
-                    <article class="contact-card"><h3>Kantor Desa Gending</h3><div class="contact-row"><span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><strong>Alamat</strong><small>Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></div><div class="contact-row"><span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h4l2 5-3 2c1.5 3 3 4.5 6 6l2-3 5 2v4c0 1-1 2-2 2C9 21 3 15 3 6c0-1 1-2 2-2Z"/></svg></span><span><strong>Telepon</strong><small>Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></div><div class="contact-row"><span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><strong>Jam pelayanan</strong><small>Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></div></article>
+                    <article class="contact-card"><h3>Kantor Desa Gending</h3><div class="contact-row"><span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><strong>Alamat</strong><small>Belum tersedia </small></span></div><div class="contact-row"><span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h4l2 5-3 2c1.5 3 3 4.5 6 6l2-3 5 2v4c0 1-1 2-2 2C9 21 3 15 3 6c0-1 1-2 2-2Z"/></svg></span><span><strong>Telepon</strong><small>Belum tersedia </small></span></div><div class="contact-row"><span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><strong>Jam pelayanan</strong><small>Belum tersedia </small></span></div></article>
                     <div class="map-frame"><iframe title="Pencarian Kantor Desa Gending di Google Maps" src="https://www.google.com/maps?q=Kantor+Desa+Gending,+Kecamatan+Gending,+Kabupaten+Probolinggo&output=embed" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
                 </div>
             </div>
@@ -467,7 +467,7 @@
 
     <button class="proposal-button" id="proposal-open" type="button" aria-label="Sampaikan usulan" aria-expanded="false" aria-controls="proposal-chat"><span class="fab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="fab-label">Sampaikan usulan</span></button>
     <section class="chat-panel" id="proposal-chat" aria-label="Form usulan warga" aria-hidden="true"><div class="chat-head"><strong>Usulan warga</strong><button id="proposal-close" type="button" aria-label="Tutup percakapan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="chat-body"><div id="chat-messages" aria-live="polite"></div><div id="chat-controls"></div><div class="chat-actions" id="chat-actions"></div><div class="chat-error" id="chat-error" role="alert"></div></div></section>
-    <dialog id="service-dialog"><div class="dialog-head"><strong id="service-dialog-title"></strong><button id="service-close" class="overlay-close" type="button" aria-label="Tutup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="dialog-body"><span class="sample-label"></span><p>Persyaratan dan alur layanan belum tersedia.</p></div></dialog>
+    <dialog id="service-dialog"><div class="dialog-head"><strong id="service-dialog-title"></strong><button id="service-close" class="overlay-close" type="button" aria-label="Tutup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="dialog-body"><p>Persyaratan dan alur layanan belum tersedia.</p></div></dialog>
     <style>
         .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0 }
         #service-dialog { width:min(440px,calc(100% - 28px));padding:0;border:1px solid var(--line);border-radius:6px;background:var(--white);box-shadow:var(--shadow) }

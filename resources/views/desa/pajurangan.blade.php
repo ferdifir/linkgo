@@ -654,7 +654,7 @@
                             <div class="index-row"><span>Ekonomi</span><strong>Belum tersedia</strong><div class="index-track"><i style="width:69%"></i></div></div>
                             <div class="index-row"><span>Lingkungan</span><strong>Belum tersedia</strong><div class="index-track"><i style="width:75%"></i></div></div>
                         </div>
-                        <p class="placeholder-note" style="margin:15px 0 0"><span class="sample-label">2025</span> Nilai indeks: Belum tersedia</p>
+                        <p class="placeholder-note" style="margin:15px 0 0"> Nilai indeks: Belum tersedia</p>
                     </article>
                 </div>
             </div>
@@ -673,9 +673,9 @@
             <div class="site-width">
                 <div class="section-heading reveal"><div><span class="section-label">Informasi warga</span><h2>Kabar dan Pengumuman</h2></div><p>Berita, pengumuman, dan kegiatan Desa Pajurangan.</p></div>
                 <div class="news-grid portal-mobile-stack reveal-stagger">
-                    <article class="news-card"><div class="news-thumb" data-caption="PENGUMUMAN" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4m8-4v4M4 10h16M8 14h3m-3 3h7"/></svg></div><div class="news-body"><small>Pengumuman · 12 Juni 2026</small><h3>Informasi pelayanan <span class="sample-label">Belum tersedia</span></h3><p>Informasi pelayanan belum tersedia.</p></div></article>
-                    <article class="news-card"><div class="news-thumb" data-caption="KABAR DESA" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5l8-2 8 2v14l-8 2zM8 9h8M8 13h8M8 17h4"/></svg></div><div class="news-body"><small>Berita desa · 19 Juni 2026</small><h3>Informasi kegiatan <span class="sample-label">Belum tersedia</span></h3><p>Informasi kegiatan belum tersedia.</p></div></article>
-                    <article class="news-card"><div class="news-thumb" data-caption="AGENDA WARGA" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20c.2-3.6 2.4-5.5 5.5-5.5s5.3 1.9 5.5 5.5m.2-5c3.4-.4 5.4 1.4 5.8 4.5"/></svg></div><div class="news-body"><small>Kegiatan · 23 Juni 2026</small><h3>Informasi kegiatan <span class="sample-label">Belum tersedia</span></h3><p>Informasi kegiatan belum tersedia.</p></div></article>
+                    <article class="news-card"><p class="portal-data-empty">Belum tersedia</p></article>
+                    <article class="news-card"><p class="portal-data-empty">Belum tersedia</p></article>
+                    <article class="news-card"><p class="portal-data-empty">Belum tersedia</p></article>
                 </div>
             </div>
         </section>
@@ -684,9 +684,9 @@
             <div class="site-width">
                 <div class="section-heading reveal"><div><span class="section-label">Agenda warga</span><h2>Kegiatan Desa</h2></div><p>Agenda dan aktivitas masyarakat.</p></div>
                 <div class="activity-grid portal-mobile-stack reveal-stagger">
-                    <article class="activity-card"><div class="activity-date"><strong>18</strong><span>Belum tersedia</span><small>19.00</small></div><div class="activity-body"><small>Belum tersedia</small><h3>Pertemuan warga</h3><p>Informasi kegiatan belum tersedia.</p></div></article>
-                    <article class="activity-card"><div class="activity-date"><strong>18</strong><span>Belum tersedia</span><small>19.00</small></div><div class="activity-body"><small>Belum tersedia</small><h3>Pertemuan warga</h3><p>Informasi kegiatan belum tersedia.</p></div></article>
-                    <article class="activity-card"><div class="activity-date"><strong>18</strong><span>Belum tersedia</span><small>19.00</small></div><div class="activity-body"><small>Belum tersedia</small><h3>Pertemuan warga</h3><p>Informasi kegiatan belum tersedia.</p></div></article>
+                    <article class="activity-card"><p class="portal-data-empty">Belum tersedia</p></article>
+                    <article class="activity-card"><p class="portal-data-empty">Belum tersedia</p></article>
+                    <article class="activity-card"><p class="portal-data-empty">Belum tersedia</p></article>
                 </div>
             </div>
         </section>
@@ -697,10 +697,10 @@
                 <div class="profile-layout reveal">
                     <article class="profile-panel"><span class="section-label" style="color:#ecd084">Profil desa</span><div><h3>Desa Pajurangan</h3><p>Informasi profil warga dan lingkungan belum tersedia.</p></div></article>
                     <div class="profile-facts">
-                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span><strong>Wilayah</strong><small>Belum tersedia · Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></article>
-                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-6h6v6"/></svg><span><strong>Sejarah</strong><small>Catatan sejarah desa <span class="sample-label">Belum tersedia</span></small></span></article>
-                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19c4-1 6-4 9-4s5 3 9 2M4 15c3-.5 5-3 8-3s5 2 8 1M5 10c3 0 4-2 7-2s5 2 7 1"/></svg><span><strong>Potensi lokal</strong><small>Pertanian dan usaha warga <span class="sample-label">Belum tersedia</span></small></span></article>
-                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span><strong>Budaya</strong><small>Tradisi dan kegiatan warga <span class="sample-label">Belum tersedia</span></small></span></article>
+                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span><strong>Wilayah</strong><small>Belum tersedia · Belum tersedia </small></span></article>
+                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-6h6v6"/></svg><span><strong>Sejarah</strong><small>Catatan sejarah desa </small></span></article>
+                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19c4-1 6-4 9-4s5 3 9 2M4 15c3-.5 5-3 8-3s5 2 8 1M5 10c3 0 4-2 7-2s5 2 7 1"/></svg><span><strong>Potensi lokal</strong><small>Pertanian dan usaha warga </small></span></article>
+                        <article class="fact-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span><strong>Budaya</strong><small>Tradisi dan kegiatan warga </small></span></article>
                     </div>
                 </div>
             </div>
@@ -712,9 +712,9 @@
                 <div class="contact-layout reveal">
                     <article class="contact-card">
                         <h3>Kantor Desa Pajurangan</h3>
-                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><strong>Alamat</strong><small>Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></div>
-                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-3 2c1.5 3 3 4.5 6 6l2-3 5 2v4c0 1-1 2-2 2C9 21 3 15 3 6c0-1 1-2 2-2Z"/></svg></span><span><strong>Telepon</strong><small>Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></div>
-                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><strong>Jam pelayanan</strong><small>Belum tersedia <span class="sample-label">Belum tersedia</span></small></span></div>
+                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><strong>Alamat</strong><small>Belum tersedia </small></span></div>
+                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-3 2c1.5 3 3 4.5 6 6l2-3 5 2v4c0 1-1 2-2 2C9 21 3 15 3 6c0-1 1-2 2-2Z"/></svg></span><span><strong>Telepon</strong><small>Belum tersedia </small></span></div>
+                        <div class="contact-row"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><strong>Jam pelayanan</strong><small>Belum tersedia </small></span></div>
                     </article>
                     <div class="map-placeholder">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d597.2978383527083!2d113.30638973693766!3d-7.792865385048131!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7ab00271fd589%3A0x2b5dc908dbb33453!2sKantor%20Desa%20Pajurangan!5e0!3m2!1sid!2sid!4v1794494987633!5m2!1sid!2sid" title="Peta Kantor Desa Pajurangan" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -746,7 +746,7 @@
 
     <dialog id="service-dialog" style="width:min(440px,calc(100% - 28px));padding:0;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)">
         <div style="padding:19px 21px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px"><strong id="service-dialog-title" style="font-size:15px"></strong><button id="service-dialog-close" class="overlay-close" type="button" aria-label="Tutup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
-        <div style="padding:20px 21px"><span class="sample-label"></span><p style="margin:10px 0 14px;color:var(--muted);font-size:12px">Persyaratan dan alur ilustrasi untuk melihat tampilan rincian.</p><div class="budget-line"><span>Persyaratan</span><strong>KTP, KK</strong></div><div class="budget-line"><span>Alur</span><strong>Formulir · Loket</strong></div><div class="budget-line"><span>Estimasi belum tersedia</span><strong>1 hari kerja</strong></div></div>
+        <div style="padding:20px 21px"><p style="margin:10px 0 14px;color:var(--muted);font-size:12px">Persyaratan dan alur ilustrasi untuk melihat tampilan rincian.</p><div class="budget-line"><span>Persyaratan</span><strong>KTP, KK</strong></div><div class="budget-line"><span>Alur</span><strong>Formulir · Loket</strong></div><div class="budget-line"><span>Estimasi belum tersedia</span><strong>1 hari kerja</strong></div></div>
     </dialog>
 
     <script>
