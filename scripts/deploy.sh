@@ -78,6 +78,8 @@ if [[ -n "$(git status --porcelain)" ]]; then
 fi
 
 git pull --ff-only origin "$branch"
+php artisan migrate --force --no-interaction
+php artisan db:seed --class=VillageIndexSeeder --force --no-interaction
 php artisan optimize:clear
 php artisan view:cache
 REMOTE_SCRIPT
