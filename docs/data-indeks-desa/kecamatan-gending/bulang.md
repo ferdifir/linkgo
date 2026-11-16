@@ -18,6 +18,42 @@
 | Persentil nasional | Belum tersedia |
 | Rata-rata skor Kecamatan Gending | 83,47 |
 
+
+## Rincian enam dimensi dan 13 subdimensi (dataset 2025)
+
+Dataset Kemendesa berisi skor 13 subdimensi. Skor dimensi di bawah dihitung dengan menjumlahkan subdimensi sesuai kelompok pada Permendesa PDT 9/2024; capaian dimensi = skor/maksimum, sedangkan kontribusi indeks = skor/635.
+
+| Dimensi | Skor | Capaian dimensi | Kontribusi ke indeks |
+| --- | ---: | ---: | ---: |
+| Layanan dasar | 147/170 | 86,47% | 23,15% |
+| Sosial | 78/85 | 91,76% | 12,28% |
+| Ekonomi | 144/160 | 90,00% | 22,68% |
+| Lingkungan | 78/90 | 86,67% | 12,28% |
+| Aksesibilitas | 49/50 | 98,00% | 7,72% |
+| Tata kelola pemerintahan | 76/80 | 95,00% | 11,97% |
+| **Total** | **572/635** | **90,08%** | **90,08%** |
+
+### Rincian subdimensi
+
+| Subdimensi | Skor | Maksimum | Capaian |
+| --- | ---: | ---: | ---: |
+| Pendidikan | 39 | 45 | 86,67% |
+| Kesehatan | 95 | 100 | 95,00% |
+| Utilitas dasar | 13 | 25 | 52,00% |
+| Aktivitas | 61 | 65 | 93,85% |
+| Fasilitas masyarakat | 17 | 20 | 85,00% |
+| Produksi desa | 40 | 40 | 100,00% |
+| Fasilitas pendukung ekonomi | 104 | 120 | 86,67% |
+| Pengelolaan lingkungan | 55 | 65 | 84,62% |
+| Penanggulangan bencana | 23 | 25 | 92,00% |
+| Kondisi akses jalan | 20 | 20 | 100,00% |
+| Kemudahan akses | 29 | 30 | 96,67% |
+| Kelembagaan dan pelayanan desa | 31 | 35 | 88,57% |
+| Tata kelola keuangan desa | 45 | 45 | 100,00% |
+
+
+**Status verifikasi:** SID Kemendesa mencatat Bulang “Belum Terverifikasi” dan tidak menerbitkan skor total 2025. Nilai subdimensi di CSV tercantum sebagai data kiriman, jadi rincian enam dimensi di bawah ini belum boleh diperlakukan sebagai hasil resmi final atau ditayangkan sebagai nilai terverifikasi.
+
 ## Profil yang ditampilkan portal
 
 | Data | Nilai |
@@ -32,11 +68,13 @@
 
 ## Catatan data
 
-Portal resmi menampilkan Indeks Desa 2025 sebagai hasil final. Pengisian Indeks Desa 2026 masih berlangsung dan belum menjadi hasil final. Rincian skor per dimensi (layanan dasar, sosial, ekonomi, lingkungan, aksesibilitas, dan tata kelola pemerintahan) tidak ditampilkan pada data publik tingkat desa yang tersedia saat pencatatan; angka per dimensi karena itu tidak dicantumkan di sini.
+Portal SID Kemendesa memuat hasil final 2025; data 2026 masih menunggu proses verifikasi. Rincian 2025 di atas bersumber dari CSV Indeks Desa yang dipublikasikan oleh Kementerian Desa di data.go.id. Portal SID publik tidak menampilkan rincian dimensi, sehingga nilai dimensi diturunkan dari 13 nilai subdimensi pada CSV dan dicocokkan dengan skor final SID. Dataset di data.go.id masih berstatus dalam proses pemenuhan Prinsip Satu Data Indonesia.
 
 ## Sumber
 
 - [Portal Indeks Desa — Kemendesa PDT](https://sid.kemendesa.go.id/indeks-desa?tahun=2025&kode=3513182005)
 - [Keputusan Menteri Desa dan PDT Nomor 343 Tahun 2025 tentang Status Kemajuan dan Kemandirian Desa Tahun 2025 (PDF)](https://jdih.kemendesa.go.id/public/documents/a72ca269-9ca6-41ee-b306-c4bee4db2a8dKepmenDesPDT_343_Tahun_2025_ttg_Status_Kemajuan_dan_Kemandirian_Desa_2025.pdf)
 - [BPS Kabupaten Probolinggo, Kecamatan Gending Dalam Angka 2025](https://probolinggokab.bps.go.id/id/publication/2025/09/26/c3a7d8dca2ce468f16af191e/gending-district-in-figures-2025.html)
-
+- [Dataset Indeks Desa — Kementerian Desa, data.go.id](https://data.go.id/dataset/dataset/indeks-desa3)
+- [Berkas CSV Indeks Desa 2025 — satudata.kemendesa.go.id](https://satudata.kemendesa.go.id/dataset/9054899a-b8d9-495e-a830-be60c4295c5b/resource/71d8caca-9e3e-41b1-8888-3518991e27b9/download/indeks-desa.csv)
+- [Permendesa PDT Nomor 9 Tahun 2024 tentang Indeks Desa (PDF)](https://jdih.kemendesa.go.id/public/documents/c32a892e-dd06-425a-ab76-207959840829Salinan_Peraturan_Menteri_Desa%2C_PDT%2C_dan_Transmigrasi_Nomor_9_Tahun_2024_tentang_Indeks_Desa_%282%29.pdf)
