@@ -37,7 +37,7 @@ body.dashboard-page{min-height:100vh;background:#f4f6f3}
 #dashboard .admin-page[hidden]{display:none!important}
 #dashboard.dashboard-layout{display:grid;grid-template-columns:252px minmax(0,1fr);min-height:calc(100vh - 68px)}
 .admin-sidebar{position:sticky;top:68px;align-self:start;height:calc(100vh - 68px);overflow-y:auto;padding:23px 14px;background:#fff;border-right:1px solid #e0e7dd}
-.admin-sidebar-heading{margin:0 12px 12px;color:#7b887f;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.admin-sidebar-heading{margin:0 12px 12px;color:#59675e;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .admin-nav{display:grid;gap:4px}
 .admin-nav a{display:flex;min-height:44px;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;color:#536158;text-decoration:none;font-size:14px;font-weight:600;transition:background .16s ease,color .16s ease}
 .admin-nav a:hover,.admin-nav a[aria-current="page"]{background:#eaf1e9;color:#244f40}

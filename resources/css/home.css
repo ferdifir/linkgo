@@ -83,7 +83,7 @@ body {
 }
 
 .gending-province-locator small {
-    color: #718078;
+    color: #58665f;
     font-size: 9px;
     font-weight: 750;
     letter-spacing: .1em;
@@ -133,7 +133,7 @@ body {
 }
 
 .gending-brand-copy small {
-    color: #63736d;
+    color: #56655f;
     font-size: 12px;
     font-weight: 550;
 }
@@ -435,7 +435,7 @@ body {
     flex: none;
     margin-top: 12px;
     border-top: 1px solid #e2e7df;
-    color: #718078;
+    color: #58665f;
     font-size: 11px;
 }
 
