@@ -401,7 +401,7 @@ details[open] .expand svg { transform:rotate(180deg) }
 }
 
   @media(max-width:820px){.village-index{grid-template-columns:1fr;gap:22px}.village-index h2{max-width:none}}
-@media(max-width:590px){.index-dimensions{grid-template-columns:1fr}.index-method{grid-column:auto}.budget-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.budget-metrics div{min-width:0;padding:10px}.budget-metrics dt{font-size:13px}.budget-metrics dd{font-size:13px;overflow-wrap:anywhere}.index-dimension p{font-size:14px}.project-details dt{font-size:13px}.project-details dd{font-size:13px}.proposal-chat-toggle{display:grid;width:50px;height:50px;min-height:50px;place-items:center;padding:0;border-radius:50%}.proposal-chat-toggle span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}}
+@media(max-width:590px){.index-dimensions{grid-template-columns:1fr}.index-method{grid-column:auto}.budget-metrics{grid-template-columns:1fr;gap:8px}.budget-metrics div{min-width:0;padding:10px}.budget-metrics dt{font-size:13px}.budget-metrics dd{font-size:13px;overflow-wrap:anywhere}.index-dimension p{font-size:14px}.project-details dt{font-size:13px}.project-details dd{font-size:13px}.proposal-chat-toggle{display:grid;width:50px;height:50px;min-height:50px;place-items:center;padding:0;border-radius:50%}.proposal-chat-toggle span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}}
         </style>
   <title>Desa Curahsawo | Portal Warga | LinkGo</title>
     @include('desa.partials.favicon')
