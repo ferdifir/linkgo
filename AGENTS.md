@@ -39,6 +39,9 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 - After completing and verifying requested code changes, commit the changes made for the task. Do not leave completed code changes uncommitted; explain any blocker that prevents a commit.
 - Inspect `git status` and the relevant diffs before staging. Stage only changes belonging to the requested task; do not include unrelated pre-existing work.
 - Keep commits focused. Split independent tasks or concerns into separate commits instead of combining unrelated backend, UI, data, or asset changes.
+- Use Conventional Commits for commit subjects: `<type>(<optional-scope>): <imperative summary>`. Use a fitting type such as `feat`, `fix`, `refactor`, `perf`, `test`, `docs`, or `chore`; keep the summary concise and describe the resulting change.
+- Review the staged diff before committing. Do not stage the whole working tree blindly, and exclude secrets, local runtime data, and generated files unless they are intentional deliverables.
+- Add a commit body when the reason or impact is not clear from the subject. Mark breaking changes with `!` and explain them in a `BREAKING CHANGE:` footer.
 - Do not amend existing commits or force-push unless the user explicitly requests it.
 
 ## Verification Scripts
