@@ -18,7 +18,7 @@
             --cream: #f6f7f3;
             --white: #fff;
             --ink: #1e2e27;
-            --muted: #68756d;
+            --muted: #5c6961;
             --line: #dfe5de;
             --gold: #e7b857;
             --red: #a84d3b;

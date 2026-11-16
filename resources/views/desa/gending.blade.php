@@ -14,12 +14,12 @@
             --paper-deep: #e8e1cf;
             --white: #fffdf7;
             --ink: #202820;
-            --muted: #687166;
+            --muted: #5d665a;
             --line: #d9d5c7;
             --green: #294b36;
             --green-dark: #1d3729;
             --green-soft: #e2e8dc;
-            --orange: #c85632;
+            --orange: #b24a2c;
             --yellow: #e8b744;
             --shadow: 0 14px 35px rgb(33 43 31 / 9%);
             --width: 1180px;
