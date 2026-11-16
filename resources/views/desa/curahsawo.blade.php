@@ -529,7 +529,7 @@ details[open] .expand svg { transform:rotate(180deg) }
           <div><p class="eyebrow">Keuangan Desa</p><h3 id="anggaran-judul">APBDes &amp; Realisasi</h3></div>
           <label class="select-control" for="budget-year" hidden><span>Tahun anggaran</span><select id="budget-year"><option value="">Tahun anggaran</option></select></label>
         </div>
-        <p class="budget-notice" id="budget-notice" aria-live="polite"><span>Belum tersedia</span></p><dl class="budget-metrics portal-mobile-two-col">
+        <p class="budget-notice" id="budget-notice" aria-live="polite"><span>Belum tersedia</span></p><dl class="budget-metrics">
           <div><dt>Pendapatan</dt><dd>Belum tersedia</dd></div>
           <div><dt>Belanja</dt><dd>Belum tersedia</dd></div>
           <div><dt>Pembiayaan</dt><dd>Belum tersedia</dd></div>
