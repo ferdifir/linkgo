@@ -122,7 +122,7 @@
         .usaha-card svg { width: 18px; height: 18px }
         .usaha-card strong { margin-top: 17px; font-size: 13px }
         .usaha-card small { margin-top: 3px; color: var(--muted); font-size: 10px }
-        .transparency-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px }
+        .transparency-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px;align-items:start}
         .info-card { min-width: 0; padding: 22px; border: 1px solid var(--line); border-radius: 6px; background: #fff }
         .info-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px }
         .info-card h3 { margin: 0; font: 700 22px/1.1 var(--font-sans) }

@@ -638,7 +638,7 @@
         <section class="section screen-section" id="apbdes">
             <div class="site-width">
                 <div class="section-heading reveal"><div><span class="section-label">Transparansi desa</span><h2>Anggaran dan Pembangunan</h2></div><p>Pantau ringkasan anggaran serta pekerjaan desa.</p></div>
-                <div class="content-grid reveal-stagger">
+                <div class="content-grid reveal-stagger items-start">
                     <article class="content-card">
                         <div class="budget-head"><h3>Alokasi transfer</h3><select class="year-select" id="budget-year" aria-label="Tahun anggaran"><option value="">Pilih tahun</option></select></div>
                         <div id="budget-lines" class="budget-lines">
