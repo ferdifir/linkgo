@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Pajurangan | Portal Warga | LinkGo</title>
     <meta name="description" content="Informasi pelayanan, pembangunan, dan kegiatan Desa Pajurangan.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root {

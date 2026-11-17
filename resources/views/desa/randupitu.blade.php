@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Randupitu | Portal Warga | LinkGo</title>
     <meta name="description" content="Portal layanan dan informasi Pemerintah Desa Randupitu, Kecamatan Gending, Kabupaten Probolinggo.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root{--paper:#f7f2e9;--paper2:#eee6d8;--ink:#262923;--muted:#6d7068;--line:#d8d1c3;--tomato:#9f3828;--tomato-dark:#79291f;--leaf:#365845;--gold:#dfa94a;--white:#fffdf8;--serif:Georgia,'Times New Roman',serif;--sans:var(--font-sans);--page:1240px;--shadow:0 18px 48px rgb(52 39 25 / 13%)}

@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Pesisir · Ruang Air dan Warga | LinkGo</title>
     <meta name="description" content="Informasi layanan, ruang hidup, dan pembangunan Desa Pesisir, Kecamatan Gending, Kabupaten Probolinggo.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root{--ps-ink:#153640;--ps-deep:#123c49;--ps-blue:#216779;--ps-teal:#6baba3;--ps-foam:#d4e7de;--ps-sand:#f0e7d5;--ps-paper:#f7f5ed;--ps-white:#fffefa;--ps-muted:#586a6d;--ps-line:#d3ddda;--ps-wrap:1240px;--ps-sans:var(--font-sans,ui-sans-serif,system-ui,sans-serif)}

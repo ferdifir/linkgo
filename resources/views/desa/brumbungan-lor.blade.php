@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Brumbungan Lor | Kecamatan Gending | LinkGo</title>
     <meta name="description" content="Informasi layanan, pembangunan, dan kegiatan warga Desa Brumbungan Lor, Kecamatan Gending, Kabupaten Probolinggo.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root{--bl-paper:#f3f0e8;--bl-white:#fffefa;--bl-ink:#202b2b;--bl-muted:#576660;--bl-line:#d8ded8;--bl-green:#315c4b;--bl-deep:#173a34;--bl-lime:#d9e7a5;--bl-orange:#a6532f;--bl-sand:#e8ddc4;--bl-serif:Georgia,'Times New Roman',serif}

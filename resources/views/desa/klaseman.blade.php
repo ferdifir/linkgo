@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Klaseman · Ruang Warga | LinkGo</title>
     <meta name="description" content="Informasi layanan, kegiatan, pembangunan, dan kabar warga Desa Klaseman, Kecamatan Gending.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root{--kl-ink:#1d2927;--kl-muted:#5c6861;--kl-paper:#f5f1e7;--kl-white:#fffdf7;--kl-line:#d9d5c9;--kl-red:#b44833;--kl-red-dark:#8d3529;--kl-leaf:#526b4e;--kl-yellow:#ffedb4;--kl-serif:Georgia,'Times New Roman',serif;--kl-wrap:1240px}

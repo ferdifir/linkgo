@@ -18,6 +18,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Sebaung · Tumbuh Bersama | LinkGo</title>
     <meta name="description" content="Informasi layanan, kegiatan, dan pembangunan Desa Sebaung, Kecamatan Gending, Kabupaten Probolinggo.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root{--sb-ink:#20372e;--sb-green:#315c46;--sb-leaf:#b9d376;--sb-purple:#755473;--sb-paper:#f5f3e9;--sb-white:#fffefa;--sb-muted:#5d6b62;--sb-line:#d9ded1;--sb-sand:#e8e5d8;--sb-wrap:1240px;--sb-sans:var(--font-sans,ui-sans-serif,system-ui,sans-serif)}

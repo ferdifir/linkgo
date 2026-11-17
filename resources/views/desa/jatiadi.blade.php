@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Jatiadi · Ruang Warga | LinkGo</title>
     <meta name="description" content="Portal layanan, pembangunan, dan informasi warga Desa Jatiadi, Kecamatan Gending.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root{--ja-ink:#172c25;--ja-forest:#164b38;--ja-leaf:#d6ed63;--ja-paper:#f5f5ed;--ja-white:#fff;--ja-muted:#627068;--ja-line:#d8ddd3;--ja-sand:#e8eadf;--ja-wrap:1240px;--ja-sans:var(--font-sans,ui-sans-serif,system-ui,sans-serif)}

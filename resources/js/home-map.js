@@ -1,4 +1,4 @@
-import { AttributionControl, Map, ScaleControl, setWorkerUrl } from 'maplibre-gl';
+import { AttributionControl, Map as MapLibreMap, ScaleControl, setWorkerUrl } from 'maplibre-gl';
 
 setWorkerUrl(new URL('maplibre-gl/dist/maplibre-gl-worker.mjs', import.meta.url).toString());
 
@@ -11,9 +11,12 @@ const preview = document.getElementById('village-preview');
 const previewTitle = document.getElementById('preview-title');
 const previewCopy = document.getElementById('preview-copy');
 const previewLink = document.getElementById('preview-link');
+const previewImage = document.getElementById('preview-image');
+const previewPanel = document.querySelector('.gending-map-panel');
 const message = document.getElementById('map-message');
 
 const villageOptions = [...document.querySelectorAll('[data-village-option]')];
+const openGraphCache = new Map();
 const mobileViewport = window.matchMedia('(max-width: 760px)');
 const gendingCenter = [113.309714, -7.792714];
 const desktopPadding = { top: 104, right: 96, bottom: 96, left: 480 };
@@ -36,7 +39,7 @@ let loadingTimer = window.setTimeout(() => {
     showMapMessage('Peta sedang memuat. Pastikan koneksi internet tersedia.');
 }, 12000);
 
-const map = new Map({
+const map = new MapLibreMap({
     container: mapElement,
     style: 'https://tiles.openfreemap.org/styles/positron',
     center: gendingCenter,
@@ -223,11 +226,7 @@ function addVillageLayers(data) {
     map.on('click', 'village-fill', (event) => {
         const feature = event.features?.[0];
         if (feature?.properties?.url) {
-            if (mobileViewport.matches) {
-                window.location.assign(feature.properties.url);
-            } else {
-                showVillagePreview(feature.properties);
-            }
+            showVillagePreview(feature.properties);
         }
     });
 }
@@ -343,18 +342,56 @@ function showVillagePreview(properties) {
     activeFeatureId = properties.slug;
     villageOptions.forEach((option) => setOptionHighlight(option.dataset.slug, option.dataset.slug === properties.slug));
     preview.classList.add('is-active');
+    previewPanel.classList.add('has-village-preview');
     previewTitle.textContent = properties.name;
     previewCopy.textContent = `Lihat informasi, layanan, dan kabar terbaru Desa ${properties.name}.`;
     previewLink.href = properties.url;
     previewLink.hidden = false;
+    previewImage.hidden = true;
+    previewImage.removeAttribute('src');
+
+    loadVillageOpenGraph(properties.slug).then((metadata) => {
+        if (activeFeatureId !== properties.slug) {
+            return;
+        }
+
+        if (metadata.image) {
+            previewImage.src = metadata.image;
+            previewImage.alt = metadata.imageAlt || `Pratinjau situs ${properties.name}`;
+            previewImage.classList.toggle('is-logo', metadata.image.endsWith('/portal-logo.webp'));
+            previewImage.hidden = false;
+        }
+    }).catch(() => {});
+}
+
+async function loadVillageOpenGraph(slug) {
+    const url = `/api/desa/${encodeURIComponent(slug)}/open-graph`;
+
+    if (!openGraphCache.has(url)) {
+        const metadataRequest = fetch(url, { headers: { Accept: 'application/json' } })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Metadata desa tidak dapat dimuat.');
+                }
+
+                return response.json();
+            });
+
+        openGraphCache.set(url, metadataRequest);
+    }
+
+    return openGraphCache.get(url);
 }
 
 function resetVillagePreview() {
     activeFeatureId = null;
     villageOptions.forEach((option) => setOptionHighlight(option.dataset.slug, false));
     preview.classList.remove('is-active');
+    previewPanel.classList.remove('has-village-preview');
     previewTitle.textContent = 'Pilih satu desa';
     previewCopy.textContent = 'Klik wilayah berwarna untuk membuka situs desa. Perkecil peta untuk melihat posisi Gending di Jawa Timur.';
+    previewImage.hidden = true;
+    previewImage.removeAttribute('src');
     previewLink.hidden = true;
     previewLink.removeAttribute('href');
 }

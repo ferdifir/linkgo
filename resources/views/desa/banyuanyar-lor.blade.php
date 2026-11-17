@@ -18,6 +18,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Banyuanyar Lor · Ruang yang Menyambung | LinkGo</title>
     <meta name="description" content="Ruang informasi layanan, pembangunan, dan kegiatan warga Desa Banyuanyar Lor, Kecamatan Gending.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root{--by-ink:#1d3040;--by-blue:#24465b;--by-orange:#a94f35;--by-yellow:#f0c875;--by-paper:#f4f0e7;--by-white:#fffdf8;--by-muted:#56646b;--by-line:#d9d9d0;--by-sand:#e9e3d5;--by-wrap:1240px;--by-sans:var(--font-sans,ui-sans-serif,system-ui,sans-serif)}

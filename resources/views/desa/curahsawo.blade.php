@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Panduan warga Desa Curahsawo, Kecamatan Gending, Kabupaten Probolinggo. Temukan informasi layanan balai desa, pembangunan, anggaran, dan kegiatan warga.">
   <meta name="theme-color" content="#f6f7f2">
-  <meta property="og:title" content="Desa Curahsawo | Gending, Probolinggo | LinkGo">
-  <meta property="og:description" content="Layanan balai desa, pembangunan, anggaran, dan kegiatan warga Curahsawo.">
+  @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
   <style>
 @font-face{font-family:Instrument Serif;src:url("{{ asset('fonts/curahsawo-instrument-serif-regular.woff2') }}") format("woff2");font-display:swap}
 @font-face{font-family:Instrument Serif;src:url("{{ asset('fonts/curahsawo-instrument-serif-italic.woff2') }}") format("woff2");font-style:italic;font-display:swap}

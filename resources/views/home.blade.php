@@ -24,6 +24,14 @@
     <meta name="description" content="LinkGo membantu Anda menjelajahi 13 desa di Kecamatan Gending melalui peta interaktif dan membuka laman informasi setiap desa.">
     <meta property="og:site_name" content="LinkGo">
     <meta property="og:title" content="LinkGo | Jelajahi Desa di Kecamatan Gending">
+    <meta property="og:description" content="LinkGo membantu Anda menjelajahi 13 desa di Kecamatan Gending melalui peta interaktif dan membuka laman informasi setiap desa.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ route('home') }}">
+    <meta property="og:image" content="{{ asset('images/open-graph/linkgo.png') }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Hero peta interaktif LinkGo yang menampilkan batas 13 desa di Kecamatan Gending">
     <title>LinkGo | Jelajahi Desa di Kecamatan Gending</title>
     @include('desa.partials.favicon')
     @vite(['resources/css/app.css', 'resources/css/home.css', 'resources/js/home-map.js'])
@@ -80,6 +88,7 @@
 
             <section id="village-preview" class="gending-preview" aria-live="polite" aria-atomic="true">
                 <span class="gending-preview-index">PETA WILAYAH</span>
+                <img id="preview-image" class="gending-preview-image" alt="" hidden>
                 <h2 id="preview-title">Pilih satu desa</h2>
                 <p id="preview-copy">Klik wilayah berwarna untuk membuka situs desa. Inset menunjukkan posisi Gending di Jawa Timur.</p>
                 <a id="preview-link" class="gending-preview-link" href="#" hidden>

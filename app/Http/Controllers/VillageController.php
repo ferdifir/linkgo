@@ -32,13 +32,29 @@ class VillageController
         abort_unless(preg_match('/^[a-z0-9-]+$/', $slug) && view()->exists('desa.'.$slug), 404);
         $this->recordPageView($slug);
 
+        $villageOpenGraph = config('villages.'.$slug);
+        abort_unless(is_array($villageOpenGraph), 404);
+
         $villageIndexData = VillageIndex::query()
             ->where('village_slug', $slug)
             ->orderByDesc('year')
             ->first();
 
-        return response()->view('desa.'.$slug, compact('villageIndexData'))
+        return response()->view('desa.'.$slug, compact('villageIndexData', 'villageOpenGraph', 'slug'))
             ->header('Content-Type', 'text/html; charset=utf-8');
+    }
+
+    public function villageOpenGraph(string $slug): JsonResponse
+    {
+        abort_unless(preg_match('/^[a-z0-9-]+$/', $slug), 404);
+
+        $metadata = config('villages.'.$slug);
+        abort_unless(is_array($metadata), 404);
+
+        return response()->json([
+            'image' => $metadata['image'] ? asset($metadata['image']) : null,
+            'imageAlt' => $metadata['image_alt'],
+        ])->header('Cache-Control', 'public, max-age=3600');
     }
 
     public function villageContent(string $slug): JsonResponse

@@ -36,6 +36,7 @@ Route::get('/admin/{page?}', function (Request $request, ?string $page = null) {
 })->name('admin.page');
 
 Route::prefix('api')->group(function () {
+    Route::get('/desa/{slug}/open-graph', [VillageController::class, 'villageOpenGraph']);
     Route::get('/desa/{slug}/content', [VillageController::class, 'villageContent']);
     Route::get('/desa/{slug}/managed-content', [VillageController::class, 'publicManagedContent']);
     Route::post('/desa/{slug}/requests', [VillageController::class, 'storePublicRequest']);

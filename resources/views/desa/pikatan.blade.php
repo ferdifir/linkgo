@@ -18,6 +18,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Pikatan · Aliran yang Menghidupi | LinkGo</title>
     <meta name="description" content="Portal layanan, informasi pembangunan, dan kegiatan warga Desa Pikatan, Kecamatan Gending, Kabupaten Probolinggo.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root{--pk-ink:#26372f;--pk-green:#385949;--pk-water:#9dc7bf;--pk-red:#a44b43;--pk-paper:#f4f1e7;--pk-white:#fffdf7;--pk-muted:#515e57;--pk-line:#d8ddd1;--pk-clay:#e8ded2;--pk-sans:var(--font-sans,ui-sans-serif,system-ui,sans-serif)}

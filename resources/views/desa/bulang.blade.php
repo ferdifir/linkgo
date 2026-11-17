@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Bulang | Informasi Warga | LinkGo</title>
     <meta name="description" content="Portal informasi dan layanan Pemerintah Desa Bulang, Kecamatan Gending, Kabupaten Probolinggo.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root{--paper:#f5f2ec;--white:#fffefa;--ink:#1d2731;--muted:#5e6871;--line:#d9dedf;--blue:#174eb5;--blue-dark:#103a86;--blue-pale:#e7eefb;--orange:#e56c37;--orange-pale:#fff0e7;--green:#405c4c;--serif:Georgia,'Times New Roman',serif;--page:1200px}

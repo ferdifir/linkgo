@@ -18,6 +18,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Desa Sumberkerang · Jejak Mata Air | LinkGo</title>
     <meta name="description" content="Ruang informasi warga Desa Sumberkerang, Kecamatan Gending, Kabupaten Probolinggo.">
+    @include('desa.partials.open-graph', ['villageOpenGraph' => $villageOpenGraph, 'villageSlug' => $slug])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root{--sk-ink:#183b3b;--sk-deep:#163f43;--sk-water:#3b6e69;--sk-mist:#d7e8df;--sk-coral:#a94f35;--sk-paper:#f2eee4;--sk-white:#fffdf7;--sk-muted:#5e706b;--sk-line:#d5dcd2;--sk-wrap:1240px;--sk-sans:var(--font-sans,ui-sans-serif,system-ui,sans-serif)}
