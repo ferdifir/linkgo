@@ -368,6 +368,8 @@ body {
 }
 
 .gending-preview.is-active {
+    min-height: 0;
+    flex: none;
     justify-content: flex-start;
     padding: 14px 16px;
     border-color: #b8d1c2;
