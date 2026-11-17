@@ -645,7 +645,9 @@ body {
     }
 
     .gending-map-panel.has-village-preview {
+        height: fit-content;
         max-height: min(65dvh, 500px);
+        overflow-y: auto;
     }
 
     .gending-map-panel.has-village-preview .gending-province-locator,
