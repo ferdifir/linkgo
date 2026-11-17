@@ -42,7 +42,7 @@
     <main>
         <section class="ps-hero" id="beranda"><div class="ps-wrap">
             <div class="ps-hero-grid portal-mobile-stack"><div class="ps-hero-copy"><span class="ps-kicker">Kecamatan Gending · Jawa Timur</span><h1>Pesisir</h1><p class="ps-hero-subtitle">Ruang air, lahan, dan kehidupan warga.</p><p>Informasi pelayanan dan perkembangan Desa Pesisir dalam satu ruang.</p><div class="ps-actions"><a class="ps-button" href="#layanan">Temukan layanan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="ps-button secondary" href="#kabar">Kabar Pesisir</a></div></div>
-                <figure class="ps-tide"><img class="ps-tide-image" src="{{ asset('images/pesisir-hero.jpg') }}" alt="Ilustrasi tambak pesisir, perahu nelayan, dan laut."><figcaption class="ps-tide-note"><strong>Tambak dan laut.</strong><span>Ilustrasi ruang hidup di wilayah pesisir.</span></figcaption></figure>
+                <figure class="ps-tide"><img class="ps-tide-image" src="{{ asset('images/pesisir-hero.jpg') }}" alt="Ilustrasi tambak pesisir, perahu nelayan, dan laut."><figcaption class="ps-tide-note"><strong>Tambak dan laut.</strong></figcaption></figure>
             </div><div class="ps-hero-meta"><span><strong>Desa Pesisir</strong> · Kecamatan Gending</span><span>Informasi publik untuk warga</span></div>
         </div></section>
 

@@ -52,7 +52,7 @@
     <main>
         <section class="sb-hero" id="beranda"><div class="sb-wrap">
             <div class="sb-hero-grid"><div class="sb-hero-copy"><span class="sb-eyebrow">Kecamatan Gending · Jawa Timur</span><h1>Sebaung,<span>tumbuh bersama.</span></h1><p>Ruang informasi layanan, pembangunan, dan kehidupan warga Desa Sebaung.</p><div class="sb-hero-actions"><a class="sb-button" href="#layanan">Cari layanan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="sb-button secondary" href="#kabar">Kabar desa</a></div></div>
-                <figure class="sb-art"><img class="sb-art-card" src="{{ asset('images/sebaung-grapes.jpg') }}" alt="Ilustrasi tandan anggur ungu yang tampak jelas di antara daun dan sulurnya."><figcaption class="sb-art-label"><strong>Anggur, cerita yang tumbuh kembali.</strong><span>Upaya warga menghidupkan kembali anggur sebagai ikon desa.</span></figcaption></figure>
+                <figure class="sb-art"><img class="sb-art-card" src="{{ asset('images/sebaung-grapes.jpg') }}" alt="Ilustrasi tandan anggur ungu yang tampak jelas di antara daun dan sulurnya."><figcaption class="sb-art-label"><strong>Anggur, cerita yang tumbuh kembali.</strong></figcaption></figure>
             </div><div class="sb-hero-foot"><span><strong>Desa Sebaung</strong> · Kecamatan Gending</span><span>Informasi warga dalam satu ruang</span></div>
         </div></section>
 

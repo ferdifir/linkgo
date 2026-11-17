@@ -51,7 +51,7 @@
     </div></header>
     <main>
         <section class="pk-hero" id="beranda"><div class="pk-wrap"><div class="pk-hero-grid"><div class="pk-hero-copy"><span class="pk-eyebrow">Kecamatan Gending · Jawa Timur</span><h1>Pikatan,<span>air yang menumbuhkan.</span></h1><p>Ruang informasi desa yang tumbuh dari pertanian, air, dan usaha warga.</p><div class="pk-hero-links"><a class="pk-button" href="#layanan">Temukan layanan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="pk-button secondary" href="#kabar">Baca kabar desa</a></div></div>
-                <figure class="pk-field-art"><img class="pk-field-image" src="{{ asset('images/pikatan-hero.jpg') }}" alt="Ilustrasi saluran irigasi di antara lahan bawang merah dan padi."><figcaption class="pk-field-note"><strong>Air, lahan, pangan.</strong><span>Ilustrasi saluran irigasi dan lahan pertanian.</span></figcaption></figure>
+                <figure class="pk-field-art"><img class="pk-field-image" src="{{ asset('images/pikatan-hero.jpg') }}" alt="Ilustrasi saluran irigasi di antara lahan bawang merah dan padi."><figcaption class="pk-field-note"><strong>Air, lahan, pangan.</strong></figcaption></figure>
             </div><div class="pk-hero-foot"><p><strong>Desa Pikatan</strong> · Kecamatan Gending</p><div class="pk-flow"><span>Air</span><i></i><span>Tanam</span><i></i><span>Panen</span></div></div>
         </div></section>
 
