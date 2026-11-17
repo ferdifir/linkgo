@@ -151,6 +151,13 @@ body {
     backdrop-filter: blur(18px);
 }
 
+.gending-map-panel.has-village-preview {
+    height: fit-content;
+    max-height: calc(100dvh - 118px);
+    overflow-y: auto;
+    padding-bottom: 0;
+}
+
 .gending-panel-top {
     min-height: 21px;
 }
@@ -645,10 +652,7 @@ body {
     }
 
     .gending-map-panel.has-village-preview {
-        height: fit-content;
         max-height: min(65dvh, 500px);
-        overflow-y: auto;
-        padding-bottom: 0;
     }
 
     .gending-map-panel.has-village-preview .gending-province-locator,
