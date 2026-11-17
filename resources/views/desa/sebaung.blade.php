@@ -77,7 +77,7 @@
         <section class="sb-section" id="usulan"><div class="sb-wrap sb-section-head"><div><span class="sb-kicker">Suara warga</span><h2>Sampaikan kebutuhan lingkungan.</h2></div><p>Usulan warga dikirim kepada pengelola desa. Nama dan kontak bersifat opsional. Informasi yang dikirim tidak ditampilkan di halaman publik.</p></div></section>
     </main>
 
-    @include('desa.partials.footer')
+    @include('desa.partials.footer', ['instagramUrl' => 'https://www.instagram.com/pemdes_sebaung/'])
 
     <aside class="sb-chat" id="sb-chat" aria-hidden="true" aria-label="Formulir usulan warga"><div class="sb-chat-head"><div><strong>Usulan warga Sebaung</strong><small>Pertanyaan singkat, satu per satu</small></div><button class="sb-chat-close" id="sb-chat-close" type="button" aria-label="Tutup formulir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="sb-chat-body"><div class="sb-chat-messages" id="sb-chat-messages"></div><div class="sb-chat-controls" id="sb-chat-controls"></div><div class="sb-chat-error" id="sb-chat-error" role="alert"></div><div class="sb-chat-actions" id="sb-chat-actions"></div></div></aside>
     <button class="sb-chat-toggle" id="sb-chat-toggle" type="button" aria-expanded="false" aria-controls="sb-chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-9.5A7.5 7.5 0 0 1 10.5 4h2A7.5 7.5 0 0 1 20 11.5Z"/><path d="M8 11h8M8 14h5"/></svg><span>Sampaikan usulan</span></button>

@@ -54,6 +54,7 @@
         'villageName' => 'Bulang',
         'initial' => 'B',
         'theme' => 'bulang',
+        'instagramUrl' => 'https://www.instagram.com/pemdes_bulang/',
         'links' => [
             ['label' => 'Profil Desa', 'href' => '#profil'],
             ['label' => 'Layanan', 'href' => '#layanan'],

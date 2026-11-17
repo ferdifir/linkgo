@@ -79,6 +79,7 @@
         'villageName' => 'Brumbungan Lor',
         'initial' => 'BL',
         'theme' => 'brumbungan-lor',
+        'instagramUrl' => 'https://www.instagram.com/pemdesbrumbunganlor/',
         'links' => [
             ['label' => 'Profil desa', 'href' => '#profil'],
             ['label' => 'Layanan', 'href' => '#layanan'],

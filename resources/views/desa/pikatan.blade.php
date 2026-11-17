@@ -71,7 +71,7 @@
         <section class="pk-section" id="usulan"><div class="pk-wrap pk-section-head"><div><span class="pk-kicker">Aspirasi warga</span><h2>Ada yang perlu dibenahi?</h2></div><p>Sampaikan kebutuhan atau usulan lingkungan. Nama dan kontak bersifat opsional. Isi usulan tidak ditampilkan kepada publik.</p></div></section>
     </main>
 
-    @include('desa.partials.footer')
+    @include('desa.partials.footer', ['instagramUrl' => 'https://www.instagram.com/desapikatan8/'])
     <aside class="pk-chat" id="pk-chat" aria-hidden="true" aria-label="Formulir usulan warga"><div class="pk-chat-head"><div><strong>Usulan warga Pikatan</strong><small>Jawab beberapa pertanyaan singkat</small></div><button class="pk-chat-close" id="pk-chat-close" type="button" aria-label="Tutup formulir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="pk-chat-body"><div class="pk-chat-messages" id="pk-chat-messages"></div><div class="pk-chat-controls" id="pk-chat-controls"></div><div class="pk-chat-error" id="pk-chat-error" role="alert"></div><div class="pk-chat-actions" id="pk-chat-actions"></div></div></aside>
     <button class="pk-chat-toggle" id="pk-chat-toggle" type="button" aria-expanded="false" aria-controls="pk-chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-9.5A7.5 7.5 0 0 1 10.5 4h2A7.5 7.5 0 0 1 20 11.5Z"/><path d="M8 11h8M8 14h5"/></svg><span>Sampaikan usulan</span></button>
     <script>

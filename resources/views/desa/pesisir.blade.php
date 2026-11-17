@@ -70,6 +70,7 @@
         'villageName' => 'Pesisir',
         'initial' => 'P',
         'theme' => 'pesisir',
+        'instagramUrl' => 'https://www.instagram.com/pemdes.pesisir/',
         'links' => [
             ['label' => 'Ruang hidup', 'href' => '#ruang-hidup'],
             ['label' => 'Layanan', 'href' => '#layanan'],

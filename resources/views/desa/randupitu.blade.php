@@ -94,6 +94,7 @@
         'villageName' => 'Randupitu',
         'initial' => 'R',
         'theme' => 'randupitu',
+        'instagramUrl' => 'https://www.instagram.com/pemdesr7/',
         'links' => [
             ['label' => 'Profil Desa', 'href' => '#profil'],
             ['label' => 'Layanan', 'href' => '#layanan'],

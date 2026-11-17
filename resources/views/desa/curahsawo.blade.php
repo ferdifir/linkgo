@@ -615,6 +615,7 @@ details[open] .expand svg { transform:rotate(180deg) }
     'villageName' => 'Curahsawo',
     'initial' => 'C',
     'theme' => 'curahsawo',
+    'instagramUrl' => 'https://www.instagram.com/curahsawo/',
     'links' => [
         ['label' => 'Profil Desa', 'href' => '#profil'],
         ['label' => 'Layanan', 'href' => '#layanan'],

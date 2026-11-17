@@ -5,7 +5,7 @@
     .portal-footer__grid{display:grid;grid-template-columns:1.45fr 1fr 1fr .8fr;gap:38px;max-width:1280px;margin-inline:auto}
     .portal-village-logo{display:grid;width:46px;height:46px;flex:none;place-items:center;overflow:hidden;border:1px solid currentColor;border-radius:31%;background:#f7fcff}.portal-village-logo img{display:block;width:100%;height:100%;object-fit:contain}.portal-footer__identity{display:grid;grid-template-columns:70px minmax(0,1fr);align-content:start;gap:18px}.portal-footer__seal{display:block;width:64px;height:64px;overflow:hidden;border:2px solid rgb(255 255 255/.82);border-radius:31%;background:#f7fcff}.portal-footer__seal img{display:block;width:100%;height:100%;object-fit:contain}
     .portal-footer__section h2,.portal-footer__identity h2{margin:0 0 14px;color:#fff;font-size:20px;font-weight:750;line-height:1.25}.portal-footer__identity p,.portal-footer__section p{margin:0 0 5px}
-    .portal-footer__contact{display:flex;align-items:flex-start;gap:11px;margin:0 0 14px!important}.portal-footer__contact svg{width:19px;height:19px;flex:none;margin-top:2px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8}.portal-footer__social{margin-top:19px!important;color:rgb(255 255 255/.85)}
+    .portal-footer__contact{display:flex;align-items:flex-start;gap:11px;margin:0 0 14px!important}.portal-footer__contact svg{width:19px;height:19px;flex:none;margin-top:2px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8}.portal-footer__social{margin-top:19px!important;color:rgb(255 255 255/.85)}.portal-footer__social-link{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;color:#fff!important;border:1px solid rgb(255 255 255/.55);border-radius:50%;text-decoration:none!important}.portal-footer__social-link svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
     .portal-footer__links{display:flex;flex-direction:column;align-items:flex-start;gap:5px}.portal-footer__links h2{margin-bottom:9px}.portal-footer a{color:#fff;text-decoration:underline;text-underline-offset:3px}
     .portal-footer__bottom{margin:48px auto 0;color:rgb(255 255 255/.88);text-align:center}.portal-footer__bottom a{font-weight:800}
     @media(max-width:900px){.portal-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 28px}}
@@ -27,7 +27,15 @@
             <h2>Hubungi Kami</h2>
             <p class="portal-footer__contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-3 2c1.5 3 3 4.5 6 6l2-3 5 2v4c0 1-1 2-2 2C9 21 3 15 3 6c0-1 1-2 2-2Z"/></svg><span>Telepon belum tersedia</span></p>
             <p class="portal-footer__contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg><span>Email belum tersedia</span></p>
-            <p class="portal-footer__social">Kanal media sosial belum tersedia</p>
+            @if (! empty($instagramUrl ?? null))
+                <p class="portal-footer__social">
+                    <a class="portal-footer__social-link" href="{{ $instagramUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram {{ $villageName }}" title="Instagram {{ $villageName }}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                </p>
+            @else
+                <p class="portal-footer__social">Kanal media sosial belum tersedia</p>
+            @endif
         </section>
 
         <section class="portal-footer__section">

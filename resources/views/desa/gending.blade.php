@@ -457,6 +457,7 @@
         'villageName' => 'Gending',
         'initial' => 'G',
         'theme' => 'gending',
+        'instagramUrl' => 'https://www.instagram.com/desagending13/',
         'links' => [
             ['label' => 'Profil Desa', 'href' => '#profil'],
             ['label' => 'Layanan', 'href' => '#layanan'],

@@ -721,6 +721,7 @@
                 'villageName' => 'Pajurangan',
                 'initial' => 'P',
                 'theme' => 'pajurangan',
+                'instagramUrl' => 'https://www.instagram.com/pemdes_pajurangan/',
                 'links' => [
                     ['label' => 'Profil Desa', 'href' => '#profil'],
                     ['label' => 'Layanan', 'href' => '#layanan'],
