@@ -70,8 +70,11 @@ return [
     'sebaung' => [
         'title' => 'Desa Sebaung · Tumbuh Bersama | LinkGo',
         'description' => 'Informasi layanan, kegiatan, dan pembangunan Desa Sebaung, Kecamatan Gending, Kabupaten Probolinggo.',
-        'image' => 'images/open-graph/sebaung.png',
-        'image_alt' => 'Hero Desa Sebaung dengan ilustrasi sulur anggur.',
+        'image' => 'images/open-graph/sebaung-grapes.jpg',
+        'image_type' => 'image/jpeg',
+        'image_width' => 1734,
+        'image_height' => 907,
+        'image_alt' => 'Ilustrasi editorial buah anggur dan sulur daun untuk Desa Sebaung.',
     ],
     'sumberkerang' => [
         'title' => 'Desa Sumberkerang · Jejak Mata Air | LinkGo',
