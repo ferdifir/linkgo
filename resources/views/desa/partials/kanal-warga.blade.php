@@ -42,7 +42,7 @@
 .proposal-chat-cancel { grid-area:cancel }
 .proposal-chat-skip,.proposal-chat-edit { grid-area:extra }
 .proposal-chat-actions .button:hover,.proposal-chat-skip:hover,.proposal-chat-edit:hover { background:#dce9d6 }
-@media(max-width:600px){.proposal-widget{right:14px;bottom:14px}.proposal-chat-panel{width:min(410px,calc(100vw - 28px));height:min(620px,calc(100dvh - 86px));min-height:min(380px,calc(100dvh - 86px))}.proposal-chat-toggle{min-height:49px;padding-inline:15px;font-size:13px}}
+@media(max-width:600px){.proposal-widget{right:12px;bottom:max(12px,env(safe-area-inset-bottom))}.proposal-chat-panel{width:min(410px,calc(100vw - 28px));height:min(620px,calc(100dvh - 86px));min-height:min(380px,calc(100dvh - 86px))}.proposal-chat-toggle{width:50px;height:50px;min-height:50px;justify-content:center;padding:0;border-radius:50%}.proposal-chat-toggle svg{width:20px;height:20px}.proposal-chat-toggle span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
 .proposal-chat-progress{font-size:14px}
 .proposal-chat-bubble{font-size:14px}
 .proposal-chat-choice{font-size:14px}
@@ -76,10 +76,10 @@
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
   const slug=@json(request()->segment(2));
-  document.querySelectorAll('.proposal-fab,.proposal-button,#proposal-open,#proposal-chat,#sk-chat-toggle,#sk-chat').forEach(element=>element.remove());
+  document.querySelectorAll('.proposal-fab,.proposal-button,#proposal-open,#proposal-chat,#sk-chat-toggle,#sk-chat,button[id$="-chat-toggle"]:not(#proposal-chat-toggle)').forEach(element=>element.remove());
   const widget=document.querySelector('.proposal-widget');
   const palette={
-    'banyuanyar-lor':['#24465b','#d27343'],'brumbungan-lor':['#173a34','#d27343'],bulang:['#174eb5','#405c4c'],
+    'banyuanyar-lor':['#24465b','#d27343'],'brumbungan-lor':['#173a34','#d27343'],bulang:['#174eb5','#405c4c'],curahsawo:['#12392f','#e4f2a6'],
     gending:['#234b47','#d6a547'],jatiadi:['#164b38','#d6ed63'],klaseman:['#526b4e','#d1a93a'],
     pajurangan:['#244d3c','#b78742'],pesisir:['#123c49','#6baba3'],pikatan:['#385949','#76a7a0'],
     randupitu:['#365845','#9f3828'],sebaung:['#315c46','#aac26a'],sumberkerang:['#163f43','#4c8983']

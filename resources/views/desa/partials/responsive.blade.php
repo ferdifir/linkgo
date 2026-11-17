@@ -297,6 +297,4 @@
     });
 </script>
 
-@if (request()->segment(2) !== 'curahsawo')
-    @include('desa.partials.kanal-warga')
-@endif
+@include('desa.partials.kanal-warga')
