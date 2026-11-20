@@ -35,4 +35,23 @@ return [
         ],
     ],
 
+    'tokenharbor' => [
+        'api_key' => env('TOKENHARBOR_API_KEY'),
+        'base_url' => env('TOKENHARBOR_BASE_URL', 'https://tokenharbor.ai/v1'),
+        'model' => env('TOKENHARBOR_MODEL', 'deepseek-v4.1-flash:free'),
+    ],
+
+    'telegram' => [
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+        'webhook_secret' => env('TELEGRAM_WEBHOOK_SECRET'),
+    ],
+
+    'whatsapp' => [
+        'access_token' => env('WHATSAPP_ACCESS_TOKEN'),
+        'phone_number_id' => env('WHATSAPP_PHONE_NUMBER_ID'),
+        'app_secret' => env('WHATSAPP_APP_SECRET'),
+        'verify_token' => env('WHATSAPP_VERIFY_TOKEN'),
+        'api_version' => env('WHATSAPP_API_VERSION'),
+    ],
+
 ];

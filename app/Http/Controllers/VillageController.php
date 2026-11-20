@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DraftVillageNewsRequest;
 use App\Http\Requests\LoginAdminRequest;
 use App\Http\Requests\SaveBudgetRequest;
 use App\Http\Requests\SaveProjectRequest;
 use App\Http\Requests\SaveVillageContentRequest;
+use App\Http\Requests\SaveVillageHeadRequest;
+use App\Http\Requests\SaveVillageOfficialRequest;
 use App\Http\Requests\StoreVillageAdminUserRequest;
 use App\Http\Requests\StoreVillageRequestRequest;
 use App\Http\Requests\UpdateVillageAdminUserRequest;
@@ -15,6 +18,7 @@ use App\Jobs\DeleteVillageMediaFile;
 use App\Models\User;
 use App\Models\VillageIndex;
 use App\Notifications\RequestStatusChanged;
+use App\Services\VillageNewsDraftGenerator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +27,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
 class VillageController
@@ -39,8 +44,16 @@ class VillageController
             ->where('village_slug', $slug)
             ->orderByDesc('year')
             ->first();
+        $villageOfficials = DB::table('village_officials')
+            ->where('village_slug', $slug)
+            ->where('published', true)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+        $villageHeadName = DB::table('village_heads')->where('village_slug', $slug)->value('name');
+        $villageHeadInitials = $this->nameInitials($villageHeadName);
 
-        return response()->view('desa.'.$slug, compact('villageIndexData', 'villageOpenGraph', 'slug'))
+        return response()->view('desa.'.$slug, compact('villageIndexData', 'villageOpenGraph', 'villageOfficials', 'villageHeadName', 'villageHeadInitials', 'slug'))
             ->header('Content-Type', 'text/html; charset=utf-8');
     }
 
@@ -96,7 +109,100 @@ class VillageController
             'activities' => $rows->where('type', 'activity')->values(),
             'services' => $rows->where('type', 'service')->values(),
             'profile' => $rows->firstWhere('type', 'profile'),
+            'officials' => DB::table('village_officials')->where('village_slug', $slug)
+                ->where('published', true)->orderBy('sort_order')->orderBy('id')->get()
+                ->map(fn (object $row): array => $this->formatOfficial($row)),
         ]);
+    }
+
+    public function adminOfficials(Request $request): JsonResponse
+    {
+        $officials = DB::table('village_officials')
+            ->where('village_slug', $this->adminVillageSlug($request))
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get()
+            ->map(fn (object $row): array => $this->formatOfficial($row));
+
+        return response()->json($officials);
+    }
+
+    public function createOfficial(SaveVillageOfficialRequest $request): JsonResponse
+    {
+        $slug = $this->adminVillageSlug($request);
+        $validated = $request->validated();
+        $now = now()->utc()->toIso8601String();
+        $id = DB::table('village_officials')->insertGetId([
+            'village_slug' => $slug,
+            'name' => trim($validated['name']),
+            'position' => trim($validated['position']),
+            'image_url' => $validated['imageUrl'] ?? null,
+            'published' => $validated['published'],
+            'sort_order' => $validated['sortOrder'] ?? 0,
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $official = DB::table('village_officials')->where('id', $id)->where('village_slug', $slug)->first();
+
+        return response()->json($this->formatOfficial($official), 201);
+    }
+
+    public function updateOfficial(SaveVillageOfficialRequest $request, int $id): Response
+    {
+        $slug = $this->adminVillageSlug($request);
+        $validated = $request->validated();
+        abort_unless(DB::table('village_officials')->where('id', $id)->where('village_slug', $slug)->exists(), 404);
+
+        DB::table('village_officials')->where('id', $id)->where('village_slug', $slug)->update([
+            'name' => trim($validated['name']),
+            'position' => trim($validated['position']),
+            'image_url' => $validated['imageUrl'] ?? null,
+            'published' => $validated['published'],
+            'sort_order' => $validated['sortOrder'] ?? 0,
+            'updated_at' => now()->utc()->toIso8601String(),
+        ]);
+
+        return response()->noContent();
+    }
+
+    public function deleteOfficial(Request $request, int $id): Response
+    {
+        abort_unless(DB::table('village_officials')->where('id', $id)
+            ->where('village_slug', $this->adminVillageSlug($request))->delete(), 404);
+
+        return response()->noContent();
+    }
+
+    public function adminVillageHead(Request $request): JsonResponse
+    {
+        $slug = $this->adminVillageSlug($request);
+        abort_unless($slug === 'curahsawo', 404);
+
+        return response()->json([
+            'name' => DB::table('village_heads')->where('village_slug', $slug)->value('name') ?? '',
+        ]);
+    }
+
+    public function updateVillageHead(SaveVillageHeadRequest $request): JsonResponse
+    {
+        $slug = $this->adminVillageSlug($request);
+        abort_unless($slug === 'curahsawo', 404);
+
+        $now = now()->utc()->toIso8601String();
+        $headExists = DB::table('village_heads')->where('village_slug', $slug)->exists();
+        $values = [
+            'name' => trim($request->validated('name')),
+            'updated_at' => $now,
+        ];
+
+        if (! $headExists) {
+            $values['created_at'] = $now;
+        }
+
+        DB::table('village_heads')->updateOrInsert(['village_slug' => $slug], $values);
+
+        return response()->json(['name' => $values['name']]);
     }
 
     public function storePublicRequest(StoreVillageRequestRequest $request, string $slug): JsonResponse
@@ -283,6 +389,19 @@ class VillageController
         return response()->json($items);
     }
 
+    public function draftNews(DraftVillageNewsRequest $request, VillageNewsDraftGenerator $generator): JsonResponse
+    {
+        $villageName = (string) DB::table('village_pages')
+            ->where('slug', $request->user()->village_slug)
+            ->value('name');
+
+        try {
+            return response()->json($generator->generate($request->validated('source'), $villageName));
+        } catch (RuntimeException $exception) {
+            return response()->json(['message' => $exception->getMessage()], 503);
+        }
+    }
+
     public function createContent(SaveVillageContentRequest $request, string $type): JsonResponse
     {
         $this->validateContentType($type);
@@ -411,7 +530,7 @@ class VillageController
         $items = DB::table('village_media')->where('village_slug', $slug)->orderByDesc('created_at')->orderByDesc('id')
             ->get()->map(fn ($row) => [
                 'id' => (int) $row->id,
-                'url' => Storage::disk('public')->url($row->path),
+                'url' => url('/storage/'.$row->path),
                 'originalName' => $row->original_name,
                 'mimeType' => $row->mime_type,
                 'size' => (int) $row->size,
@@ -453,7 +572,7 @@ class VillageController
 
         return response()->json([
             'id' => (int) $media->id,
-            'url' => Storage::disk('public')->url($media->path),
+            'url' => url('/storage/'.$media->path),
             'originalName' => $media->original_name,
             'mimeType' => $media->mime_type,
             'size' => (int) $media->size,
@@ -637,6 +756,38 @@ class VillageController
         ];
     }
 
+    /**
+     * @return array{id: int, name: string, position: string, imageUrl: ?string, published: bool, sortOrder: int}
+     */
+    private function formatOfficial(object $row): array
+    {
+        return [
+            'id' => (int) $row->id,
+            'name' => $row->name,
+            'position' => $row->position,
+            'imageUrl' => $row->image_url,
+            'published' => (bool) $row->published,
+            'sortOrder' => (int) $row->sort_order,
+        ];
+    }
+
+    private function nameInitials(?string $name): string
+    {
+        if (! $name) {
+            return 'KD';
+        }
+
+        $nameParts = preg_split('/[\s.,]+/', trim($name), -1, PREG_SPLIT_NO_EMPTY) ?: [];
+        $titles = ['h', 'hj', 'dr', 'prof', 'ir', 'kh', 'kyai', 'nyai'];
+        $nameParts = array_values(array_filter($nameParts, fn (string $part): bool => ! in_array(mb_strtolower($part), $titles, true)));
+        $initials = implode('', array_map(
+            fn (string $part): string => mb_strtoupper(mb_substr($part, 0, 1)),
+            array_slice($nameParts, 0, 2),
+        ));
+
+        return $initials !== '' ? $initials : mb_strtoupper(mb_substr($name, 0, 1));
+    }
+
     private function contentInput(array $data, string $type, string $villageSlug): array
     {
         $profile = $type === 'profile' ? ($data['profile'] ?? []) : [];
@@ -669,7 +820,7 @@ class VillageController
     {
         $now = now()->utc()->toIso8601String();
         $viewDate = now()->toDateString();
-        $path = '/desa/'.$slug;
+        $path = '/gending/'.$slug;
         DB::table('village_page_views')->insertOrIgnore([
             'village_slug' => $slug,
             'path' => $path,

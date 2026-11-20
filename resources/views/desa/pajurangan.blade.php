@@ -530,7 +530,7 @@
 <body>
     <a class="skip-link" href="#konten">Lewati ke konten</a>
     <div class="utility-bar">
-        <div class="site-width utility-inner"><span>Pemerintah Desa Pajurangan</span><span>Kecamatan Gending · Kabupaten Probolinggo</span></div>
+        <div class="site-width utility-inner portal-utility-inner"><span><span class="portal-utility-desktop">Pemerintah Desa Pajurangan</span><span class="portal-utility-mobile">Pemdes Pajurangan · Kec. Gending</span></span><span>Kecamatan Gending · Kabupaten Probolinggo</span></div>
     </div>
     <header class="site-header">
         <div class="site-width header-inner">
@@ -610,9 +610,15 @@
                     <aside class="staff-lead"><span class="staff-lead-mark" aria-hidden="true">P</span><div><span class="section-label">Pemerintah Pajurangan</span><h3>Perangkat desa melayani warga.</h3><p>Kenali susunan pemerintah desa dan bidang pelayanan yang tersedia.</p></div><a href="#lokasi">Hubungi kantor desa <svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></aside>
                     <div class="staff-grid portal-mobile-two-col grid grid-cols-2 gap-4">
                         <article class="staff-card"><span class="avatar" aria-hidden="true">KP</span><small>Kepala Desa</small><h3>Belum tersedia</h3><p>Desa Pajurangan</p></article>
-                        <article class="staff-card"><span class="avatar" aria-hidden="true">SD</span><small>Sekretaris Desa</small><h3>Belum tersedia</h3><p>Sekretariat desa</p></article>
-                        <article class="staff-card"><span class="avatar" aria-hidden="true">KP</span><small>Kasi Pemerintahan</small><h3>Belum tersedia</h3><p>Pemerintahan</p></article>
-                        <article class="staff-card"><span class="avatar" aria-hidden="true">KK</span><small>Kasi Kesejahteraan</small><h3>Belum tersedia</h3><p>Kesejahteraan</p></article>
+                        @if ($villageOfficials->isNotEmpty())
+                            @foreach ($villageOfficials as $official)
+                                <article class="staff-card">@if ($official->image_url)<img class="avatar village-official-photo" src="{{ $official->image_url }}" alt="Foto {{ $official->name }}" loading="lazy">@else<span class="avatar" aria-hidden="true">{{ mb_strtoupper(mb_substr($official->name, 0, 1)) }}</span>@endif<small>{{ $official->position }}</small><h3>{{ $official->name }}</h3><p>Pemerintah desa</p></article>
+                            @endforeach
+                        @else
+                            <article class="staff-card"><span class="avatar" aria-hidden="true">SD</span><small>Sekretaris Desa</small><h3>Belum tersedia</h3><p>Sekretariat desa</p></article>
+                            <article class="staff-card"><span class="avatar" aria-hidden="true">KP</span><small>Kasi Pemerintahan</small><h3>Belum tersedia</h3><p>Pemerintahan</p></article>
+                            <article class="staff-card"><span class="avatar" aria-hidden="true">KK</span><small>Kasi Kesejahteraan</small><h3>Belum tersedia</h3><p>Kesejahteraan</p></article>
+                        @endif
                     </div>
                 </div>
             </div>

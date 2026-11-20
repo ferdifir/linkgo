@@ -1,15 +1,23 @@
 <?php
 
+use App\Http\Controllers\AdminChatController;
+use App\Http\Controllers\TelegramAdminChatWebhookController;
 use App\Http\Controllers\VillageController;
 use App\Http\Controllers\VillageProposalController;
+use App\Http\Controllers\WhatsAppAdminChatWebhookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('home');
-Route::get('/desa/{slug}', [VillageController::class, 'show'])->name('village.show');
+Route::get('/gending/{slug}', [VillageController::class, 'show'])->name('village.show');
+Route::get('/desa/{slug}', [VillageController::class, 'show'])->name('village.show.alias');
 Route::get('/admin/{page?}', function (Request $request, ?string $page = null) {
-    $availablePages = ['dashboard', 'projects', 'budgets', 'proposals', 'requests', 'content', 'media', 'analytics', 'users'];
+    if ($page === 'content') {
+        return redirect()->route('admin.page', ['page' => 'news']);
+    }
+
+    $availablePages = ['dashboard', 'projects', 'budgets', 'proposals', 'requests', 'news', 'activities', 'services', 'officials', 'media', 'analytics', 'users'];
     $adminPage = $page ?? 'dashboard';
     abort_unless(in_array($adminPage, $availablePages, true), 404);
 
@@ -36,6 +44,15 @@ Route::get('/admin/{page?}', function (Request $request, ?string $page = null) {
 })->name('admin.page');
 
 Route::prefix('api')->group(function () {
+    Route::post('/telegram/webhook', TelegramAdminChatWebhookController::class)
+        ->middleware('throttle:telegram-webhook')
+        ->name('telegram.webhook');
+    Route::get('/whatsapp/webhook', [WhatsAppAdminChatWebhookController::class, 'verify'])
+        ->name('whatsapp.webhook.verify');
+    Route::post('/whatsapp/webhook', [WhatsAppAdminChatWebhookController::class, 'receive'])
+        ->middleware('throttle:whatsapp-webhook')
+        ->name('whatsapp.webhook.receive');
+
     Route::get('/desa/{slug}/open-graph', [VillageController::class, 'villageOpenGraph']);
     Route::get('/desa/{slug}/content', [VillageController::class, 'villageContent']);
     Route::get('/desa/{slug}/managed-content', [VillageController::class, 'publicManagedContent']);
@@ -47,12 +64,20 @@ Route::prefix('api')->group(function () {
     Route::post('/logout', [VillageController::class, 'logout']);
 
     Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+        Route::post('/chat', AdminChatController::class)->middleware('throttle:admin-chat');
         Route::get('/session', [VillageController::class, 'adminSession']);
         Route::get('/analytics', [VillageController::class, 'adminAnalytics']);
+        Route::post('/news/draft', [VillageController::class, 'draftNews'])->middleware('throttle:admin-content-ai');
         Route::get('/content/{type}', [VillageController::class, 'adminContent']);
         Route::post('/content/{type}', [VillageController::class, 'createContent']);
         Route::put('/content/{type}/{id}', [VillageController::class, 'updateContent']);
         Route::delete('/content/{type}/{id}', [VillageController::class, 'deleteContent']);
+        Route::get('/officials', [VillageController::class, 'adminOfficials']);
+        Route::post('/officials', [VillageController::class, 'createOfficial']);
+        Route::put('/officials/{id}', [VillageController::class, 'updateOfficial']);
+        Route::delete('/officials/{id}', [VillageController::class, 'deleteOfficial']);
+        Route::get('/village-head', [VillageController::class, 'adminVillageHead']);
+        Route::put('/village-head', [VillageController::class, 'updateVillageHead']);
         Route::get('/media', [VillageController::class, 'adminMedia']);
         Route::post('/media', [VillageController::class, 'uploadMedia']);
         Route::delete('/media/{id}', [VillageController::class, 'deleteMedia']);

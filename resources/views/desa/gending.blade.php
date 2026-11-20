@@ -330,7 +330,7 @@
 </head>
 <body>
     <a class="skip-link" href="#konten">Lewati ke konten</a>
-    <div class="topline"><div class="wrap topline-inner"><p>Pemerintah Desa Gending <span aria-hidden="true">·</span> Kecamatan Gending, Kabupaten Probolinggo</p><p>Portal informasi dan layanan warga</p></div></div>
+    <div class="topline"><div class="wrap topline-inner portal-utility-inner"><p><span class="portal-utility-desktop">Pemerintah Desa Gending <span aria-hidden="true">·</span> Kecamatan Gending, Kabupaten Probolinggo</span><span class="portal-utility-mobile">Pemdes Gending · Kec. Gending</span></p><p>Portal informasi dan layanan warga</p></div></div>
     <header class="header">
         <div class="wrap header-inner">
             <a class="brand" href="#beranda" aria-label="Beranda Desa Gending"><span class="portal-village-logo" aria-hidden="true"><img src="{{ asset('images/portal-logo.webp') }}" alt="" width="44" height="44"></span><span class="brand-name"><strong>Desa Gending</strong><small>Kabupaten Probolinggo</small></span></a>
@@ -369,10 +369,16 @@
                 <div class="welcome-grid portal-mobile-stack">
                     <article class="welcome-note"><blockquote>Selamat datang di portal Desa Gending. Mari bersama menjaga semangat gotong royong dan mengembangkan potensi desa untuk kesejahteraan warga.</blockquote><div class="signature"><span class="signature-mark">K</span><span><strong>Belum tersedia</strong><small>Kepala Desa Gending</small></span></div></article>
                     <article class="staff-panel"><h3>Perangkat Desa</h3><div class="staff-list">
-                        <div class="staff-person"><span class="initial">S</span><span><strong>Belum tersedia</strong><small>Sekretaris Desa</small></span></div>
-                        <div class="staff-person"><span class="initial">K</span><span><strong>Belum tersedia</strong><small>Kasi Pemerintahan</small></span></div>
-                        <div class="staff-person"><span class="initial">K</span><span><strong>Belum tersedia</strong><small>Kasi Kesejahteraan</small></span></div>
-                        <div class="staff-person"><span class="initial">K</span><span><strong>Belum tersedia</strong><small>Kaur Umum</small></span></div>
+                        @if ($villageOfficials->isNotEmpty())
+                            @foreach ($villageOfficials as $official)
+                                <div class="staff-person">@if ($official->image_url)<img class="initial" src="{{ $official->image_url }}" alt="Foto {{ $official->name }}" loading="lazy">@else<span class="initial">{{ mb_strtoupper(mb_substr($official->name, 0, 1)) }}</span>@endif<span><strong>{{ $official->name }}</strong><small>{{ $official->position }}</small></span></div>
+                            @endforeach
+                        @else
+                            <div class="staff-person"><span class="initial">S</span><span><strong>Belum tersedia</strong><small>Sekretaris Desa</small></span></div>
+                            <div class="staff-person"><span class="initial">K</span><span><strong>Belum tersedia</strong><small>Kasi Pemerintahan</small></span></div>
+                            <div class="staff-person"><span class="initial">K</span><span><strong>Belum tersedia</strong><small>Kasi Kesejahteraan</small></span></div>
+                            <div class="staff-person"><span class="initial">K</span><span><strong>Belum tersedia</strong><small>Kaur Umum</small></span></div>
+                        @endif
                     </div></article>
                 </div>
             </div>

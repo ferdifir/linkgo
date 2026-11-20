@@ -76,7 +76,7 @@ BATASAN TEKNIS FILE TUNGGAL
 BATASAN TEKNIS JIKA NANTI DIINTEGRASIKAN KE APLIKASI
 
 - Aplikasi ini menggunakan Laravel, Blade, SQLite, Vite, dan Tailwind CSS v4. Periksa versi dan pola repo yang aktual sebelum mengubahnya.
-- Route halaman desa memakai /desa/{slug}; view berada di resources/views/desa/{slug}.blade.php.
+- Route halaman desa memakai /gending/{slug}; view berada di resources/views/desa/{slug}.blade.php.
 - API per desa yang tersedia saat ini: GET /api/desa/{slug}/content, GET /api/desa/{slug}/budgets, dan POST /api/desa/{slug}/proposals. Endpoint tanpa slug adalah endpoint lama Curahsawo; jangan gunakan untuk desa lain.
 - Data proyek, APBDes, dan usulan memiliki village_slug. Setiap query dan mutasi harus memvalidasi serta membatasi desa di sisi server.
 - village_pages menyimpan konfigurasi halaman saat ini. Periksa skema sebelum mengandalkan tabel atau API untuk sambutan/perangkat, layanan, indeks, kegiatan, atau pengumuman; jangan menganggap semuanya sudah memiliki CRUD.

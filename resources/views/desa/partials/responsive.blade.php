@@ -1,4 +1,21 @@
 <style>
+    .portal-utility-desktop { display: inline; }
+    .portal-utility-mobile { display: none; }
+    @media (max-width: 700px) {
+        .portal-utility-inner {
+            justify-content: center !important;
+            gap: 0 !important;
+            min-height: 34px !important;
+            font-size: 12px !important;
+            white-space: nowrap;
+        }
+        .portal-utility-inner > :first-child { text-align: center; }
+        .portal-utility-inner > :last-child { display: none !important; }
+        .portal-utility-desktop { display: none !important; }
+        .portal-utility-mobile { display: inline !important; }
+    }
+</style>
+<style>
     .portal-index-result { display: grid; gap: 16px; margin-top: 16px; padding-top: 16px; border-top: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 22%, transparent); }
     .portal-index-primary { display: flex; align-items: end; justify-content: space-between; gap: 18px; }
     .portal-index-primary > div { display: grid; gap: 4px; }

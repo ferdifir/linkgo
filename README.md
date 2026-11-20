@@ -47,7 +47,7 @@ Untuk menjalankan server lokal:
 make dev
 ```
 
-Secara default server berjalan di `http://127.0.0.1:8080`. Buka `/` untuk direktori desa, `/desa/curahsawo` untuk halaman desa Curahsawo, atau `/admin` untuk dashboard admin. Saat mengembangkan frontend, jalankan `npm run dev` di terminal terpisah agar Vite memperbarui asset.
+Secara default server berjalan di `http://127.0.0.1:8080`. Buka `/` untuk direktori desa, `/gending/curahsawo` untuk halaman desa Curahsawo, atau `/admin` untuk dashboard admin. Saat mengembangkan frontend, jalankan `npm run dev` di terminal terpisah agar Vite memperbarui asset.
 
 `make setup` memasang dependency PHP, menyiapkan `.env`, membuat `APP_KEY` jika belum ada, dan menjalankan migrasi. Sebelum setup, buat database PostgreSQL sesuai nilai `DB_DATABASE` dan atur aksesnya melalui variabel `DB_*`. Konfigurasi bawaan memakai database `linkgo_portal` pada `127.0.0.1:5432`.
 

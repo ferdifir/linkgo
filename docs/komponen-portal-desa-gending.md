@@ -8,19 +8,19 @@ Per 2025, Kecamatan Gending memiliki 13 desa. Daftar nama di bawah mengikuti tab
 
 | Desa | Slug route |
 | --- | --- |
-| Banyuanyar Lor | `/desa/banyuanyar-lor` |
-| Sumberkerang | `/desa/sumberkerang` |
-| Sebaung | `/desa/sebaung` |
-| Pikatan | `/desa/pikatan` |
-| Bulang | `/desa/bulang` |
-| Brumbungan Lor | `/desa/brumbungan-lor` |
-| Jatiadi | `/desa/jatiadi` |
-| Klaseman | `/desa/klaseman` |
-| Pesisir | `/desa/pesisir` |
-| Randupitu | `/desa/randupitu` |
-| Gending | `/desa/gending` |
-| Pajurangan | `/desa/pajurangan` |
-| Curahsawo | `/desa/curahsawo` |
+| Banyuanyar Lor | `/gending/banyuanyar-lor` |
+| Sumberkerang | `/gending/sumberkerang` |
+| Sebaung | `/gending/sebaung` |
+| Pikatan | `/gending/pikatan` |
+| Bulang | `/gending/bulang` |
+| Brumbungan Lor | `/gending/brumbungan-lor` |
+| Jatiadi | `/gending/jatiadi` |
+| Klaseman | `/gending/klaseman` |
+| Pesisir | `/gending/pesisir` |
+| Randupitu | `/gending/randupitu` |
+| Gending | `/gending/gending` |
+| Pajurangan | `/gending/pajurangan` |
+| Curahsawo | `/gending/curahsawo` |
 
 ## Prinsip bersama
 

@@ -48,7 +48,7 @@ class RequestStatusChanged extends Notification implements ShouldQueue
             $message->line('Catatan dari desa: '.$this->adminNote);
         }
 
-        return $message->action('Lihat laman desa', url('/desa/'.$this->villageSlug));
+        return $message->action('Lihat laman desa', route('village.show', ['slug' => $this->villageSlug]));
     }
 
     /**

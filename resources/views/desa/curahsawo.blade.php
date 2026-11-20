@@ -420,17 +420,23 @@ details[open] .expand svg { transform:rotate(180deg) }
         <p class="eyebrow">Pemerintah Desa Curahsawo</p>
         <h2 id="sambutan-judul">Sambutan Kepala Desa</h2>
         <p class="welcome-message">Mari membangun Curahsawo melalui kolaborasi pemerintah desa dan masyarakat, dengan semangat persaudaraan, gotong royong, dan akhlak mulia untuk mewujudkan desa yang maju, mandiri, dan berbudaya.</p>
-        <div class="welcome-author"><span class="welcome-monogram" aria-hidden="true">NI</span><span><strong>Hj. Nikmatul Iza, S.Pd.</strong><small>Kepala Desa Curahsawo</small></span></div>
+        <div class="welcome-author"><span class="welcome-monogram" aria-hidden="true">{{ $villageHeadInitials }}</span><span><strong>{{ $villageHeadName ?: 'Belum tersedia' }}</strong><small>Kepala Desa Curahsawo</small></span></div>
       </div>
       <div class="staff-panel">
         <div class="staff-heading"><h3>Perangkat desa</h3><p>Melayani warga Curahsawo</p></div>
         <div class="staff-list" aria-label="Kepala desa dan perangkat desa">
-          <article class="staff-card"><span class="staff-mark" aria-hidden="true">NI</span><span><strong>Hj. Nikmatul Iza, S.Pd.</strong><small>Kepala Desa</small></span></article>
-          <article class="staff-card"><span class="staff-mark" aria-hidden="true">S</span><span><strong>Supandi</strong><small>Sekretaris Desa</small></span></article>
-          <article class="staff-card is-placeholder"><span class="staff-mark" aria-hidden="true">＋</span><span><strong>Nama perangkat desa</strong><small>Jabatan dan nama menyusul</small></span></article>
-          <article class="staff-card is-placeholder"><span class="staff-mark" aria-hidden="true">＋</span><span><strong>Nama perangkat desa</strong><small>Jabatan dan nama menyusul</small></span></article>
-          <article class="staff-card is-placeholder"><span class="staff-mark" aria-hidden="true">＋</span><span><strong>Nama perangkat desa</strong><small>Jabatan dan nama menyusul</small></span></article>
-          <article class="staff-card is-placeholder"><span class="staff-mark" aria-hidden="true">＋</span><span><strong>Nama perangkat desa</strong><small>Jabatan dan nama menyusul</small></span></article>
+          <article class="staff-card"><span class="staff-mark" aria-hidden="true">{{ $villageHeadInitials }}</span><span><strong>{{ $villageHeadName ?: 'Belum tersedia' }}</strong><small>Kepala Desa</small></span></article>
+          @if ($villageOfficials->isNotEmpty())
+            @foreach ($villageOfficials as $official)
+              <article class="staff-card">@if ($official->image_url)<img class="staff-mark village-official-photo" src="{{ $official->image_url }}" alt="Foto {{ $official->name }}" loading="lazy">@else<span class="staff-mark" aria-hidden="true">{{ mb_strtoupper(mb_substr($official->name, 0, 1)) }}</span>@endif<span><strong>{{ $official->name }}</strong><small>{{ $official->position }}</small></span></article>
+            @endforeach
+          @else
+            <article class="staff-card"><span class="staff-mark" aria-hidden="true">S</span><span><strong>Supandi</strong><small>Sekretaris Desa</small></span></article>
+            <article class="staff-card is-placeholder"><span class="staff-mark" aria-hidden="true">＋</span><span><strong>Nama perangkat desa</strong><small>Jabatan dan nama menyusul</small></span></article>
+            <article class="staff-card is-placeholder"><span class="staff-mark" aria-hidden="true">＋</span><span><strong>Nama perangkat desa</strong><small>Jabatan dan nama menyusul</small></span></article>
+            <article class="staff-card is-placeholder"><span class="staff-mark" aria-hidden="true">＋</span><span><strong>Nama perangkat desa</strong><small>Jabatan dan nama menyusul</small></span></article>
+            <article class="staff-card is-placeholder"><span class="staff-mark" aria-hidden="true">＋</span><span><strong>Nama perangkat desa</strong><small>Jabatan dan nama menyusul</small></span></article>
+          @endif
         </div>
       </div>
     </section>
@@ -587,6 +593,41 @@ async function applySiteContent(){
   set('#profil-judul',data.profileTitle);set('#profil h2+p',data.profileIntro);
   const serviceList=document.querySelector('#layanan .service-list');
   if(serviceList){const services=Array.isArray(data.services)?data.services:[];if(services.length){serviceList.replaceChildren(...services.map((item,i)=>{const d=document.createElement('details');if(i===0)d.open=true;const summary=document.createElement('summary');summary.innerHTML='<span class="icon tone-green"><svg><use href="#document"></use></svg></span>';const text=document.createElement('span');const strong=document.createElement('strong');strong.textContent=item.title||'Belum tersedia';const small=document.createElement('small');small.textContent=item.subtitle||'';text.append(strong,small);summary.append(text);summary.insertAdjacentHTML('beforeend','<span class="expand"><svg><use href="#chevron"></use></svg></span>');const body=document.createElement('div');body.className='detail-body';const p=document.createElement('p');p.textContent=item.description||'Belum tersedia';body.append(p);if(item.url){const a=document.createElement('a');a.className='text-link';a.href=item.url;a.textContent='Buka informasi terkait';a.target='_blank';a.rel='noopener noreferrer';body.append(a)}d.append(summary,body);return d}))}else{serviceList.replaceChildren(Object.assign(document.createElement('p'),{className:'portal-data-empty',textContent:'Belum tersedia'}))}}
+  if(serviceList){
+    const managedResponse=await fetch('/api/desa/curahsawo/managed-content').catch(()=>null);
+    if(managedResponse?.ok){
+      const managedContent=await managedResponse.json();
+      for(const item of managedContent.services||[]){
+        const detail=document.createElement('details');
+        const summary=document.createElement('summary');
+        summary.innerHTML='<span class="icon tone-green"><svg><use href="#document"></use></svg></span>';
+        const text=document.createElement('span');
+        const title=document.createElement('strong');
+        title.textContent=item.title||'Belum tersedia';
+        const subtitle=document.createElement('small');
+        subtitle.textContent=item.summary||'';
+        text.append(title,subtitle);
+        summary.append(text);
+        summary.insertAdjacentHTML('beforeend','<span class="expand"><svg><use href="#chevron"></use></svg></span>');
+        const body=document.createElement('div');
+        body.className='detail-body';
+        const description=document.createElement('p');
+        description.textContent=item.body||'Belum tersedia';
+        body.append(description);
+        if(item.link){
+          const link=document.createElement('a');
+          link.className='text-link';
+          link.href=item.link;
+          link.textContent='Buka informasi terkait';
+          link.target='_blank';
+          link.rel='noopener noreferrer';
+          body.append(link);
+        }
+        detail.append(summary,body);
+        serviceList.append(detail);
+      }
+    }
+  }
   const grid=document.querySelector('#project-grid');
   if(grid&&Array.isArray(data.projects)){const projects=data.projects;grid.dataset.loaded='true';grid.setAttribute('aria-busy','false');if(!projects.length){grid.replaceChildren();const empty=document.querySelector('#project-empty');empty.textContent='Belum ada informasi pembangunan yang dapat ditampilkan.';empty.hidden=false;}else{const locationSelect=document.querySelector('#project-filters [name=lokasi]'),yearSelect=document.querySelector('#project-filters [name=tahun]'),statusSelect=document.querySelector('#project-filters [name=status]');for(const [select,values] of [[locationSelect,[...new Set(projects.map(project=>project.location).filter(Boolean))]],[yearSelect,[...new Set(projects.map(project=>String(project.year||'')).filter(Boolean))]],[statusSelect,[...new Set(projects.map(project=>project.status).filter(Boolean))]]]){for(const value of values){const option=document.createElement('option');option.value=value;option.textContent=value;select.append(option)}}grid.replaceChildren(...projects.map(project=>{const card=document.createElement('article');card.className='project-card';card.dataset.location=project.location||'';card.dataset.year=project.year||'';card.dataset.status=project.status||'';card.innerHTML='<div class="project-top"><span class="icon tone-green"><svg><use href="#document"></use></svg></span><span class="status green"></span></div><h4></h4><p class="project-address"><svg><use href="#pin"></use></svg></p><div class="project-summary"><span>Tahun <strong class="year"></strong></span><span>Anggaran <strong class="summary"></strong></span></div><details class="project-details"><summary><span>Rincian pekerjaan</span><span class="expand"><svg><use href="#chevron"></use></svg></span></summary><div class="project-details-body"><p class="details-copy"></p><dl><div><dt>Volume</dt><dd class="volume"></dd></div><div><dt>Sumber dana</dt><dd>Belum tersedia</dd></div><div><dt>Pelaksana</dt><dd>Belum tersedia</dd></div><div><dt>Jadwal</dt><dd>Belum tersedia</dd></div><div><dt>Progres fisik</dt><dd>Belum tersedia</dd></div><div><dt>Realisasi belanja</dt><dd>Belum tersedia</dd></div></dl></div></details>';card.querySelector('.status').textContent=project.status||'';card.querySelector('h4').textContent=project.title||'';card.querySelector('.project-address').append(document.createTextNode(' '+(project.location||'')));card.querySelector('.year').textContent=project.year||'';card.querySelector('.summary').textContent=project.summary||'Belum tersedia';card.querySelector('.details-copy').textContent=project.details||'';if(!project.details)card.querySelector('.details-copy').hidden=true;card.querySelector('.volume').textContent=project.volume||'Belum tersedia';const source=card.querySelector('.project-details-body');if(project.source){const a=document.createElement('a');a.className='text-link';a.href=project.sourceUrl||'#';a.textContent=project.source+'';a.target='_blank';a.rel='noopener noreferrer';source.append(a)}const details=card.querySelector('.project-details');details.addEventListener('toggle',()=>{if(details.open)document.querySelectorAll('#project-grid .project-details[open]').forEach(other=>{if(other!==details)other.open=false})});return card}));document.querySelector('#project-filters').hidden=false;document.querySelector('#project-count').hidden=false;document.querySelector('#project-empty').hidden=true}}
   const activityCards=document.querySelectorAll('#kegiatan .community-card');if(Array.isArray(data.activities)&&data.activities.length){data.activities.forEach((item,i)=>{const card=activityCards[i];if(!card)return;const heading=card.querySelector('h3');const p=card.querySelector('p');if(heading)heading.textContent=item.title||'';if(p)p.textContent=item.description||item.subtitle||'';const link=card.querySelector('.text-link');if(item.url&&link)link.href=item.url})}

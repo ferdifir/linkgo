@@ -63,7 +63,7 @@ Semua website desa memakai struktur footer yang sama, mengikuti referensi [kersi
 
 ## Batasan teknis aplikasi saat ini
 
-- Aplikasi memakai Laravel. Halaman desa berada di `resources/views/desa/{slug}.blade.php`; route publik menggunakan `/desa/{slug}` dan hanya tersedia bila view untuk slug tersebut ada.
+- Aplikasi memakai Laravel. Halaman desa berada di `resources/views/desa/{slug}.blade.php`; route publik menggunakan `/gending/{slug}` dan hanya tersedia bila view untuk slug tersebut ada.
 - Route API publik memakai slug desa: `GET /api/desa/{slug}/content`, `GET /api/desa/{slug}/budgets`, dan `POST /api/desa/{slug}/proposals`.
 - Jangan menambahkan endpoint publik tanpa slug desa. Konten tambahan pada `site_content` juga harus diambil dengan `village_slug` yang sama.
 - Proyek, APBDes, dan usulan memiliki `village_slug`. Setiap query publik maupun operasi tulis harus membatasi slug di server. Jangan mengandalkan filter antarmuka sebagai pembatas akses.

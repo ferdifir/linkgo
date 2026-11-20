@@ -8,10 +8,11 @@
     .village-managed-item p { margin: 0; white-space: pre-line; }
     .village-managed-item a { width: fit-content; font-weight: 700; text-underline-offset: 3px; }
     .village-managed-item img { display: block; width: min(100%, 560px); max-height: 320px; border-radius: 10px; object-fit: cover; }
+    .village-official-photo { width: 36px; height: 36px; margin-inline-end: 8px; border-radius: 50%; object-fit: cover; vertical-align: middle; }
 </style>
 <script>
 (() => {
-    const match = window.location.pathname.match(/^\/desa\/([a-z0-9-]+)\/?$/);
+    const match = window.location.pathname.match(/^\/(?:gending|desa)\/([a-z0-9-]+)\/?$/);
     if (!match) return;
 
     const villageSlug = match[1];
